@@ -1,0 +1,59 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="We all need to center in CSS, but how?">
+  <meta name="author" content="undefined">
+
+  <title>Centering In CSS | Blog</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+  
+  <link rel="stylesheet" type="text/css" href="./css/lib/wing.min.css" />
+  <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+
+</head>
+
+<body>
+  <a href="/" id="home-btn"><img src="./img/arrow-left.svg" id="left-arrow"/>HOME</a>
+  <p id="time"><span id="readTime"></span> min read</p>
+  
+  <div id="head">
+    <div id="head-container">
+      <div id="head-content">
+        <h1 id="title">Centering In CSS</h1>
+        <h4 id="description">We all need to center in CSS, but how?</h4>
+      </div>
+    </div>
+  </div>
+  
+  <div id="content">
+    <div class="container">
+      <article id="post"><p>Hello everyone, today I will be showing you multiple ways to center in CSS. We all need to center things in CSS at some point, but how?</p>
+<p>There is no built in support for centering in CSS, sadly, but there are some ways to do it. I will be talking about two ways to do it.</p>
+<h3 id="-1-flexbox">#1: Flexbox</h3>
+<p>Using flexbox will provide clean, hack-free CSS to center elements, the only downside is browser support, don&#39;t use this if you need to support users with IE 10 and below.</p>
+<p>Say you have the following HTML:</p>
+<pre><code class="lang-html">&lt;div class=&quot;center&quot;&gt;
+    &lt;h1&gt;I&#39;m Centered!&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+<p>You need to center everything <strong>within</strong> the <code>div</code>. So you would apply the following styles to the <strong>parent element</strong>. Which is <code>.center</code> in this case.</p>
+<pre><code class="lang-css">.center {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+</code></pre>
+</article>
+    </div>
+  </div>
+  <script type="text/javascript" src="./js/lib/twemoji.min.js"></script>
+  <script type="text/javascript" src="./js/scripts.js"></script>
+</body>
+
+</html>
