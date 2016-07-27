@@ -1,3 +1,10 @@
+/* logo */
+#logo {
+	position: fixed;
+	left: 5%;
+	top: 5%;
+}
+
 /* Nav */
 .button_container {
   position: absolute;
