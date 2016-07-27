@@ -22,3 +22,6 @@ P.S. This blog is generated with my static site generator: [Sold](https://github
 <br/>
 
 ##### [Ask Me Anything](https://github.com/KingPixil/ama)
+
+<div id="disqus_thread"></div>
+<script src="../../comments.js"></script>
