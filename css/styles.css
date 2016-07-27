@@ -82,7 +82,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 
 /* Nav */
 .button_container {
-  position: absolute;
+  position: fixed;
   width: 30px;
   height: 25px;
   z-index: 100;
