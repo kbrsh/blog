@@ -1,6 +1,7 @@
 body {
 	overflow-x: hidden;
 	background: transparent;
+	color: #131313;
 }
 
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
@@ -37,6 +38,34 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
     text-align: center;
     padding-bottom: 3rem;
     padding-top: 3rem;
+}
+
+.post-title {
+    font-family: "Montserrat";
+    font-weight: light;
+    margin-bottom: 1rem;
+}
+
+.post-description {
+    font-family: 'Quicksand';
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.read-btn {
+    text-decoration: none;
+    color: #131313;
+    padding: 1rem 2rem;
+    border: 3px solid #131313;
+    font-family: 'Quicksand';
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+
+.read-btn:hover {
+    background: #131313;
+    color: #eee;
 }
 
 .small-container {
