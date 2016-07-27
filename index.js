@@ -13,16 +13,17 @@ Sold(__dirname)
 var landingTemplate = fs.readFileSync(__dirname + "/template.html", "utf-8");
 
 var html = [];
-
-fs.readdir(__dirname + "src/posts", function(err, files) {
+var path = __dirname + "/src/posts";
+fs.readdir(path, function(err, files) {
     files.forEach(function(file) {
-        html.push(file.)
+        var markedFile = marked(fs.readFileSync(__dirname + "/src/posts/" + file, "utf-8"));
+        html.push("<div class='post'><h3>" + markedFile.meta.title + "</h3></div>");
+    });
+    
+    var newLanding = landingTemplate.replace("{{posts}}", html);
+
+    fs.writeFile("index.html", newLanding, "utf-8", function() {
+    
     });
     if(err) console.log(err);
-});
-
-var newLanding = landingTemplate.replace(/{{posts}}/, html.join(""));
-
-fs.writeFile("index.html", landingTemplate, "utf-8", function() {
-    
 });
