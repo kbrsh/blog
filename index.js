@@ -1,7 +1,7 @@
 var Sold = require('sold');
 var fs = require('fs');
-var mkdirp = require('mkdirp');
 var marked = require('meta-marked');
+var ncp = require('ncp');
 
 Sold(__dirname)
     .data({
@@ -27,3 +27,12 @@ fs.readdir(path, function(err, files) {
     });
     if(err) console.log(err);
 });
+
+console.log("Copying files from /build to /posts =>")
+setTimeout(function() {
+    ncp(__dirname + "/build", __dirname, function(err) {
+    if(err) {
+        console.log(err); 
+    }
+});
+}, 1000);
