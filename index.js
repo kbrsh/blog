@@ -17,7 +17,7 @@ var path = __dirname + "/src/posts";
 fs.readdir(path, function(err, files) {
     files.forEach(function(file) {
         var markedFile = marked(fs.readFileSync(__dirname + "/src/posts/" + file, "utf-8"));
-        html.push("<div class='post'><div class='small-container'><h3>" + markedFile.meta.title + "</h3><p>" + markedFile.meta.description + "</p><a class='' href='/posts/" + file.replace(".md", "") + "'>Read</a></div></div>");
+        html.push("<div class='post'><div class='container small-container'><h3 class='post-title'>" + markedFile.meta.title + "</h3><p class='post-description'>" + markedFile.meta.description + "</p><a class='read-btn' href='/posts/" + file.replace(".md", "") + "'>Read</a></div></div>");
     });
     
     var newLanding = landingTemplate.replace("{{posts}}", html);

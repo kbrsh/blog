@@ -33,7 +33,15 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 /* post glance styles */
 .post {
     width: 100vw;
-    height: 15vh;
+    height: auto;
+    text-align: center;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+}
+
+.small-container {
+    width: 50%;
+    text-align: left;
 }
 
 /* logo */
