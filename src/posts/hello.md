@@ -7,7 +7,6 @@ Hello everyone, and welcome to my blog. Here I will talk about developing, desig
 
 Let me introduce myself, my name is Kabir Shah, and I enjoy making things that help people. I always learn something new and spend more time refactoring it and making it better. My top projects are featured [on my personal website](http://kabir.ml).
 
-I am a student in Sunny California.
 
 Now, more about this blog. Here you will find in-depth tutorials on things that are useful, including
 
