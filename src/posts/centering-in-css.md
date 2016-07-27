@@ -29,3 +29,10 @@ You need to center everything **within** the `div`. So you would apply the follo
 ```
 
 That should do the trick 👊
+
+<br/>
+
+### #2: 
+
+<div id="disqus_thread"></div>
+<script src="../../comments.js"></script>
