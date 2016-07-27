@@ -34,5 +34,6 @@ setTimeout(function() {
     if(err) {
         console.log(err); 
     }
+    console.log("copied files!");
 });
 }, 1000);
