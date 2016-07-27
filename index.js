@@ -42,6 +42,8 @@ setTimeout(function() {
         if(err) {
             console.log(err);
         }
+        console.log("/build deleted!");
+        console.log("success!");
     });
 });
 }, 1000);
