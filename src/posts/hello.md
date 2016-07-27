@@ -18,7 +18,7 @@ Now, more about this blog. Here you will find in-depth tutorials on things that 
 Thanks for reading this short post, and stay tuned for more blog posts!
 
 
-P.S. This blog is generated with my static site generator: [Sold](https://github.com/KingPixil/sold) :)
+P.S. This blog is generated with my static site generator: [Sold](https://github.com/KingPixil/sold) 😀
 
 <br/>
 
