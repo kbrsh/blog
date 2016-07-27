@@ -2,6 +2,7 @@ var Sold = require('sold');
 var fs = require('fs');
 var marked = require('meta-marked');
 var ncp = require('ncp');
+var rimraf = require('rimraf');
 
 Sold(__dirname)
     .data({
@@ -35,5 +36,12 @@ setTimeout(function() {
         console.log(err); 
     }
     console.log("copied files!");
+    
+    console.log("deleting /build");
+    rimraf(__dirname + "/build", function(err) {
+        if(err) {
+            console.log(err);
+        }
+    });
 });
 }, 1000);
