@@ -51,7 +51,42 @@
 </code></pre>
 <p>That should do the trick 👊</p>
 <p><br/></p>
-<h3 id="-2-">#2:</h3>
+<h3 id="-2-table">#2: Table</h3>
+<p>Using a table view will need a little more work than flexbox, but will support many more browsers. Including IE 6 and up! 👌</p>
+<p>Say you have the following HTML:</p>
+<pre><code class="lang-html">&lt;div class=&quot;center&quot;&gt;
+    &lt;div class=&quot;cell&quot;&gt;
+        &lt;div class=&quot;content&quot;&gt;
+            &lt;h1&gt;I&#39;m Centered!&lt;/h1&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Unlike flexbox, you will need three containers:</p>
+<ol>
+<li>one on the outside, representing a <code>table</code></li>
+<li>a <code>cell</code> inside of of the <code>table</code>, this will be a <code>table-cell</code></li>
+<li>lastly, you will need a container for all of the content</li>
+</ol>
+<p>Now, you can style them:</p>
+<pre><code class="lang-css">.center {
+    display: table; /* make it so .center acts like a table */
+}
+
+.cell {
+    display: table-cell; /* make .cell act like a cell within the table */
+    vertical-align: middle; /* align the cell vertically in the middle */
+}
+
+.content {
+    margin-left: auto; /* the content&#39;s left side is auto (centering it) */
+    margin-right: auto; /* the content&#39;s right side is auto (centering it) */
+    text-align: center; /* align any other text items in the center (optional) */
+}
+</code></pre>
+<p>There, now you can center things supporting IE 6 and up.</p>
+<p>If you have read through, awesome! You now know how to center in CSS, pat yourself on the back 😎</p>
+<p>P.S. You can comment below!</p>
 <p><div id="disqus_thread"></div></p>
 <script src="../../comments.js"></script></article>
     </div>

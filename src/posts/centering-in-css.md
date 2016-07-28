@@ -51,9 +51,10 @@ Say you have the following HTML:
 
 Unlike flexbox, you will need three containers:
 
-1) one on the outside, representing a `table`
-2) a `cell` inside of of the `table`, this will be a `table-cell`
-3) lastly, you will need a container for all of the content
+1. one on the outside, representing a `table`
+2. a `cell` inside of of the `table`, this will be a `table-cell`
+3. lastly, you will need a container for all of the content
+
 
 Now, you can style them:
 
@@ -70,7 +71,8 @@ Now, you can style them:
 .content {
     margin-left: auto; /* the content's left side is auto (centering it) */
     margin-right: auto; /* the content's right side is auto (centering it) */
-    text-align: center; /* align any other text items in the center (optional) */
+    text-align: center; /* align any other text items in the center*/
+    /* text-align: center; is optional */
 }
 ```
 
