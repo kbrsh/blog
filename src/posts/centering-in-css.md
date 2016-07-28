@@ -59,18 +59,18 @@ Now, you can style them:
 
 ```css
 .center {
-    display: table;
+    display: table; /* make it so .center acts like a table */
 }
 
 .cell {
-    display: table-cell;
-    vertical-align: middle;
+    display: table-cell; /* make .cell act like a cell within the table */
+    vertical-align: middle; /* align the cell vertically in the middle */
 }
 
 .content {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    margin-left: auto; /* the content's left side is auto (centering it) */
+    margin-right: auto; /* the content's right side is auto (centering it) */
+    text-align: center; /* align any other text items in the center (optional) */
 }
 ```
 
