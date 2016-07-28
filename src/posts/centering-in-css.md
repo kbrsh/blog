@@ -74,5 +74,11 @@ Now, you can style them:
 }
 ```
 
+There, now you can center things supporting IE 6 and up.
+
+If you have read through, awesome! You now know how to center in CSS, pat yourself on the back 😎
+
+P.S. You can comment below!
+
 <div id="disqus_thread"></div>
 <script src="../../comments.js"></script>
