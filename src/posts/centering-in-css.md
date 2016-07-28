@@ -12,6 +12,7 @@ There is no built in support for centering in CSS, sadly, but there are some way
 Using flexbox will provide clean, hack-free CSS to center elements, the only downside is browser support, don't use this if you need to support users with IE 10 and below.
 
 Say you have the following HTML:
+
 ```html
 <div class="center">
     <h1>I'm Centered!</h1>
@@ -32,7 +33,27 @@ That should do the trick 👊
 
 <br/>
 
-### #2: 
+### #2: Table
+
+Using a table view will need a little more work than flexbox, but will support many more browsers. Including IE 6 and up! 👌
+
+Say you have the following HTML:
+
+```html
+<div class="center">
+    <div class="cell">
+        <div class="content">
+            <h1>I'm Centered!</h1>
+        </div>
+    </div>
+</div>
+```
+
+Unlike flexbox, you will need three containers:
+
+1) one on the outside, representing a `table`
+2) a `cell` inside of of the `table`, this will be a `table-cell`
+3) lastly, you will need a container for all of the content
 
 <div id="disqus_thread"></div>
 <script src="../../comments.js"></script>
