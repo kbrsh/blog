@@ -55,5 +55,24 @@ Unlike flexbox, you will need three containers:
 2) a `cell` inside of of the `table`, this will be a `table-cell`
 3) lastly, you will need a container for all of the content
 
+Now, you can style them:
+
+```css
+.center {
+    display: table;
+}
+
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+```
+
 <div id="disqus_thread"></div>
 <script src="../../comments.js"></script>
