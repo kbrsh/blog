@@ -2,6 +2,7 @@
 title: Centering In CSS
 description: We all need to center in CSS, but how?
 date: September 3, 2016
+order: 1
 ---
 
 Hello everyone, today I will be showing you multiple ways to center in CSS. We all need to center things in CSS at some point, but how?
