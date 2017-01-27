@@ -17,9 +17,6 @@
   },
   "homepage": "https://github.com/KingPixil/blog#readme",
   "dependencies": {
-    "meta-marked": "^0.4.2",
-    "ncp": "^2.0.0",
-    "rimraf": "^2.5.4",
-    "sold": "0.0.5"
+    "sold": "^0.1.7"
   }
 }
