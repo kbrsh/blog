@@ -54,7 +54,7 @@ for(var i = 0; i < code.length; i++) {
       var lang = val.slice(5);
       el.classList.add(lang);
       el.classList.remove(val);
-      el.innerHTML = compile(el.innerHTML);
     }
+    el.innerHTML = compile(el.innerHTML);
   }
 }
