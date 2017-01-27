@@ -67,3 +67,7 @@ pre code::after {
 .global {
   color: #db9114;
 }
+
+#disqus_thread {
+  max-width: 650px;
+}
