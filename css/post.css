@@ -70,4 +70,6 @@ pre code::after {
 
 #disqus_thread {
   max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
 }
