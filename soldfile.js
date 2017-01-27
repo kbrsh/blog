@@ -2,7 +2,7 @@ var Sold = require('sold');
 
 Sold(__dirname)
   .data({
-    title: "Blog",
+    title: "Blog"
   })
   .source("src")
   .postSource("posts")
