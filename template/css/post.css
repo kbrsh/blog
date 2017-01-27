@@ -1,0 +1,69 @@
+body {
+  font-family: "Inconsolata", monospace;
+  color: #666666;
+  background-color: #f5f5f5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Gilroy-Bold", Helvetica, sans-serif;
+  color: #666666;
+}
+
+.post-title {
+  font-size: 7rem;
+  margin-bottom: 1rem;
+}
+
+.post-date {
+  font-family: "Inconsolata", monospace;
+  color: #888888;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+}
+
+.post-content p, .post-content li, .post-content ol, .post-content ul {
+  font-family: "Merriweather", serif;
+}
+
+.post-content ol, .post-content ul {
+  padding: 0;
+  margin: 0;
+}
+
+.post-content code, .post-content code {
+  font-family: "Inconsolata", monospace;;
+}
+
+.container {
+  max-width: 650px;
+  margin-top: 7rem;
+  margin-bottom: 10rem;
+}
+
+pre code {
+  position: relative;
+}
+
+pre code::after {
+  content: attr(class);
+  font-size: 1.5rem;
+  color: #CFCFCF;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.tag {
+  color: #00A2CD;
+}
+.special {
+  color: #AC2EC5;
+}
+.string {
+  color: #02C1A7;
+}
+.comment {
+  color: #989898;
+}
+.global {
+  color: #db9114;
+}

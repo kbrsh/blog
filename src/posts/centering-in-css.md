@@ -1,22 +1,19 @@
 ---
 title: Centering In CSS
-description: We all need to center in CSS, but how?
 date: September 3, 2016
 order: 1
 ---
 
-Hello everyone, today I will be showing you multiple ways to center in CSS. We all need to center things in CSS at some point, but how?
+There is no built in support for centering in CSS, sadly, but there are some ways to do it. I will be talking about two of the most effective ways to do it.
 
-There is no built in support for centering in CSS, sadly, but there are some ways to do it. I will be talking about two ways to do it.
-
-### #1: Flexbox
+### Flexbox
 
 Using flexbox will provide clean, hack-free CSS to center elements, the only downside is browser support, don't use this if you need to support users with IE 10 and below.
 
 Say you have the following HTML:
 
 ```html
-<div class="center">
+<div class='center'>
     <h1>I'm Centered!</h1>
 </div>
 ```
@@ -35,16 +32,16 @@ That should do the trick 👊
 
 <br/>
 
-### #2: Table
+### Table
 
 Using a table view will need a little more work than flexbox, but will support many more browsers. Including IE 6 and up! 👌
 
 Say you have the following HTML:
 
 ```html
-<div class="center">
-    <div class="cell">
-        <div class="content">
+<div class='center'>
+    <div class='cell'>
+        <div class='content'>
             <h1>I'm Centered!</h1>
         </div>
     </div>
@@ -53,9 +50,9 @@ Say you have the following HTML:
 
 Unlike flexbox, you will need three containers:
 
-1. one on the outside, representing a `table`
-2. a `cell` inside of of the `table`, this will be a `table-cell`
-3. lastly, you will need a container for all of the content
+1. One on the outside, representing a `table`
+2. A `cell` inside of of the `table`, this will be a `table-cell`
+3. Lastly, you will need a container for all of the content
 
 
 Now, you can style them:
@@ -81,8 +78,3 @@ Now, you can style them:
 There, now you can center things supporting IE 6 and up.
 
 If you have read through, awesome! You now know how to center in CSS, pat yourself on the back 😎
-
-P.S. You can comment below!
-
-<div id="disqus_thread"></div>
-<script src="../../comments.js"></script>

@@ -10,16 +10,25 @@
 
   <title>{{post-title}} | Kabir Shah</title>
 
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata|Merriweather' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" type="text/css" href="../fonts/fonts.css" />
   <link rel="stylesheet" type="text/css" href="../css/lib/wing.min.css" />
-  <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="../css/post.css" />
 
 </head>
 
 <body>
-  <script type="text/javascript" src="./js/scripts.js"></script>
+  <div class="container">
+    <h1 class="post-title">{{post-title}}</h1>
+    <h3 class="post-date">{{post-date}}</h3>
+    <div class="post-content">
+      {{{post-content}}}
+    </div>
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript" src="../js/comments.js"></script>
+  <script type="text/javascript" src="../js/scripts.js"></script>
 </body>
 
 </html>
