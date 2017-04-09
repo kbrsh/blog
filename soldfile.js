@@ -5,6 +5,5 @@ Sold(__dirname)
     title: "Blog"
   })
   .source("src")
-  .postSource("posts")
   .destination("")
   .build()
