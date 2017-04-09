@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/KingPixil/blog#readme",
   "dependencies": {
-    "sold": "^0.1.9"
+    "sold": "^0.2.1"
   }
 }
