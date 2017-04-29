@@ -108,12 +108,12 @@ Let's find all parts of the equation:
 
 We can multiply all of them, and we'll have the gradients! Now we'll know exactly what will happen as a result of updating our weights in a certain direction, and can push them into the direction that makes the loss function zero.
 
-## The Problem
+## The Problem (Coming Soon)
 
 
+## The Code (Coming Soon)
 
-## The Code
 
-Now that we know how a neural network works, we can begin coding this up in Python/NumPy.
+<!-- Now that we know how a neural network works, we can begin coding this up in Python/NumPy. -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
