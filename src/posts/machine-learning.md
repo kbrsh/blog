@@ -113,7 +113,9 @@ We can multiply all of them, and we'll have the gradients! Now we'll know exactl
 
 ## The Code (Coming Soon)
 
+## Conclusion
 
+This article is a work in progress. Feel free to give any suggestions or fixes.
 <!-- Now that we know how a neural network works, we can begin coding this up in Python/NumPy. -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
