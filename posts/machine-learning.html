@@ -62,9 +62,13 @@
 <p><img src="../img/machine-learning/weightToLoss.svg" alt="Weight to Loss Visual"></p>
 <p>If we find the derivative of the loss function with respect to the weights, we can find our way downhill from where we are, and move a little closer to our goal: having a loss of 0.</p>
 <p>For simplicity, let&#39;s have a simple function that takes some input <script type="math/tex">X</script> and returns it multiplied by a weight <script type="math/tex">w</script>.</p>
-<script type="math/tex">f(x, y) = x y</script>
+<script type="math/tex">f(X, w) = X w</script>
 
+<p>The derivative of this function with respect to the weight is:</p>
+<script type="math/tex">\frac{\partial f}{\partial w} = X</script>
 
+<p>We need to find the effect the weight has on <script type="math/tex">X</script>. Let&#39;s use a weight of <code>5</code>, and an input of <code>2</code>. If we plug it into the derivative function, we get <code>2</code> as a result.</p>
+<p>That means that if we change the weights by one, then the output of the function will increase by <code>2</code>, and it does!</p>
 <h2 id="the-problem">The Problem</h2>
 <p>Let&#39;s begin writing a program that will use supervised machine learning to solve a problem.</p>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

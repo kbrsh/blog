@@ -69,7 +69,15 @@ If we find the derivative of the loss function with respect to the weights, we c
 
 For simplicity, let's have a simple function that takes some input <script type="math/tex">X</script> and returns it multiplied by a weight <script type="math/tex">w</script>.
 
-<script type="math/tex">f(x, y) = x y</script>
+<script type="math/tex">f(X, w) = X w</script>
+
+The derivative of this function with respect to the weight is:
+
+<script type="math/tex">\frac{\partial f}{\partial w} = X</script>
+
+We need to find the effect the weight has on <script type="math/tex">X</script>. Let's use a weight of `5`, and an input of `2`. If we plug it into the derivative function, we get `2` as a result.
+
+That means that if we change the weights by one, then the output of the function will increase by `2`, and it does!
 
 
 ## The Problem
