@@ -39,6 +39,8 @@ One method of machine learning is to use a **Feedforward Neural Network**. They 
 * Applying an **activation function**
 * Returning an output
 
+![Feedforward Neural Network](../img/machine-learning/FeedForwardNeuralNetwork.svg)
+
 Those **weights** are where the magic happens. The neural network has to find the perfect set of weights to get the desired output, after starting with a random set of weights. The act of multiplying the inputs by the weights to form an output is **forward propagation**, as you are moving the inputs through the network. The activation function is just a function that can squash a value between a certain range, it introduces **nonlinearity** into the model.
 
 The multiplication of the inputs to weights to convert it into the shape of the output is a **dot product**.
@@ -49,7 +51,7 @@ In terms of math, we are doing the following:
 
 Where <script type="math/tex">X</script> is the input, <script type="math/tex">W_h</script> is the set of weights, and <script type="math/tex">b_h</script> is the bias.
 
-#### How does a neural network find the perfect weights?
+#### Back Propagation
 
 We have a random set of weights initially, and we need to get them to the perfect place, where all of our inputs passed through the network are equal to their corresponding outputs.
 
@@ -101,5 +103,11 @@ Let's find all parts of the equation:
 We can simply multiply all of them, and we'll have the gradients! Now we'll know exactly what will happen as a result of updating our weights in a certain direction, and can push them into the direction that makes the loss function zero.
 
 ## The Problem
+
+
+
+## The Code
+
+Now that we know how a neural network works, we can begin coding this up in Python/NumPy.
 
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
