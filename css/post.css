@@ -69,8 +69,27 @@ pre code::after {
   color: #db9114;
 }
 
+#back img {
+  position: absolute;
+  margin-top: 1rem;
+  margin-left: 10%;
+  opacity: .2;
+  transition: opacity .1s ease;
+}
+
+#back img:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 900px) {
+  #back img {
+    display: none;
+  }
+}
+
 #disqus_thread {
   max-width: 650px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 3rem;
 }

@@ -1,4 +1,9 @@
-var Sold = require('sold');
+const Sold = require('sold');
+const Handlebars = require('handlebars');
+
+Handlebars.registerHelper('reverse', function (arr) {
+    arr.reverse();
+});
 
 Sold(__dirname)
   .data({
