@@ -56,12 +56,13 @@
 <p>First, we need a way to see how far our network was. We can do that by using a <strong>loss function</strong>. We&#39;ll use the <strong>mean sum squared</strong> loss function, represented mathematically as:</p>
 <script type="math/tex">l(o, y) = \sum 0.5(o - y)^2</script>
 
-<p>Where <script type="math/tex">o</script> is the output of our network, and <script type="math/tex">y</script> is the target output.</p>
-<p>Now that he have a loss function, we need to find a way to get it to equal 0. This is the same as finding the derivative of the loss function with respect to the weights. This allows us adjust the weights in the correct way in order to lower the loss.</p>
+<p>Where <code>o</code> is the output of our network, and <code>y</code> is the target output.</p>
+<p>Now that he have a loss function, we need to find a way to get it to equal 0.</p>
+<p>You might think that the best way doing this is to try all of the possible weights until we get a good result. While that might work for extremely small networks, when you get hundreds of thousands of weights, it may take <em>years</em> to compute.</p>
+<p>Instead of that, what if we could track exactly what the weights should change by to decrease the loss? That is what a <strong>derivative</strong> is for.</p>
+<p>We can find the derivative of the loss function with respect to the weights. This allows us adjust the weights in the correct way in order to lower the loss.</p>
 <p>Let&#39;s visualize this by graphing a range of weights and their corresponding loss.</p>
 <p><img src="../img/machine-learning/weightToLoss.svg" alt="Weight to Loss Visual"></p>
-<p>You might think that the best way of finding the best set of weights is to try all of the possible weights until we get a good result. While that might work for extremely small networks, when you get hundreds of thousands of weights, it may take <em>years</em> to compute.</p>
-<p>Instead of that, what if we could track exactly what the weights should change by to decrease the loss? That is what a <strong>derivative</strong> is for.</p>
 <p>If we find the derivative of the loss function with respect to the weights, we can find our way downhill from where we are, and move a little closer to our goal: having a loss of 0.</p>
 <p>First, let&#39;s go through an example of how a derivative works.</p>
 <p>For simplicity, let&#39;s have a simple function that takes some input <code>X</code> and returns it multiplied by a weight <code>w</code>.</p>

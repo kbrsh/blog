@@ -59,17 +59,19 @@ First, we need a way to see how far our network was. We can do that by using a *
 
 <script type="math/tex">l(o, y) = \sum 0.5(o - y)^2</script>
 
-Where <script type="math/tex">o</script> is the output of our network, and <script type="math/tex">y</script> is the target output.
+Where `o` is the output of our network, and `y` is the target output.
 
-Now that he have a loss function, we need to find a way to get it to equal 0. This is the same as finding the derivative of the loss function with respect to the weights. This allows us adjust the weights in the correct way in order to lower the loss.
+Now that he have a loss function, we need to find a way to get it to equal 0.
+
+You might think that the best way doing this is to try all of the possible weights until we get a good result. While that might work for extremely small networks, when you get hundreds of thousands of weights, it may take _years_ to compute.
+
+Instead of that, what if we could track exactly what the weights should change by to decrease the loss? That is what a **derivative** is for.
+
+We can find the derivative of the loss function with respect to the weights. This allows us adjust the weights in the correct way in order to lower the loss.
 
 Let's visualize this by graphing a range of weights and their corresponding loss.
 
 ![Weight to Loss Visual](../img/machine-learning/weightToLoss.svg)
-
-You might think that the best way of finding the best set of weights is to try all of the possible weights until we get a good result. While that might work for extremely small networks, when you get hundreds of thousands of weights, it may take _years_ to compute.
-
-Instead of that, what if we could track exactly what the weights should change by to decrease the loss? That is what a **derivative** is for.
 
 If we find the derivative of the loss function with respect to the weights, we can find our way downhill from where we are, and move a little closer to our goal: having a loss of 0.
 
