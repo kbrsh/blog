@@ -106,7 +106,7 @@ Let's find all parts of the equation:
 \frac{\partial h}{\partial w} = X^\intercal
 </script>
 
-We can simply multiply all of them, and we'll have the gradients! Now we'll know exactly what will happen as a result of updating our weights in a certain direction, and can push them into the direction that makes the loss function zero.
+We can multiply all of them, and we'll have the gradients! Now we'll know exactly what will happen as a result of updating our weights in a certain direction, and can push them into the direction that makes the loss function zero.
 
 ## The Problem
 
