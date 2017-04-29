@@ -54,23 +54,37 @@
 <h4 id="how-does-a-neural-network-find-the-perfect-weights-">How does a neural network find the perfect weights?</h4>
 <p>We have a random set of weights initially, and we need to get them to the perfect place, where all of our inputs passed through the network are equal to their corresponding outputs.</p>
 <p>First, we need a way to see how far our network was. We can do that by using a <strong>loss function</strong>. We&#39;ll use the <strong>mean sum squared</strong> loss function, represented mathematically as:</p>
-<script type="math/tex">0.5\sum (o - y)^2</script>
+<script type="math/tex">l(o, y) = \sum 0.5(o - y)^2</script>
 
 <p>Where <script type="math/tex">o</script> is the output of our network, and <script type="math/tex">y</script> is the target output.</p>
 <p>Now that he have a loss function, we need to find a way to get it to equal 0. This is the same as finding the derivative of the loss function with respect to the weights. This allows us adjust the weights in the correct way in order to lower the loss.</p>
 <p>Let&#39;s visualize this by graphing a range of weights and their corresponding loss.</p>
 <p><img src="../img/machine-learning/weightToLoss.svg" alt="Weight to Loss Visual"></p>
 <p>If we find the derivative of the loss function with respect to the weights, we can find our way downhill from where we are, and move a little closer to our goal: having a loss of 0.</p>
-<p>For simplicity, let&#39;s have a simple function that takes some input <script type="math/tex">X</script> and returns it multiplied by a weight <script type="math/tex">w</script>.</p>
+<p>First, let&#39;s go through an example of how a derivative works.</p>
+<p>For simplicity, let&#39;s have a simple function that takes some input <code>X</code> and returns it multiplied by a weight <code>w</code>.</p>
 <script type="math/tex">f(X, w) = X w</script>
 
 <p>The derivative of this function with respect to the weight is:</p>
 <script type="math/tex">\frac{\partial f}{\partial w} = X</script>
 
-<p>We need to find the effect the weight has on <script type="math/tex">X</script>. Let&#39;s use a weight of <code>5</code>, and an input of <code>2</code>. If we plug it into the derivative function, we get <code>2</code> as a result.</p>
+<p>We need to find the effect the weight has on <code>X</code>. Let&#39;s use a weight of <code>5</code>, and an input of <code>2</code>. If we plug it into the derivative function, we get <code>2</code> as a result.</p>
 <p>That means that if we change the weights by one, then the output of the function will increase by <code>2</code>, and it does!</p>
+<p>Now, we have to do the same thing, but for our loss function, with respect to our weights. This gives us a <strong>gradient</strong> of how much our loss will <em>increase</em> based on how we change our weights. All we have to do after that, is <em>decrease</em> our weights by the gradient, and we will decrease the loss!</p>
+<p>Let&#39;s find the partial derivative of the loss function with respect to some weights.</p>
+<script type="math/tex">\frac{\partial l}{\partial w}</script>
+
+<p>If we use the chain rule, we get:</p>
+<script type="math/tex">\frac{\partial l}{\partial w} = \frac{\partial l}{\partial o} * \frac{\partial o}{\partial h} * \frac{\partial h}{\partial w}</script>
+
+<p>Let&#39;s find all parts of the equation:</p>
+<script type="math/tex">\frac{\partial l}{\partial o} = o - y\\
+\frac{\partial o}{\partial h} = \frac{e^{-o}}{\left(1\ +e^{-o}\right)^2}\\
+\frac{\partial h}{\partial w} = X^\intercal
+</script>
+
+<p>We can simply multiply all of them, and we&#39;ll have the gradients! Now we&#39;ll know exactly what will happen as a result of updating our weights in a certain direction, and can push them into the direction that makes the loss function zero.</p>
 <h2 id="the-problem">The Problem</h2>
-<p>Let&#39;s begin writing a program that will use supervised machine learning to solve a problem.</p>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     </div>

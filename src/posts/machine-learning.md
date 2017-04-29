@@ -55,7 +55,7 @@ We have a random set of weights initially, and we need to get them to the perfec
 
 First, we need a way to see how far our network was. We can do that by using a **loss function**. We'll use the **mean sum squared** loss function, represented mathematically as:
 
-<script type="math/tex">0.5\sum (o - y)^2</script>
+<script type="math/tex">l(o, y) = \sum 0.5(o - y)^2</script>
 
 Where <script type="math/tex">o</script> is the output of our network, and <script type="math/tex">y</script> is the target output.
 
@@ -67,7 +67,9 @@ Let's visualize this by graphing a range of weights and their corresponding loss
 
 If we find the derivative of the loss function with respect to the weights, we can find our way downhill from where we are, and move a little closer to our goal: having a loss of 0.
 
-For simplicity, let's have a simple function that takes some input <script type="math/tex">X</script> and returns it multiplied by a weight <script type="math/tex">w</script>.
+First, let's go through an example of how a derivative works.
+
+For simplicity, let's have a simple function that takes some input `X` and returns it multiplied by a weight `w`.
 
 <script type="math/tex">f(X, w) = X w</script>
 
@@ -75,13 +77,29 @@ The derivative of this function with respect to the weight is:
 
 <script type="math/tex">\frac{\partial f}{\partial w} = X</script>
 
-We need to find the effect the weight has on <script type="math/tex">X</script>. Let's use a weight of `5`, and an input of `2`. If we plug it into the derivative function, we get `2` as a result.
+We need to find the effect the weight has on `X`. Let's use a weight of `5`, and an input of `2`. If we plug it into the derivative function, we get `2` as a result.
 
 That means that if we change the weights by one, then the output of the function will increase by `2`, and it does!
 
+Now, we have to do the same thing, but for our loss function, with respect to our weights. This gives us a **gradient** of how much our loss will _increase_ based on how we change our weights. All we have to do after that, is _decrease_ our weights by the gradient, and we will decrease the loss!
+
+Let's find the partial derivative of the loss function with respect to some weights.
+
+<script type="math/tex">\frac{\partial l}{\partial w}</script>
+
+If we use the chain rule, we get:
+
+<script type="math/tex">\frac{\partial l}{\partial w} = \frac{\partial l}{\partial o} * \frac{\partial o}{\partial h} * \frac{\partial h}{\partial w}</script>
+
+Let's find all parts of the equation:
+
+<script type="math/tex">\frac{\partial l}{\partial o} = o - y\\
+\frac{\partial o}{\partial h} = \frac{e^{-o}}{\left(1\ +e^{-o}\right)^2}\\
+\frac{\partial h}{\partial w} = X^\intercal
+</script>
+
+We can simply multiply all of them, and we'll have the gradients! Now we'll know exactly what will happen as a result of updating our weights in a certain direction, and can push them into the direction that makes the loss function zero.
 
 ## The Problem
-
-Let's begin writing a program that will use supervised machine learning to solve a problem.
 
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
