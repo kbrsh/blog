@@ -67,6 +67,10 @@ Let's visualize this by graphing a range of weights and their corresponding loss
 
 ![Weight to Loss Visual](../img/machine-learning/weightToLoss.svg)
 
+You might think that the best way of finding the best set of weights is to try all of the possible weights until we get a good result. While that might work for extremely small networks, when you get hundreds of thousands of weights, it may take _years_ to compute.
+
+Instead of that, what if we could track exactly what the weights should change by to decrease the loss? That is what a **derivative** is for.
+
 If we find the derivative of the loss function with respect to the weights, we can find our way downhill from where we are, and move a little closer to our goal: having a loss of 0.
 
 First, let's go through an example of how a derivative works.
@@ -83,7 +87,7 @@ We need to find the effect the weight has on `X`. Let's use a weight of `5`, and
 
 That means that if we change the weights by one, then the output of the function will increase by `2`, and it does!
 
-Now, we have to do the same thing, but for our loss function, with respect to our weights. This gives us a **gradient** of how much our loss will _increase_ based on how we change our weights. All we have to do after that, is _decrease_ our weights by the gradient, and we will decrease the loss!
+Now, we have to do the same thing, but for our loss function, with respect to our weights. This gives us a **gradient** of how much our loss will _increase_ based on how we change our weights. A gradient is basically the derivative of all of the inputs in a vector. All we have to do after that, is _decrease_ our weights by the gradient, and we will decrease the loss!
 
 Let's find the partial derivative of the loss function with respect to some weights.
 
@@ -110,4 +114,4 @@ We can simply multiply all of them, and we'll have the gradients! Now we'll know
 
 Now that we know how a neural network works, we can begin coding this up in Python/NumPy.
 
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
