@@ -8,9 +8,9 @@ I’ve been using [Vue](https://vuejs.org/) for a while now, it solves all my pr
 
 After researching how Vue actually works under the hood, I came across [React](https://facebook.github.io/react/). It had the concept of a virtual DOM, and diffing this against the previous state every time. I also came across the fact that Vue didn’t use this idea at the time (it does now).
 
-I began writing a simple library, not meant for anyone else to use. Just a single file, with jumbled up code, attempting to make something. I just didn’t know what it was yet.
+I began writing a simple library, not meant for anyone else to use. It was a single file, with jumbled up code, attempting to make something. I just didn’t know what it was yet.
 
-After getting it to work, no matter what I did, it was *ridiculously* *slow!* So I gave up, and just kept on using my slow implementation.
+After getting it to work, no matter what I did, it was *ridiculously* *slow!* So I gave up, and kept on using my slow implementation.
 
 ### Remake
 
@@ -20,7 +20,7 @@ So I set out to recreate what I called “Moon”. The goal was to be like Preac
 
 ### Performance
 
-The performance of these frameworks can be so much better, it’s just that no library has it right. They all have their benefits, but still are weak in some areas. For example, library A might be good at adding items to the end of a large list, and library B might be good at adding items to the start of a large list.
+The performance of these frameworks can be so much better, but no library has it right. They all have their benefits, but still are weak in some areas. For example, library A might be good at adding items to the end of a large list, and library B might be good at adding items to the start of a large list.
 
 There’s a [great article](http://webreflection.blogspot.co.uk/2015/04/the-dom-is-not-slow-your-abstraction-is.html) explaining why some abstractions are slow. In a nutshell, interfacing with the DOM directly is faster than an abstraction over the DOM.
 
@@ -66,8 +66,8 @@ If you are starting a new project, or are looking for some performance benefits,
 
 Moon, an idea that started in late 2015, is now almost production ready in early 2017. Why did it take so long?
 
-Remember, Moon started as a learning project. At the time, I was simply looking
+Remember, Moon started as a learning project. At the time, I was looking
 to make something for myself, without all the bloated features of popular
-libraries that I simply *didn’t need*. I also knew nothing about the DOM.
+libraries I *didn’t need*. I also knew nothing about the DOM.
 
 It’s amazing how much I’ve learned since then.
