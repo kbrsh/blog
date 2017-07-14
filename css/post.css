@@ -36,6 +36,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 2rem;
 }
 
+.post-content span.caption {
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #888888;
+  font-family: "Inconsolata", monospace;
+}
+
 .post-content ol, .post-content ul {
   padding: 0;
   margin: 0;
