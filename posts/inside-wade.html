@@ -1,0 +1,121 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content=". Kabir Shah's blog.">
+  <meta name="author" content="Kabir Shah">
+
+  <title>Inside Wade | Kabir Shah</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather:300,300i" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="../fonts/fonts.css" />
+  <link rel="stylesheet" type="text/css" href="../css/lib/wing.min.css" />
+  <link rel="stylesheet" type="text/css" href="../css/post.css" />
+
+</head>
+
+<body>
+  <a href="../" id="back"><img src="../img/back.svg" alt="Go Back" /></a>
+  <div class="container">
+    <h1 class="post-title">Inside Wade</h1>
+    <h3 class="post-date">March 30, 2017</h3>
+    <div class="post-content">
+      <p><a href="https://github.com/KingPixil/wade">Wade</a> is a 1kb Javascript search library. It allows you to create a function that can search an array of strings for a set of keywords, which is run through the processor. After this, it is searched for in each item of the data.</p>
+<h3 id="api">API</h3>
+<p>The API is extremely minimal and self-explanatory. It looks like:</p>
+<pre><code class="lang-js">const search = Wade([&quot;He saves on socks.&quot;, &quot;You are being silly.&quot;]);
+search(&quot;save socks&quot;);
+</code></pre>
+<h3 id="preprocessor">Preprocessor</h3>
+<p>Wade preprocesses all data to search for, and any search queries. This works by moving each item through a pipeline. This will do the following operations:</p>
+<ul>
+<li>Make everything lowercase.
+This helps with searching. All queries and data are made lowercase, resulting in the search not being case-sensitive.</li>
+<li>Remove punctuation.
+Punctuation is an extra item to be searched for, and removing it allows for efficient searches.</li>
+<li>Remove stop words.
+Wade has a list of stop words that are removed from all data and queries. Stop words are extra words that have little meaning or can apply to any item in the data, and removing them allows for more relevant results to be returned.</li>
+</ul>
+<h3 id="search">Search</h3>
+<p>When you first give Wade an array of data, it will create a <a href="https://en.wikipedia.org/wiki/Trie">trie</a> representing all indexes of the data.</p>
+<p>The best way to understand how this works, is to use an example. Say that the data given looks like:</p>
+<pre><code class="lang-js">[&quot;Hey&quot;, &quot;Hello&quot;, &quot;Greetings&quot;]
+</code></pre>
+<p>After preprocessing, the data will look like:</p>
+<pre><code class="lang-js">[&quot;hey&quot;, &quot;hello&quot;, &quot;greetings&quot;]
+</code></pre>
+<p>The generated trie for this will have a reference to which indexes the item belongs in the data:</p>
+<pre><code class="lang-js">{
+  &quot;h&quot;: {
+    &quot;e&quot;: {
+      &quot;y&quot;: {
+        &quot;indexes&quot;: [0]
+      },
+      &quot;l&quot;: {
+        &quot;l&quot;: {
+          &quot;o&quot;: {
+            &quot;indexes&quot;: [1]
+          }
+        }
+      }
+    }
+  },
+  &quot;g&quot;: {
+    &quot;r&quot;: {
+      &quot;e&quot;: {
+        &quot;e&quot;: {
+          &quot;t&quot;: {
+            &quot;i&quot;: {
+              &quot;n&quot;: {
+                &quot;g&quot;: {
+                  &quot;s&quot;: {
+                    &quot;indexes&quot;: [2]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>As you can see, the trie will make a single data structure representing all of the strings. Whenever a node has had the content of a string so far, it will contain an <code>indexes</code> property holding the indexes in the data that the node refers to.</p>
+<p>This data structure can take some time to generate, but searching through it is a breeze.</p>
+<p>Say we would like to search for <code>&quot;he&quot;</code>. Wade will split this into keywords, and search for each of them in the trie individually, updating the score for the indexes as it goes.</p>
+<p>Since there is only one keyword, Wade will treat it <strong>as a prefix</strong>, meaning that it will perform a <a href="https://en.wikipedia.org/wiki/Depth-first_search">depth-first search</a>.</p>
+<p>This works by traveling as far down the trie as possible, and then grabbing the index of itself and <em>every</em> node under it.</p>
+<p>Let&#39;s go through this step by step. Wade will go through the keyword one by one, and see if it is in the trie.</p>
+<ol>
+<li>The current character is <code>&quot;h&quot;</code>, it is inside of the trie, set the current node to it and continue.</li>
+<li>The current character is <code>&quot;e&quot;</code>, set the current node to it.</li>
+<li>We have arrived at the end of the keyword, check all nodes below.</li>
+<li>Search <code>&quot;y&quot;</code>.
+The node has an <code>indexes</code> property, increment the score for the index inside (<code>[0]</code>).</li>
+<li>Traverse through <code>&quot;e&quot;</code>, <code>&quot;l&quot;</code>, <code>&quot;l&quot;</code>, and <code>&quot;o&quot;</code>.
+The node has an <code>indexes</code> property, increment the score for the index inside (<code>[1]</code>).</li>
+<li>Nothing left, abort the search.</li>
+</ol>
+<p>In the end, we will be left with a <code>results</code> array like:</p>
+<pre><code class="lang-js">[1, 1]
+</code></pre>
+<p>We can see that we have returned the results for:</p>
+<pre><code class="lang-js">[&quot;Hey&quot;, &quot;Hello&quot;]
+</code></pre>
+<p>These both do indeed have the prefix of <code>&quot;he&quot;</code>, which means we have successfully performed a search! For keyword that aren&#39;t treated as prefixes, Wade will not perform a depth-first search, and will increment the score for any indexes found if the whole keyword was matched. The last keyword of a query will be treated as a prefix, as the user might still be typing.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>That is how Wade works! In a nutshell, it preprocesses data, splits it into keywords, and searches within a trie.</p>
+<p>Be sure to check out the source on <a href="https://github.com/KingPixil/wade">Github</a></p>
+
+    </div>
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript" src="../js/comments.js"></script>
+  <script type="text/javascript" src="../js/scripts.js"></script>
+</body>
+
+</html>

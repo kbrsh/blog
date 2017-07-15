@@ -3,8 +3,8 @@ var code = document.getElementsByTagName("code");
 var compile = function(val) {
   var compiled = val;
 
-  var STR_RE = /["'](.*?)["']/g;
-  var SPECIAL_RE = /\b(new|var|if|do|function|while|switch|for|foreach|in|continue|break)(?=[^\w])/g;
+  var STR_RE = /["'](.*)["']/g;
+  var SPECIAL_RE = /\b(new|var|const|if|do|function|while|switch|for|foreach|in|continue|break)(?=[^\w])/g;
   var GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|Object|Number|\$)(?=[^\w])/g;
   var METHODS_RE = /\b(indexOf|match|replace|toString|length)(?=[^\w])/g;
   var MULTILINE_COMMENT_RE  = /(\/\*.*\*\/)/g;
