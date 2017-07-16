@@ -30,7 +30,7 @@ Wade preprocesses all data to search for, and any search queries. This works by 
 
 When you first give Wade an array of data, it will create a [trie](https://en.wikipedia.org/wiki/Trie) representing all indexes of the data.
 
-The best way to understand how this works, is to use an example. Say that the data given looks like:
+The best way to understand how this works is to use an example. Say that the data given looks like:
 
 ```js
 ["Hey", "Hello", "Greetings"]
@@ -42,7 +42,7 @@ After preprocessing, the data will look like:
 ["hey", "hello", "greetings"]
 ```
 
-The generated trie for this will have a reference to which indexes the item belongs in the data:
+The generated trie for this will have an array holding the indexes the of items that have the keyword.
 
 ```js
 {
@@ -97,7 +97,7 @@ Let's go through this step by step. Wade will go through the keyword one by one,
 1. The current character is `"h"`, it is inside of the trie, set the current node to it and continue.
 2. The current character is `"e"`, set the current node to it.
 3. We have arrived at the end of the keyword, check all nodes below.
-4. Search `"y"`.
+4. Check `"y"`.
    The node has an `indexes` property, increment the score for the index inside (`[0]`).
 5. Traverse through `"e"`, `"l"`, `"l"`, and `"o"`.
    The node has an `indexes` property, increment the score for the index inside (`[1]`).

@@ -41,13 +41,13 @@ Wade has a list of stop words that are removed from all data and queries. Stop w
 </ul>
 <h3 id="search">Search</h3>
 <p>When you first give Wade an array of data, it will create a <a href="https://en.wikipedia.org/wiki/Trie">trie</a> representing all indexes of the data.</p>
-<p>The best way to understand how this works, is to use an example. Say that the data given looks like:</p>
+<p>The best way to understand how this works is to use an example. Say that the data given looks like:</p>
 <pre><code class="lang-js">[&quot;Hey&quot;, &quot;Hello&quot;, &quot;Greetings&quot;]
 </code></pre>
 <p>After preprocessing, the data will look like:</p>
 <pre><code class="lang-js">[&quot;hey&quot;, &quot;hello&quot;, &quot;greetings&quot;]
 </code></pre>
-<p>The generated trie for this will have a reference to which indexes the item belongs in the data:</p>
+<p>The generated trie for this will have an array holding the indexes the of items that have the keyword.</p>
 <pre><code class="lang-js">{
   &quot;h&quot;: {
     &quot;e&quot;: {
@@ -94,7 +94,7 @@ Wade has a list of stop words that are removed from all data and queries. Stop w
 <li>The current character is <code>&quot;h&quot;</code>, it is inside of the trie, set the current node to it and continue.</li>
 <li>The current character is <code>&quot;e&quot;</code>, set the current node to it.</li>
 <li>We have arrived at the end of the keyword, check all nodes below.</li>
-<li>Search <code>&quot;y&quot;</code>.
+<li>Check <code>&quot;y&quot;</code>.
 The node has an <code>indexes</code> property, increment the score for the index inside (<code>[0]</code>).</li>
 <li>Traverse through <code>&quot;e&quot;</code>, <code>&quot;l&quot;</code>, <code>&quot;l&quot;</code>, and <code>&quot;o&quot;</code>.
 The node has an <code>indexes</code> property, increment the score for the index inside (<code>[1]</code>).</li>
