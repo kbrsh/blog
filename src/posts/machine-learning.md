@@ -1,7 +1,7 @@
 ---
 title: Machine Learning
 date: April 29, 2017
-order: 2
+order: 3
 ---
 
 Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around 6 months ago, I became interested in machine learning, specifically neural networks. There are a couple great lectures from Stanford, and some nice articles out there that explain the topic nicely.

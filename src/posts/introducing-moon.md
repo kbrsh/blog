@@ -1,7 +1,7 @@
 ---
 title: Introducing Moon
 date: March 25, 2017
-order: 3
+order: 2
 ---
 
 I’ve been using [Vue](https://vuejs.org/) for a while now, it solves all my problems, and does it beautifully. After a while, in late 2015, I began to notice some performance issues with my application. So I began to create something new, as a learning project. Hopefully to see how this DOM stuff actually works, and write a solution specifically for me.
