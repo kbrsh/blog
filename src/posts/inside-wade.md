@@ -109,6 +109,8 @@ In the end, we will be left with a `results` array like:
 [1, 1]
 ```
 
+Both items have a score of `1`, hence the value of each item in the results array being `1`. The index of the item corresponds to the index in the data. Index `0` in the data (`"Hey"`) has a score of `1`, and index `1` in the data (`"Hello"`), has a score of `1`.
+
 We can see that we have returned the results for:
 
 ```js
