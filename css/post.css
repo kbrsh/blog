@@ -71,20 +71,21 @@ pre code::after {
   top: 5px;
   right: 10px;
 }
-.tag {
-  color: #00A2CD;
+
+.string {
+  color: #02C1A7;
 }
 .special {
   color: #AC2EC5;
 }
-.string {
-  color: #02C1A7;
+.global {
+  color: #db9114;
+}
+.method {
+  color: #00A2CD;
 }
 .comment {
   color: #989898;
-}
-.global {
-  color: #db9114;
 }
 
 #back img {

@@ -1,44 +1,63 @@
+var STR_RE = /(["'`])((?:.|\n)*?)\1/g;
+var SPECIAL_RE = /\b(new|var|let|if|do|function|while|switch|for|foreach|in|continue|break|return)(?=[^\w])/g;
+var GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|true|false|Object|this|Boolean|Function|Number|\d|\$)/g;
+var CONST_RE = /\b(const )([\w\d]+)/g;
+var METHODS_RE = /\b([\w\d]+)(\((?:.|\n)*?\))/g;
+var MULTILINE_COMMENT_RE  = /(\/\*.*\*\/)/g;
+var COMMENT_RE = /(\/\/.*)/g;
+var HTML_COMMENT_RE = /(\&lt;\!\-\-(?:(?:.|\n)*)\-\-\&gt;)/g;
+var HTML_ATTRIBUTE_RE = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g;
+var HTML_TAG_RE = /(&lt;\/?[\w\d-]*?)(\s(?:.|\n)*?)?(\/?&gt;)/g;
+
 var code = document.getElementsByTagName("code");
 
-var compile = function(val) {
+var compile = function(val, lang) {
   var compiled = val;
 
-  var STR_RE = /["'](.*)["']/g;
-  var SPECIAL_RE = /\b(new|var|const|if|do|function|while|switch|for|foreach|in|continue|break)(?=[^\w])/g;
-  var GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|Object|Number|\$)(?=[^\w])/g;
-  var METHODS_RE = /\b(indexOf|match|replace|toString|length)(?=[^\w])/g;
-  var MULTILINE_COMMENT_RE  = /(\/\*.*\*\/)/g;
-  var COMMENT_RE = /(\/\/.*)/g;
+  compiled = compiled.replace(STR_RE, "<span class=\"string\">$1$2$1</span>");
 
-  var TAG_RE = /(&lt;(.|\n)*?&gt;)/g;
+  if(lang === "html") {
+    compiled = compiled.replace(HTML_COMMENT_RE, "<span class=\"comment\">$1</span>");
+    compiled = compiled.replace(HTML_TAG_RE, function(match, start, content, end) {
+      if(content === undefined) {
+        content = "";
+      } else {
+        content = content.replace(HTML_ATTRIBUTE_RE, function(match, name, value) {
+          if(value === "string") {
+            return match;
+          } else {
+            if(value === undefined) {
+              value = "";
+            } else {
+              value = "=" + value;
+            }
+            return "<span class=\"global\">" + name + "</span>" + value;
+          }
+        });
+      }
 
-  compiled.replace(STR_RE, function(match, value) {
-    compiled = compiled.replace(match, "<span class=\"string\">\"" + value + "\"</span>");
-  });
+      return "<span class=\"method\">" + start + "</span>" + content + "<span class=\"method\">" + end + "</span>";
+    });
+  } else {
+    compiled = compiled.replace(SPECIAL_RE, "<span class=\"special\">$1</span>");
+    compiled = compiled.replace(GLOBAL_VARIABLE_RE, "<span class=\"global\">$1</span>");
 
-  compiled.replace(SPECIAL_RE, function(match, value) {
-    compiled = compiled.replace(match, "<span class=\"special\">" + value + "</span>");
-  });
+    compiled = compiled.replace(CONST_RE, "<span class=\"special\">$1</span><span class=\"global\">$2</span>");
+    compiled = compiled.replace(METHODS_RE, function(match, name, params) {
+      if(params === undefined) {
+        params = "";
+      }
 
-  compiled.replace(GLOBAL_VARIABLE_RE, function(match, value) {
-    compiled = compiled.replace(match, "<span class=\"global\">" + value + "</span>");
-  });
+      if(name !== "function") {
+        return "<span class=\"method\">" + name + "</span>" + params;
+      } else {
+        return match;
+      }
+    });
 
-  compiled.replace(METHODS_RE, function(match, value) {
-    compiled = compiled.replace(match, "<span class=\"method\">" + value + "</span>");
-  });
-
-  compiled.replace(COMMENT_RE, function(match, value) {
-    compiled = compiled.replace(match, "<span class=\"comment\">" + value + "</span>");
-  });
-
-  compiled.replace(MULTILINE_COMMENT_RE, function(match, value) {
-    compiled = compiled.replace(match, "<span class=\"comment\">" + value + "</span>");
-  });
-
-  compiled.replace(TAG_RE, function(match, value) {
-    compiled = compiled.replace(new RegExp(match, "g"), "<span class=\"tag\">" + value + "</span>");
-  });
+    compiled = compiled.replace(COMMENT_RE, "<span class=\"comment\">$1</span>");
+    compiled = compiled.replace(MULTILINE_COMMENT_RE, "<span class=\"comment\">$1</span>");
+  }
 
 
   return compiled;
@@ -50,11 +69,15 @@ for(var i = 0; i < code.length; i++) {
   for(var j = 0; j < attrs.length; j++) {
     var type = attrs[j].name;
     var val = attrs[j].value;
+    var lang;
     if(type === "class" && val.substr(0, 5) === "lang-") {
-      var lang = val.slice(5);
-      el.classList.add(lang);
+      lang = val.slice(5);
+      el.setAttribute('lang', lang);
       el.classList.remove(val);
     }
-    el.innerHTML = compile(el.innerHTML);
+    el.innerHTML = compile(el.innerHTML, lang);
+  }
+  if(!attrs.length) {
+    el.innerHTML = compile(el.innerHTML, 'js');
   }
 }
