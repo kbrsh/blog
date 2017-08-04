@@ -4,9 +4,9 @@ date: April 29, 2017
 order: 3
 ---
 
-Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around 6 months ago, I became interested in machine learning, specifically neural networks. There are a couple great lectures from Stanford, and some nice articles out there that explain the topic nicely.
+Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around a 6 months ago, I became interested in the topic.
 
-Nonetheless, most of them included complex mathematic notations and often used a machine learning framework to show code samples. While the frameworks are great, they I think it is just as important to know what exactly goes on under the hood.
+I tried looking for information on the internet, but most of the articles I found included complex mathematic notations and often used a machine learning framework to show code samples. While the frameworks are great, I think it is just as important to know what exactly goes on under the hood.
 
 This will be a series of blog posts set to help you understand how machine learning works, and have the code to go with it. The code samples will use Python, with NumPy. NumPy allows for complex math operations to be extremely simple in code, and is not specifically for machine learning. We will be using it for matrix multiplication, dot products, etc.
 
@@ -26,15 +26,15 @@ Regression problems are problems in which an input is taken in, and there is an 
 
 ![Regression Visual](../img/machine-learning/regression.svg)
 
-There are also **two types of learning** methods: supervised and unsupervised.
+There are also **two main types of learning** methods: supervised and unsupervised.
 
-Supervised learning is when you have a set of inputs and outputs, and you train the machine on that. Unsupervised learning is when you only have a set of inputs, and you train the machine to find patterns between them.
+Supervised learning is when you have a set of inputs and outputs, and you train the machine on that. Unsupervised learning is when you only have a set of inputs, and you train the machine to find patterns between them. Essentially, machine learning is the process of a machine finding the relationship between inputs and outputs.
 
 ## Feedforward Neural Networks
 
 One method of machine learning is to use a **Feedforward Neural Network**. They work by:
 
-* Taking an input (a 2D array of numbers)
+* Taking an input
 * Multiplying the input by a certain set of weights
 * Applying an **activation function**
 * Returning an output
@@ -43,25 +43,39 @@ One method of machine learning is to use a **Feedforward Neural Network**. They 
 
 Those **weights** are where the magic happens. The neural network has to find the perfect set of weights to get the desired output, after starting with a random set of weights. The act of multiplying the inputs by the weights to form an output is **forward propagation**, as you are moving the inputs through the network. The activation function is just a function that can squash a value between a certain range, it introduces **nonlinearity** into the model.
 
-The multiplication of the inputs to weights to convert it into the shape of the output is a **dot product**.
+Throughout this article, <script type="math/tex">X</script> refers to the input, <script type="math/tex">W_h</script> refers to the weight(s), and <script type="math/tex">b_h</script> refers to the bias (we will get to this later).
 
-In terms of math, we are doing the following:
+Let's use a simple example, with a single input, single weight, and single output. The neural network will be extremely simple:
+
+<script type="math/tex">X W_h</script>
+
+That's it! A neural network in a simple multiplication problem, we take the input, multiply it by the weight, and get an output. Now this weight can only adapt to represent a certain **feature** of the relationship between the input and output, so we need to add more. To do this, we use vectors. We can use them to represent multiple inputs and outputs as well. We will still be doing the same thing, but using more numbers.
+
+Instead of multiplying, our weights and inputs can have different dimensions, so we use a **dot product**. Getting a dot product of a vector with another vector will lead to a new vector with the same number of rows as the first vector, and the same number of columns as the second.
+
+Basically, the dot product performs the multiplication while transforming the shape of the input into the shape of the output.
+
+Our activation function is used to make things nonlinear.
+
+With all of that, we have the basic forward propagation of a feedforward neural network, which is represented in math as:
 
 <script type="math/tex">activation((X W_h) + b_h)</script>
 
-Where <script type="math/tex">X</script> is the input, <script type="math/tex">W_h</script> is the set of weights, and <script type="math/tex">b_h</script> is the bias.
-
 #### Back Propagation
 
-We have a random set of weights initially, and we need to get them to the perfect place, where all of our inputs passed through the network are equal to their corresponding outputs.
+We multiplied some numbers, so what?
 
-First, we need a way to see how far our network was. We can do that by using a **loss function**. We'll use the **mean sum squared** loss function, represented mathematically as:
+The output can be random if our weight is random, which means our network isn't really learning anything, it's just returning an output for each input. It doesn't adjust anything to try and improve the output to match the expected one.
+
+How can we change the output? One thing we can do is change the input itself, but we don't have control over that, so we just have to change the weights.
+
+First, we need a way to see how far off our network was. We can do that by using a **loss function**. We'll use the **mean sum squared** loss function, represented mathematically as:
 
 <script type="math/tex">l(o, y) = \sum 0.5(o - y)^2</script>
 
-Where `o` is the output of our network, and `y` is the target output.
+Where `o` is the output of our network, and `y` is the target output. All this does is take the output and expected output, and gives us a representation of how far off each part in the output is. We use this function to see how good the network is performing.
 
-Now that he have a loss function, we need to find a way to get it to equal 0.
+The goal is for our network to get the loss to equal 0, meaning the weights used map all of the inputs to the outputs correctly.
 
 You might think that the best way doing this is to try all of the possible weights until we get a good result. While that might work for extremely small networks, when you get hundreds of thousands of weights, it may take _years_ to compute.
 
@@ -110,12 +124,10 @@ We can multiply all of them, and we'll have the gradients! Now we'll know exactl
 
 ## The Problem (Coming Soon)
 
-
 ## The Code (Coming Soon)
 
 ## Conclusion
 
 This article is a work in progress. Feel free to give any suggestions or fixes.
-<!-- Now that we know how a neural network works, we can begin coding this up in Python/NumPy. -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

@@ -32,8 +32,8 @@
       <h1 class="post-title">Machine Learning</h1>
       <h3 class="post-date">April 29, 2017</h3>
       <div class="post-content">
-        <p>Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around 6 months ago, I became interested in machine learning, specifically neural networks. There are a couple great lectures from Stanford, and some nice articles out there that explain the topic nicely.</p>
-<p>Nonetheless, most of them included complex mathematic notations and often used a machine learning framework to show code samples. While the frameworks are great, they I think it is just as important to know what exactly goes on under the hood.</p>
+        <p>Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around a 6 months ago, I became interested in the topic.</p>
+<p>I tried looking for information on the internet, but most of the articles I found included complex mathematic notations and often used a machine learning framework to show code samples. While the frameworks are great, I think it is just as important to know what exactly goes on under the hood.</p>
 <p>This will be a series of blog posts set to help you understand how machine learning works, and have the code to go with it. The code samples will use Python, with NumPy. NumPy allows for complex math operations to be extremely simple in code, and is not specifically for machine learning. We will be using it for matrix multiplication, dot products, etc.</p>
 <h2 id="what-is-machine-learning-">What is Machine Learning?</h2>
 <p>Machine learning essentially allows for a machine to learn patterns between certain items without any of it having to be hard-coded or specified. The machine itself learns these patterns as it trains.</p>
@@ -43,30 +43,38 @@
 <p><img src="../img/machine-learning/classification.svg" alt="Classification Visual"></p>
 <p>Regression problems are problems in which an input is taken in, and there is an output that doesn&#39;t correspond to a group.</p>
 <p><img src="../img/machine-learning/regression.svg" alt="Regression Visual"></p>
-<p>There are also <strong>two types of learning</strong> methods: supervised and unsupervised.</p>
-<p>Supervised learning is when you have a set of inputs and outputs, and you train the machine on that. Unsupervised learning is when you only have a set of inputs, and you train the machine to find patterns between them.</p>
+<p>There are also <strong>two main types of learning</strong> methods: supervised and unsupervised.</p>
+<p>Supervised learning is when you have a set of inputs and outputs, and you train the machine on that. Unsupervised learning is when you only have a set of inputs, and you train the machine to find patterns between them. Essentially, machine learning is the process of a machine finding the relationship between inputs and outputs.</p>
 <h2 id="feedforward-neural-networks">Feedforward Neural Networks</h2>
 <p>One method of machine learning is to use a <strong>Feedforward Neural Network</strong>. They work by:</p>
 <ul>
-<li>Taking an input (a 2D array of numbers)</li>
+<li>Taking an input</li>
 <li>Multiplying the input by a certain set of weights</li>
 <li>Applying an <strong>activation function</strong></li>
 <li>Returning an output</li>
 </ul>
 <p><img src="../img/machine-learning/FeedForwardNeuralNetwork.svg" alt="Feedforward Neural Network"></p>
 <p>Those <strong>weights</strong> are where the magic happens. The neural network has to find the perfect set of weights to get the desired output, after starting with a random set of weights. The act of multiplying the inputs by the weights to form an output is <strong>forward propagation</strong>, as you are moving the inputs through the network. The activation function is just a function that can squash a value between a certain range, it introduces <strong>nonlinearity</strong> into the model.</p>
-<p>The multiplication of the inputs to weights to convert it into the shape of the output is a <strong>dot product</strong>.</p>
-<p>In terms of math, we are doing the following:</p>
+<p>Throughout this article, <script type="math/tex">X</script> refers to the input, <script type="math/tex">W_h</script> refers to the weight(s), and <script type="math/tex">b_h</script> refers to the bias (we will get to this later).</p>
+<p>Let&#39;s use a simple example, with a single input, single weight, and single output. The neural network will be extremely simple:</p>
+<script type="math/tex">X W_h</script>
+
+<p>That&#39;s it! A neural network in a simple multiplication problem, we take the input, multiply it by the weight, and get an output. Now this weight can only adapt to represent a certain <strong>feature</strong> of the relationship between the input and output, so we need to add more. To do this, we use vectors. We can use them to represent multiple inputs and outputs as well. We will still be doing the same thing, but using more numbers.</p>
+<p>Instead of multiplying, our weights and inputs can have different dimensions, so we use a <strong>dot product</strong>. Getting a dot product of a vector with another vector will lead to a new vector with the same number of rows as the first vector, and the same number of columns as the second.</p>
+<p>Basically, the dot product performs the multiplication while transforming the shape of the input into the shape of the output.</p>
+<p>Our activation function is used to make things nonlinear.</p>
+<p>With all of that, we have the basic forward propagation of a feedforward neural network, which is represented in math as:</p>
 <script type="math/tex">activation((X W_h) + b_h)</script>
 
-<p>Where <script type="math/tex">X</script> is the input, <script type="math/tex">W_h</script> is the set of weights, and <script type="math/tex">b_h</script> is the bias.</p>
 <h4 id="back-propagation">Back Propagation</h4>
-<p>We have a random set of weights initially, and we need to get them to the perfect place, where all of our inputs passed through the network are equal to their corresponding outputs.</p>
-<p>First, we need a way to see how far our network was. We can do that by using a <strong>loss function</strong>. We&#39;ll use the <strong>mean sum squared</strong> loss function, represented mathematically as:</p>
+<p>We multiplied some numbers, so what?</p>
+<p>The output can be random if our weight is random, which means our network isn&#39;t really learning anything, it&#39;s just returning an output for each input. It doesn&#39;t adjust anything to try and improve the output to match the expected one.</p>
+<p>How can we change the output? One thing we can do is change the input itself, but we don&#39;t have control over that, so we just have to change the weights.</p>
+<p>First, we need a way to see how far off our network was. We can do that by using a <strong>loss function</strong>. We&#39;ll use the <strong>mean sum squared</strong> loss function, represented mathematically as:</p>
 <script type="math/tex">l(o, y) = \sum 0.5(o - y)^2</script>
 
-<p>Where <code>o</code> is the output of our network, and <code>y</code> is the target output.</p>
-<p>Now that he have a loss function, we need to find a way to get it to equal 0.</p>
+<p>Where <code>o</code> is the output of our network, and <code>y</code> is the target output. All this does is take the output and expected output, and gives us a representation of how far off each part in the output is. We use this function to see how good the network is performing.</p>
+<p>The goal is for our network to get the loss to equal 0, meaning the weights used map all of the inputs to the outputs correctly.</p>
 <p>You might think that the best way doing this is to try all of the possible weights until we get a good result. While that might work for extremely small networks, when you get hundreds of thousands of weights, it may take <em>years</em> to compute.</p>
 <p>Instead of that, what if we could track exactly what the weights should change by to decrease the loss? That is what a <strong>derivative</strong> is for.</p>
 <p>We can find the derivative of the loss function with respect to the weights. This allows us adjust the weights in the correct way in order to lower the loss.</p>
@@ -99,8 +107,7 @@
 <h2 id="the-problem-coming-soon-">The Problem (Coming Soon)</h2>
 <h2 id="the-code-coming-soon-">The Code (Coming Soon)</h2>
 <h2 id="conclusion">Conclusion</h2>
-<p>This article is a work in progress. Feel free to give any suggestions or fixes.
-<!-- Now that we know how a neural network works, we can begin coding this up in Python/NumPy. --></p>
+<p>This article is a work in progress. Feel free to give any suggestions or fixes.</p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
       </div>
