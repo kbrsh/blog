@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KingPixil/blog.git"
+    "url": "git+https://github.com/kbrsh/blog.git"
   },
   "author": "Kabir Shah",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KingPixil/blog/issues"
+    "url": "https://github.com/kbrsh/blog/issues"
   },
-  "homepage": "https://github.com/KingPixil/blog#readme",
+  "homepage": "https://github.com/kbrsh/blog#readme",
   "dependencies": {
     "handlebars": "^4.0.6",
     "sold": "latest"
