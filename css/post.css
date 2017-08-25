@@ -5,7 +5,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Gilroy-Bold", Helvetica, sans-serif;
+  font-family: "Gilroy Bold", Helvetica, sans-serif;
   color: #666666;
 }
 
@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-content p, .post-content li, .post-content ol, .post-content ul {
-  font-family: "Merriweather", serif;
+  font-family: "Lora", serif;
   font-size: 2rem;
 }
 
@@ -42,11 +42,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.5rem;
   color: #888888;
   font-family: "Inconsolata", monospace;
-}
-
-.post-content ol, .post-content ul {
-  padding: 0;
-  margin: 0;
 }
 
 .post-content code, .post-content code {

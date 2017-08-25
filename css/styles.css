@@ -10,12 +10,17 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Gilroy-Bold", Helvetica, sans-serif;
+  font-family: "Gilroy Bold", Helvetica, sans-serif;
   color: #666666;
 }
 
+.head {
+  font-family: "Gilroy Bold", serif;
+  font-weight: 700;
+}
+
 .post-title {
-  font-family: "Gilroy-Light", Helvetica, sans-serif;
+  font-family: "Gilroy Light", Helvetica, sans-serif;
   font-size: 4rem;
   margin-top: 5px;
 }

@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'Gilroy-Bold';
+  font-family: "Gilroy Bold";
   font-style: normal;
-  src: local('Gilroy-ExtraBold'), url(./Gilroy-ExtraBold.otf) format('opentype');
+  src: local("Gilroy Bold"), url("./Gilroy-ExtraBold.otf") format("opentype");
 }
 
 @font-face {
-  font-family: 'Gilroy-Light';
+  font-family: "Gilroy Light";
   font-style: normal;
-  src: local('Gilroy-Light'), url(./Gilroy-Light.otf) format('opentype');
+  src: local("Gilroy Light"), url("./Gilroy-Light.otf") format("opentype");
 }
