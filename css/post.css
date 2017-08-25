@@ -1,12 +1,12 @@
 body {
   font-family: "Inconsolata", monospace;
-  color: #666666;
+  color: #414141;
   background-color: #f5f5f5;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Gilroy Bold", Helvetica, sans-serif;
-  color: #666666;
+  color: #414141;
 }
 
 .post-title {
@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .post-date {
   font-family: "Inconsolata", monospace;
-  color: #888888;
+  color: #666666;
   margin-top: 1rem;
   margin-bottom: 5rem;
 }
@@ -24,6 +24,7 @@ h1, h2, h3, h4, h5, h6 {
 .post-content p, .post-content li, .post-content ol, .post-content ul {
   font-family: "Lora", serif;
   font-size: 2rem;
+  color: #414141;
 }
 
 .post-content .MathJax {
