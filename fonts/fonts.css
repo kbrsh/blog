@@ -1,11 +1,5 @@
 @font-face {
-  font-family: "Gilroy Bold";
+  font-family: "HK Nova";
   font-style: normal;
-  src: local("Gilroy Bold"), url("./Gilroy-ExtraBold.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "Gilroy Light";
-  font-style: normal;
-  src: local("Gilroy Light"), url("./Gilroy-Light.otf") format("opentype");
+  src: local("HKNova Medium"), url("./HKNova-Medium.otf") format("opentype");
 }

@@ -5,8 +5,14 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Gilroy Bold", Helvetica, sans-serif;
   color: #414141;
+  font-family: "HK Nova", sans-serif;
+}
+
+.container {
+  max-width: 650px;
+  margin-top: 7rem;
+  margin-bottom: 10rem;
 }
 
 .post-title {
@@ -15,16 +21,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-date {
-  font-family: "Inconsolata", monospace;
-  color: #666666;
   margin-top: 1rem;
   margin-bottom: 5rem;
+  color: #666666;
+  font-family: "Inconsolata", monospace;
 }
 
 .post-content p, .post-content li, .post-content ol, .post-content ul {
   font-family: "Lora", serif;
   font-size: 2rem;
   color: #414141;
+}
+
+.post-content p {
+  margin-bottom: 2rem;
+}
+
+.post-content a {
+  color: #2590ff;
+  text-decoration: none;
+  border-bottom: 2px solid #2590ff;
+  transition: color .2s ease, border .2s ease;
+}
+
+.post-content a:hover {
+  color: #414141;
+  border-bottom: 2px solid #414141;
 }
 
 .post-content .MathJax {
@@ -39,20 +61,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .post-content span.caption {
   display: block;
+  margin-bottom: 2rem;
   text-align: center;
-  font-size: 1.5rem;
   color: #888888;
   font-family: "Inconsolata", monospace;
+  font-size: 1.5rem;
 }
 
 .post-content code, .post-content code {
   font-family: "Inconsolata", monospace;;
-}
-
-.container {
-  max-width: 650px;
-  margin-top: 7rem;
-  margin-bottom: 10rem;
 }
 
 pre code {

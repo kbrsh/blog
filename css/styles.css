@@ -1,48 +1,36 @@
 body {
-  font-family: "Inconsolata", monospace;
-  color: #414141;
-  background-color: #f5f5f5;
-}
-
-h1 {
-  font-size: 10rem;
-  margin-bottom: 2rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Gilroy Bold", Helvetica, sans-serif;
-  color: #414141;
-}
-
-.head {
-  font-family: "Gilroy Bold", serif;
-  font-weight: 700;
-}
-
-.post-title {
-  font-family: "Gilroy Light", Helvetica, sans-serif;
-  font-size: 4rem;
-  margin-top: 5px;
-}
-
-.post-title a {
-  text-decoration: none;
-  color: #0FAAB7;
-  transition: all .2s ease;
-}
-
-.post-title a:hover {
-  background: #0FAAB7;
-  color: #f5f5f5;
-}
-
-.post-date {
-  font-family: "Inconsolata", monospace;
-  color: #666666;
-  margin-bottom: 0;
+  background: #f5f5f5;
 }
 
 .container {
   max-width: 650px;
-  margin-top: 5rem;
+}
+
+.posts {
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-date {
+  margin-bottom: 0;
+  color: #666666;
+  font-family: "Inconsolata", monospace;
+  font-size: 2rem;
+}
+
+.post-title {
+  margin-bottom: 3rem;
+  font-family: "HK Nova", sans-serif;
+  font-size: 4rem;
+}
+
+.post-title a {
+  color: #2590ff;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.post-title a:hover {
+  color: #414141;
 }
