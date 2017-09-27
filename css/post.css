@@ -113,7 +113,7 @@ pre code::after {
   opacity: 1;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .post-title {
     font-size: 5rem;
   }
