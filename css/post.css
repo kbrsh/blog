@@ -113,6 +113,16 @@ pre code::after {
   opacity: 1;
 }
 
+@media screen and (max-width: 768px) {
+  .post-title {
+    font-size: 5rem;
+  }
+
+  .post-date {
+    font-size: 2.6rem;
+  }
+}
+
 @media screen and (max-width: 900px) {
   #back img {
     display: none;
