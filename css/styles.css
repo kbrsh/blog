@@ -34,3 +34,13 @@ body {
 .post-title a:hover {
   color: #414141;
 }
+
+@media screen and (max-width: 600px) {
+  .post-title {
+    font-size: 3.5rem;
+  }
+
+  .post-date {
+    font-size: 1.75rem;
+  }
+}
