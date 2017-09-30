@@ -1,6 +1,6 @@
 ---
 title: Identifying Ideas
-date: September 26, 2017
+date: September 30, 2017
 order: 5
 ---
 
