@@ -7,7 +7,7 @@ body {
 }
 
 .posts {
-  margin-top: 10rem;
+  margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -16,13 +16,11 @@ body {
   margin-bottom: 0;
   color: #666666;
   font-family: "Inconsolata", monospace;
-  font-size: 2rem;
 }
 
 .post-title {
-  margin-bottom: 3rem;
+  margin-bottom: 30px;
   font-family: "HK Nova", sans-serif;
-  font-size: 4rem;
 }
 
 .post-title a {
@@ -33,14 +31,4 @@ body {
 
 .post-title a:hover {
   color: #414141;
-}
-
-@media screen and (max-width: 600px) {
-  .post-title {
-    font-size: 3.5rem;
-  }
-
-  .post-date {
-    font-size: 1.75rem;
-  }
 }

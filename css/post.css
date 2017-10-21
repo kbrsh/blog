@@ -1,40 +1,40 @@
 body {
-  font-family: "Inconsolata", monospace;
+  font-family: "Lora", monospace;
   color: #414141;
   background-color: #f5f5f5;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.container {
+  max-width: 650px;
+  margin-top: 70px;
+}
+
+.post-title {
   color: #414141;
   font-family: "HK Nova", sans-serif;
 }
 
-.container {
-  max-width: 650px;
-  margin-top: 7rem;
-  margin-bottom: 10rem;
-}
-
-.post-title {
-  font-size: 7rem;
-  margin-bottom: 1rem;
-}
-
 .post-date {
-  margin-top: 1rem;
-  margin-bottom: 5rem;
+  margin-bottom: 50px;
   color: #666666;
   font-family: "Inconsolata", monospace;
 }
 
-.post-content p, .post-content li, .post-content ol, .post-content ul {
-  font-family: "Lora", serif;
-  font-size: 2rem;
+.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
+  margin-top: 50px;
+  margin-bottom: 20px;
   color: #414141;
+  font-family: "HK Nova", sans-serif;
+}
+
+.post-content p, .post-content li, .post-content ol, .post-content ul {
+  color: #414141;
+  font-family: "Lora", serif;
+  font-size: 20px;
 }
 
 .post-content p {
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
 }
 
 .post-content a {
@@ -50,39 +50,37 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-content .MathJax {
-  font-size: 7rem !important;
+  font-size: 70px !important;
 }
 
 .post-content img {
   width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 .post-content span.caption {
   display: block;
-  margin-bottom: 2rem;
+  margin-bottom: 10px;
   text-align: center;
   color: #888888;
   font-family: "Inconsolata", monospace;
-  font-size: 1.5rem;
+  font-size: 15px;
 }
 
-.post-content code, .post-content code {
+.post-content code {
   font-family: "Inconsolata", monospace;;
 }
 
-pre code {
+.post-content pre code {
   position: relative;
 }
 
-pre code::after {
-  content: attr(class);
-  font-size: 1.5rem;
-  color: #CFCFCF;
+.post-content pre code::after {
   position: absolute;
   top: 5px;
   right: 10px;
+  content: attr(class);
+  color: #CFCFCF;
+  font-size: 15px;
 }
 
 .string {
@@ -111,27 +109,4 @@ pre code::after {
 
 #back img:hover {
   opacity: 1;
-}
-
-@media screen and (max-width: 600px) {
-  .post-title {
-    font-size: 5rem;
-  }
-
-  .post-date {
-    font-size: 2.6rem;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  #back img {
-    display: none;
-  }
-}
-
-#disqus_thread {
-  max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 3rem;
 }
