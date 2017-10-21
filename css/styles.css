@@ -9,11 +9,11 @@ body {
 }
 
 .container {
+  margin-top: 125px;
   max-width: 650px;
 }
 
 .posts {
-  margin-top: 125px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -40,8 +40,17 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    margin-top: 50px;
+  }
+
   #logo {
-    top: 3%;
-    left: 3%;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  #logo img {
+    margin-bottom: 50px;
   }
 }
