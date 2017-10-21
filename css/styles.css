@@ -2,12 +2,18 @@ body {
   background: #f5f5f5;
 }
 
+#logo {
+	position: absolute;
+	left: 7%;
+	top: 7%;
+}
+
 .container {
   max-width: 650px;
 }
 
 .posts {
-  margin-top: 100px;
+  margin-top: 125px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -31,4 +37,11 @@ body {
 
 .post-title a:hover {
   color: #414141;
+}
+
+@media screen and (max-width: 768px) {
+  #logo {
+    top: 3%;
+    left: 3%;
+  }
 }
