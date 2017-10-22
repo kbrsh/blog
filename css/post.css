@@ -111,10 +111,10 @@ body {
 }
 
 #back svg #back-arrow {
-  transition: fill .5s ease;
+  transition: fill .2s ease;
 }
 
-#back svg:hover #back-arrow {
+#back:hover svg #back-arrow {
   fill: #2590ff;
 }
 
