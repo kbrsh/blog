@@ -100,14 +100,26 @@ body {
   color: #989898;
 }
 
-#back img {
+#back {
   position: absolute;
-  margin-top: 1rem;
-  margin-left: 10%;
-  opacity: .2;
-  transition: opacity .1s ease;
+  top: 10px;
+  left: 10px;
 }
 
-#back img:hover {
-  opacity: 1;
+#back svg {
+  height: 15px;
+}
+
+#back svg #back-arrow {
+  transition: fill .5s ease;
+}
+
+#back svg:hover #back-arrow {
+  fill: #2590ff;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    margin-top: 50px;
+  }
 }

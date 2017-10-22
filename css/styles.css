@@ -4,8 +4,8 @@ body {
 
 #logo {
 	position: absolute;
+  top: 7%;
 	left: 7%;
-	top: 7%;
 }
 
 .container {
