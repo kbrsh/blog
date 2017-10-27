@@ -1,8 +1,8 @@
 var STR_RE = /(["'`])((?:.|\n)*?)\1/g;
-var SPECIAL_RE = /\b(new|var|let|if|do|function|while|switch|for|foreach|in|continue|break|return)(?=[^\w])/g;
-var GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|true|false|Object|this|Boolean|Function|Number|\d|\$)/g;
+var SPECIAL_RE = /\b(new|var|let|if|do|function|while|switch|for|foreach|in|continue|break|return)\b/g;
+var GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|undefined|true|false|Object|this|Boolean|Function|Number|\d)\b/g;
 var CONST_RE = /\b(const )([\w\d]+)/g;
-var METHODS_RE = /\b([\w\d]+)(\((?:.|\n)*?\))/g;
+var METHODS_RE = /\b([\w\d]+)\(/g;
 var MULTILINE_COMMENT_RE  = /(\/\*.*\*\/)/g;
 var COMMENT_RE = /(\/\/.*)/g;
 var HTML_COMMENT_RE = /(\&lt;\!\-\-(?:(?:.|\n)*)\-\-\&gt;)/g;
@@ -39,24 +39,16 @@ var compile = function(val, lang) {
       return "<span class=\"method\">" + start + "</span>" + content + "<span class=\"method\">" + end + "</span>";
     });
   } else {
+    compiled = compiled.replace(COMMENT_RE, "<span class=\"comment\">$1</span>");
+    compiled = compiled.replace(MULTILINE_COMMENT_RE, "<span class=\"comment\">$1</span>");
+
     compiled = compiled.replace(SPECIAL_RE, "<span class=\"special\">$1</span>");
     compiled = compiled.replace(GLOBAL_VARIABLE_RE, "<span class=\"global\">$1</span>");
 
     compiled = compiled.replace(CONST_RE, "<span class=\"special\">$1</span><span class=\"global\">$2</span>");
-    compiled = compiled.replace(METHODS_RE, function(match, name, params) {
-      if(params === undefined) {
-        params = "";
-      }
-
-      if(name !== "function") {
-        return "<span class=\"method\">" + name + "</span>" + params;
-      } else {
-        return match;
-      }
+    compiled = compiled.replace(METHODS_RE, function(match, name) {
+      return "<span class=\"method\">" + name + "</span>(";
     });
-
-    compiled = compiled.replace(COMMENT_RE, "<span class=\"comment\">$1</span>");
-    compiled = compiled.replace(MULTILINE_COMMENT_RE, "<span class=\"comment\">$1</span>");
   }
 
 
@@ -65,19 +57,11 @@ var compile = function(val, lang) {
 
 for(var i = 0; i < code.length; i++) {
   var el = code[i];
-  var attrs = Array.prototype.slice.call(el.attributes);
-  for(var j = 0; j < attrs.length; j++) {
-    var type = attrs[j].name;
-    var val = attrs[j].value;
-    var lang;
-    if(type === "class" && val.substr(0, 5) === "lang-") {
-      lang = val.slice(5);
-      el.setAttribute('lang', lang);
-      el.classList.remove(val);
-    }
+  var classes = el.getAttribute("class");
+  if(classes !== null && classes.substring(0, 5) === "lang-") {
+    var lang = classes.substring(5);
+    el.setAttribute("lang", lang);
+    el.removeAttribute("class");
     el.innerHTML = compile(el.innerHTML, lang);
-  }
-  if(!attrs.length) {
-    el.innerHTML = compile(el.innerHTML, 'js');
   }
 }
