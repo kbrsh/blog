@@ -6,7 +6,7 @@ order: 1
 
 There is no built in support for centering in CSS, sadly, but there are some ways to do it. I will be talking about two of the most effective ways to do it.
 
-## Flexbox
+### Flexbox
 
 Using flexbox will provide clean, hack-free CSS to center elements, the only downside is browser support, don't use this if you need to support users with IE 10 and below.
 
@@ -32,7 +32,7 @@ That should do the trick 👊
 
 <br/>
 
-## Table
+### Table
 
 Using a table view will need a little more work than flexbox, but will support many more browsers. Including IE 6 and up! 👌
 
