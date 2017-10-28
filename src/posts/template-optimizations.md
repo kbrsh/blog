@@ -14,6 +14,8 @@ In the end, a compiler has the job of converting the template syntax into a func
 
 The virtual DOM is essentially a representation of the DOM as a set of objects. This lightweight representation is important because it can be implemented as a function of the current state. Every time data in an app is updated, an entirely new version of the virtual DOM can be generated and compared with the current version.
 
+While the virtual DOM is lightweight, creating the whole tree for every render can use a lot of memory and impact performance. That is why it is important for compilers to be able to optimize templates and reuse static virtual nodes, as they do not need to be recreated on every render.
+
 The virtual DOM consists of virtual nodes, which look something like:
 
 ```js
