@@ -6,7 +6,7 @@ order: 6
 
 The majority of JavaScript libraries/frameworks use either templates or JSX to define a view. Templates allow for a well-defined structure, using a special syntax for binding data to the view. JSX allows for JavaScript to be used anywhere in the template, which adds a lot of power but can result in repetitive code.
 
-Moon is a 7kb library with syntax inspired by Vue. Both Moon and Vue use a template system (although JSX can be used with Vue as well). To implement the template syntax, they have compilers that optimize the templates in different ways.
+[Moon](http://moonjs.ga) is a 7kb library with syntax inspired by Vue. Both Moon and Vue use a template system (although JSX can be used with Vue as well). To implement the template syntax, they have compilers that optimize the templates in different ways.
 
 ### Virtual DOM
 

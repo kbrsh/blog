@@ -32,7 +32,7 @@
       <h1 class="post-title">Template Optimizations</h1>
       <h4 class="post-date">October 28, 2017</h4>
       <div class="post-content"><p>The majority of JavaScript libraries/frameworks use either templates or JSX to define a view. Templates allow for a well-defined structure, using a special syntax for binding data to the view. JSX allows for JavaScript to be used anywhere in the template, which adds a lot of power but can result in repetitive code.</p>
-<p>Moon is a 7kb library with syntax inspired by Vue. Both Moon and Vue use a template system (although JSX can be used with Vue as well). To implement the template syntax, they have compilers that optimize the templates in different ways.</p>
+<p><a href="http://moonjs.ga">Moon</a> is a 7kb library with syntax inspired by Vue. Both Moon and Vue use a template system (although JSX can be used with Vue as well). To implement the template syntax, they have compilers that optimize the templates in different ways.</p>
 <h3 id="virtual-dom">Virtual DOM</h3>
 <p>In the end, a compiler has the job of converting the template syntax into a function that can return a virtual DOM tree.</p>
 <p>The virtual DOM is essentially a representation of the DOM as a set of objects. This lightweight representation is important because it can be implemented as a function of the current state. Every time data in an app is updated, an entirely new version of the virtual DOM can be generated and compared with the current version.</p>
