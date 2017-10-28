@@ -60,25 +60,22 @@ The virtual DOM utilities in Moon are more verbose and require fewer checks at r
 For example:
 
 ```js
-m(
-  "div",
-  {},
-  {},
-  [
-    m("#text", "Text"),
-    m("h1", {}, {}, [m("#text", "Heading")]),
-    m("Foo",
-      {
-        props: {
-          attrs: {
-            bar: "baz"
-          }
+m("div", {}, {}, [
+  m("#text", "Text"),
+  m("h1", {}, {}, [m("#text", "Heading")]),
+  m(
+    "Foo",
+    {
+      props: {
+        attrs: {
+          bar: "baz"
         }
-      },
-      {}
-    )
-  ]
-);
+      }
+    },
+    {},
+    []
+  )
+]);
 ```
 
 #### Optimizations
@@ -129,12 +126,15 @@ In this case, the function `_m(0)` is created, and it returns a tree used in the
 function render(m) {
   var instance = this;
   var staticNodes = instance.compiledRender.staticNodes;
+
   if (staticNodes === undefined) {
     staticNodes = instance.compiledRender.staticNodes = [
+      // Static root element
       m("div", {}, {}, [m("h1", {}, {}, [m("#text", "Static Heading")])])
     ];
   }
-  return staticNodes[0];
+
+  return staticNodes[0]; // Cached root element
 }
 ```
 
@@ -201,21 +201,23 @@ function render(m) {
   var instance = this;
   var staticNodes = instance.compiledRender.staticNodes;
   var foo = instance.get("foo");
+
   if (staticNodes === undefined) {
     staticNodes = instance.compiledRender.staticNodes = [
-      m("div", {}, {}, [m("p", {}, {}, [m("#text", "Static")])])
+      m("div", {}, {}, [m("p", {}, {}, [m("#text", "Static")])]) // Static div
     ];
   }
+
   return m("div", {}, {}, [
     m("div", {}, {}, [
-      staticNodes[0],
+      staticNodes[0], // Cached div
       m("div", {}, {}, [m("p", {}, {}, [m("#text", "Dynamic " + foo)])])
     ])
   ]);
 }
 ```
 
-Moon does the same optimization by hoisting the `div` containing the static paragraph out of the function.
+Moon does the same optimization by hoisting the `div` containing the static paragraph out of the render function.
 
 ### Dynamic Properties
 
@@ -257,13 +259,15 @@ function render(m) {
   var instance = this;
   var staticNodes = instance.compiledRender.staticNodes;
   var foo = instance.get("foo");
+
   if (staticNodes === undefined) {
     staticNodes = instance.compiledRender.staticNodes = [
-      m("h1", {}, {}, [m("#text", "Static Heading")])
+      m("h1", {}, {}, [m("#text", "Static Heading")]) // Static heading
     ];
   }
+
   return m("div", {}, {}, [
-    staticNodes[0],
+    staticNodes[0], // Cached heading
     m("p", {}, {}, [m("#text", "Dynamic Paragraph: " + foo)])
   ]);
 }
@@ -311,15 +315,17 @@ function render(m) {
   var instance = this;
   var staticNodes = instance.compiledRender.staticNodes;
   var foo = instance.get("foo");
+
   if (staticNodes === undefined) {
     staticNodes = instance.compiledRender.staticNodes = [
-      m("#text", "Dynamic Paragraph"),
-      m("h1", {}, {}, [m("#text", "Static Heading")])
+      m("#text", "Dynamic Paragraph"), // Static paragraph text
+      m("h1", {}, {}, [m("#text", "Static Heading")]) // Static heading
     ];
   }
+
   return m("div", {}, {}, [
-    staticNodes[1],
-    m("p", { attrs: { foo: foo } }, {}, [staticNodes[0]])
+    staticNodes[1], // Cached heading
+    m("p", { attrs: { foo: foo } }, {}, [staticNodes[0]]) // Cached text
   ]);
 }
 ```
@@ -367,12 +373,15 @@ function render(m) {
   var instance = this;
   var staticNodes = instance.compiledRender.staticNodes;
   var fooCondition = instance.get("fooCondition");
+
   if (staticNodes === undefined) {
     staticNodes = instance.compiledRender.staticNodes = [
-      m("p", {}, {}, [m("#text", "Condition True")]),
-      m("p", {}, {}, [m("#text", "Condition False")])
+      m("p", {}, {}, [m("#text", "Condition True")]), // Static paragraph
+      m("p", {}, {}, [m("#text", "Condition False")]) // Static paragraph
     ];
   }
+
+  // Cached paragraphs
   return m("div", {}, {}, [fooCondition ? staticNodes[0] : staticNodes[1]]);
 }
 ```
@@ -420,9 +429,10 @@ function render(m) {
   var instance = this;
   var staticNodes = instance.compiledRender.staticNodes;
   var fooMethod = instance.methods["fooMethod"];
+
   if (staticNodes === undefined) {
     staticNodes = instance.compiledRender.staticNodes = [
-      m("div", {}, {}, [
+      m("div", {}, {}, [ // Static root element
         m(
           "button",
           {},
@@ -440,7 +450,8 @@ function render(m) {
       ])
     ];
   }
-  return staticNodes[0];
+
+  return staticNodes[0]; // Cached root element
 }
 ```
 
