@@ -81,15 +81,13 @@ const highlight = function(compiled, lang) {
 }
 
 const compileTemplate = (template, data) => {
-  const compiled = minifyHTML(Handlebars.compile(template)(data), {
+  return minifyHTML(Handlebars.compile(template)(data), {
     caseSensitive: true,
     keepClosingSlash: true,
     removeAttributeQuotes: false,
     collapseWhitespace: true,
     minifyJS: true
   });
-
-  return compiled;
 }
 
 const typeSet = (math, display, parentChildren, index, next) => {
@@ -121,7 +119,7 @@ Sold({
   destination: "",
   engine: (template, data, options, done) => {
     if(data.content === undefined) {
-      return compileTemplate(template, data);
+      done(compileTemplate(template, data));
     } else {
       let compiledHTML = Himalaya.parse(data.content);
       let elements = compiledHTML.map((element, index) => {
