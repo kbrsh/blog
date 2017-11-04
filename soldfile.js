@@ -5,6 +5,18 @@ const toHTML = require("himalaya/translate").toHTML;
 const minifyHTML = require("html-minifier").minify;
 const MathJax = require("mathjax-node");
 
+const mathLink = Himalaya.parse(`<link rel="stylesheet" type="text/css" href="../css/post-math.css">`)[0];
+const STR_RE = /((?:&quot;)|'|`)((?:.|\n)*?)\1/g;
+const SPECIAL_RE = /\b(new|var|let|if|do|function|while|switch|for|foreach|in|continue|break|return)\b/g;
+const GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|undefined|true|false|Object|this|Boolean|Function|Number|\d+(?:\.\d+)?)\b/g;
+const CONST_RE = /\b(const )([\w\d]+)/g;
+const METHODS_RE = /\b([\w\d]+)\(/g;
+const MULTILINE_COMMENT_RE  = /(\/\*.*\*\/)/g;
+const COMMENT_RE = /(\/\/.*)/g;
+const HTML_COMMENT_RE = /(\&lt;\!\-\-(?:(?:.|\n)*)\-\-\&gt;)/g;
+const HTML_ATTRIBUTE_RE = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g;
+const HTML_TAG_RE = /(&lt;\/?[\w\d-]*?)(\s(?:.|\n)*?)?(\/?&gt;)/g;
+
 MathJax.start();
 
 Handlebars.registerHelper("list", function(arr) {
@@ -16,8 +28,6 @@ Handlebars.registerHelper("list", function(arr) {
     }
   }
 });
-
-const mathLink = Himalaya.parse(`<link rel="stylesheet" type="text/css" href="../css/post-math.css">`)[0];
 
 const loop = (arr, body, done) => {
   const next = () => {
@@ -31,14 +41,55 @@ const loop = (arr, body, done) => {
   next();
 }
 
+const highlight = function(compiled, lang) {
+  compiled = compiled.replace(STR_RE, "<span class=\"string\">$1$2$1</span>");
+
+  if(lang === "html") {
+    compiled = compiled.replace(HTML_COMMENT_RE, "<span class=\"comment\">$1</span>");
+    compiled = compiled.replace(HTML_TAG_RE, function(match, start, content, end) {
+      if(content === undefined) {
+        content = "";
+      } else {
+        content = content.replace(HTML_ATTRIBUTE_RE, function(match, name, value) {
+          if(value !== "string") {
+            if(value === undefined) {
+              value = "";
+            } else {
+              value = "=" + value;
+            }
+            return "<span class=\"global\">" + name + "</span>" + value;
+          }
+        });
+      }
+
+      return "<span class=\"method\">" + start + "</span>" + content + "<span class=\"method\">" + end + "</span>";
+    });
+  } else {
+    compiled = compiled.replace(COMMENT_RE, "<span class=\"comment\">$1</span>");
+    compiled = compiled.replace(MULTILINE_COMMENT_RE, "<span class=\"comment\">$1</span>");
+
+    compiled = compiled.replace(SPECIAL_RE, "<span class=\"special\">$1</span>");
+    compiled = compiled.replace(GLOBAL_VARIABLE_RE, "<span class=\"global\">$1</span>");
+
+    compiled = compiled.replace(CONST_RE, "<span class=\"special\">$1</span><span class=\"global\">$2</span>");
+    compiled = compiled.replace(METHODS_RE, function(match, name) {
+      return "<span class=\"method\">" + name + "</span>(";
+    });
+  }
+
+  return compiled;
+}
+
 const compileTemplate = (template, data) => {
-  return minifyHTML(Handlebars.compile(template)(data), {
+  const compiled = minifyHTML(Handlebars.compile(template)(data), {
     caseSensitive: true,
     keepClosingSlash: true,
     removeAttributeQuotes: false,
     collapseWhitespace: true,
     minifyJS: true
   });
+
+  return compiled;
 }
 
 const typeSet = (math, display, parentChildren, index, next) => {
@@ -69,7 +120,9 @@ Sold({
   source: "src",
   destination: "",
   engine: (template, data, options, done) => {
-    if(data.math === true) {
+    if(data.content === undefined) {
+      return compileTemplate(template, data);
+    } else {
       let compiledHTML = Himalaya.parse(data.content);
       let elements = compiledHTML.map((element, index) => {
         return {
@@ -87,9 +140,15 @@ Sold({
 
           if(tagName === "pre") {
             const code = children[0];
-            if(code.attributes.className[0] === "lang-math") {
-              typeSet(code.children[0].content, true, data.parentChildren, data.index, next);
+            const codeText = code.children[0].content;
+            const codeAttributes = code.attributes;
+            const lang = codeAttributes.className[0].substring(5);
+            if(lang === "math") {
+              typeSet(codeText, true, data.parentChildren, data.index, next);
             } else {
+              codeAttributes.lang = lang;
+              delete codeAttributes.className;
+              code.children = Himalaya.parse(highlight(codeText, lang));
               next();
             }
           } else if(tagName === "code") {
@@ -97,6 +156,7 @@ Sold({
             if(codeText[0] === "$" && codeText[codeText.length - 1] === "$") {
               typeSet(codeText.slice(1, -1), false, data.parentChildren, data.index, next);
             } else {
+              element.children = Himalaya.parse(highlight(codeText, "js"));
               next();
             }
           } else {
@@ -114,12 +174,8 @@ Sold({
         }
       }, () => {
         data.content = toHTML(compiledHTML);
-        const compiledTemplate = Himalaya.parse(compileTemplate(template, data));
-        compiledTemplate[1].children[0].children.splice(10, 0, mathLink);
-        done(toHTML(compiledTemplate).replace("view-box", "viewBox"));
+        done(compileTemplate(template, data));
       });
-    } else {
-      done(compileTemplate(template, data));
     }
   }
 });
