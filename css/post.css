@@ -50,10 +50,6 @@ body {
   border-bottom: 2px solid #414141;
 }
 
-.post-content .MathJax {
-  font-size: 70px !important;
-}
-
 .post-content img {
   width: 100%;
 }
