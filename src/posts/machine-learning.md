@@ -2,6 +2,7 @@
 title: Machine Learning
 date: April 29, 2017
 order: 3
+math: true
 ---
 
 Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around a 6 months ago, I became interested in the topic.
@@ -43,11 +44,13 @@ One method of machine learning is to use a **Feedforward Neural Network**. They 
 
 Those **weights** are where the magic happens. The neural network has to find the perfect set of weights to get the desired output, after starting with a random set of weights. The act of multiplying the inputs by the weights to form an output is **forward propagation**, as you are moving the inputs through the network. The activation function is just a function that can squash a value between a certain range, it introduces **nonlinearity** into the model.
 
-Throughout this article, <script type="math/tex">X</script> refers to the input, <script type="math/tex">W_h</script> refers to the weight(s), and <script type="math/tex">b_h</script> refers to the bias (we will get to this later).
+Throughout this article, `$X$` refers to the input, `$W_h$` refers to the weight(s), and `$b_h$` refers to the bias (we will get to this later).
 
 Let's use a simple example, with a single input, single weight, and single output. The neural network will be extremely simple:
 
-<script type="math/tex">X W_h</script>
+```math
+X W_h
+```
 
 That's it! A neural network in a simple multiplication problem, we take the input, multiply it by the weight, and get an output. Now this weight can only adapt to represent a certain **feature** of the relationship between the input and output, so we need to add more. To do this, we use vectors. We can use them to represent multiple inputs and outputs as well. We will still be doing the same thing, but using more numbers.
 
@@ -59,7 +62,9 @@ Our activation function is used to make things nonlinear.
 
 With all of that, we have the basic forward propagation of a feedforward neural network, which is represented in math as:
 
-<script type="math/tex">activation((X W_h) + b_h)</script>
+```math
+activation((X W_h) + b_h)
+```
 
 #### Back Propagation
 
@@ -71,7 +76,9 @@ How can we change the output? One thing we can do is change the input itself, bu
 
 First, we need a way to see how far off our network was. We can do that by using a **loss function**. We'll use the **mean sum squared** loss function, represented mathematically as:
 
-<script type="math/tex">l(o, y) = \sum 0.5(o - y)^2</script>
+```math
+l(o, y) = \sum 0.5(o - y)^2
+```
 
 Where `o` is the output of our network, and `y` is the target output. All this does is take the output and expected output, and gives us a representation of how far off each part in the output is. We use this function to see how good the network is performing.
 
@@ -93,11 +100,15 @@ First, let's go through an example of how a derivative works.
 
 For simplicity, let's have a simple function that takes some input `X` and returns it multiplied by a weight `w`.
 
-<script type="math/tex">f(X, w) = X w</script>
+```math
+f(X, w) = Xw
+```
 
 The derivative of this function with respect to the weight is:
 
-<script type="math/tex">\frac{\partial f}{\partial w} = X</script>
+```math
+\frac{\partial f}{\partial w} = X
+```
 
 We need to find the effect the weight has on `X`. Let's use a weight of `5`, and an input of `2`. If we plug it into the derivative function, we get `2` as a result.
 
@@ -107,18 +118,23 @@ Now, we have to do the same thing, but for our loss function, with respect to ou
 
 Let's find the partial derivative of the loss function with respect to some weights.
 
-<script type="math/tex">\frac{\partial l}{\partial w}</script>
+```math
+\frac{\partial l}{\partial w}
+```
 
 If we use the chain rule, we get:
 
-<script type="math/tex">\frac{\partial l}{\partial w} = \frac{\partial l}{\partial o} * \frac{\partial o}{\partial h} * \frac{\partial h}{\partial w}</script>
+```math
+\frac{\partial l}{\partial w} = \frac{\partial l}{\partial o} * \frac{\partial o}{\partial h} * \frac{\partial h}{\partial w}
+```
 
 Let's find all parts of the equation:
 
-<script type="math/tex">\frac{\partial l}{\partial o} = o - y\\
+```math
+\frac{\partial l}{\partial o} = o - y\\
 \frac{\partial o}{\partial h} = \frac{e^{-o}}{\left(1\ +e^{-o}\right)^2}\\
 \frac{\partial h}{\partial w} = X^\intercal
-</script>
+```
 
 We can multiply all of them, and we'll have the gradients! Now we'll know exactly what will happen as a result of updating our weights in a certain direction, and can push them into the direction that makes the loss function zero.
 
@@ -129,5 +145,3 @@ We can multiply all of them, and we'll have the gradients! Now we'll know exactl
 ## Conclusion
 
 This article is a work in progress. Feel free to give any suggestions or fixes.
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
