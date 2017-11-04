@@ -30,7 +30,7 @@
     <div class="container">
       <a href="https://kabir.ml" id="logo"><img src="./img/logo.png" alt="Personal Logo"/></a>
       <div class="posts">
-        {{reverse data.posts}}{{#data.posts}}<div class="post">
+        {{list data.posts}}{{#data.posts}}<div class="post">
           <h5 class="post-date">{{date}}</h5>
           <h3 class="post-title"><a href="./posts/{{file}}">{{title}}</a></h3>
         </div>{{/data.posts}}

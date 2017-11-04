@@ -3,6 +3,7 @@ title: Gradient Descent
 date: November 1, 2017
 order: 7
 math: true
+draft: true
 ---
 
 Neural networks work by getting a set of inputs, multiplying them by a set of weights, and then returning an output. At first, the weights are initialized with random values. Eventually, the neural network refines the weights so that it can return a plausible output for a given input.
@@ -13,7 +14,7 @@ A method called _gradient descent_ is often used to refine ("train") the weights
 
 ### Two Variables
 
-Instead of jumping right into a 500-dimensional gradient descent example, let's start out with a simple function that uses two variables.
+Instead of jumping right into a 500-dimensional gradient descent example, let's start out with a simple function that uses two variables, where `$x$` is the input, and `$w$` is the weight.
 
 ```math
 f(x, w) = xw
