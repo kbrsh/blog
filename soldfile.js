@@ -107,8 +107,8 @@ Sold({
                 element: children[i]
               });
             }
+            next();
           }
-          next();
         } else {
           next();
         }
