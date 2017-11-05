@@ -32,7 +32,7 @@ Wade processes all documents and queries. This works by moving each item through
 When given the data:
 
 ```js
-["Moon... is the best!", "Slash is the best!", "Spark is the best.", "Wade is the best?", "A Wing is the best"]
+["Moon... is the best!", "Slash is the best!", "Spark is the best.", "Wade is the best?", "The Wing is the best"]
 ```
 
 It is processed into:
