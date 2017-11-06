@@ -69,7 +69,7 @@ The significance of the term _t_ in the set of documents _d_ can be represented 
 wm(t, d) = 1.5 - \frac{\sum_{i=0}^{|d|} [\frac{\mu(t)}{\sum_{p \in d_i}(\mu(p))}]}{|d|}
 ```
 
-1. `$f$` is a set of multisets `$d_i$`
+1. `$d$` is a set of multisets `$d_i$`
 2. `$t \in d_i$` for at least one `$d_i$`
 3. `$\mu(t)$` is the multiplicity of `$t$` in the multiset `$d_i$`
 4. `$\sum_{p \in d_i}(\mu(p))$` is the cardinality of the multiset `$d_i$`
