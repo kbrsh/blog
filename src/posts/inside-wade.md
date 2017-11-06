@@ -5,15 +5,18 @@ order: 4
 math: true
 ---
 
-[Wade](https://github.com/KingPixil/wade) is a 1kb Javascript search library. It allows you to search for a query through a set of documents. This query is processed, split into keywords, and then searched within an index structure.
+[Wade](https://github.com/kbrsh/wade) is a 1kb Javascript search library. It allows you to search for a query through a set of documents. This query is processed, split into keywords, and then searched within an index structure.
 
 ### API
 
 The API is extremely minimal and self-explanatory. It looks like:
 
 ```js
-const search = Wade(["He saves on socks.", "You are being silly."]);
-search("save socks");
+const search = Wade(
+  ["Moon is fast!", "Also Slash!", "Spark too!", "Is Wade fast?"]
+);
+
+search("Moon");
 ```
 
 ### Processor
@@ -21,7 +24,7 @@ search("save socks");
 Wade processes all documents and queries. This works by moving each item through a separate processing function. These do the following operations:
 
 * Make everything lowercase.
-  This helps with searching. All queries and data are made lowercase, resulting in the search not being case-sensitive.
+  This helps with searching. All queries and data are made lowercase, resulting in the search being case-insensitive.
 * Remove punctuation.
   Punctuation is usually irrelevant to the search query and does not need to be searched for.
 * Remove stop words.
@@ -32,13 +35,13 @@ Wade processes all documents and queries. This works by moving each item through
 When given the data:
 
 ```js
-["Moon... is the best!", "Slash is the best!", "Spark is the best.", "Wade is the best?", "The Wing is the best"]
+["Moon is fast!", "Slash is fast also!", "Spark is fast too!", "Is Wade fast?"]
 ```
 
 It is processed into:
 
 ```js
-["moon best", "slash best", "spark best", "wade best", "wing best"]
+["moon fast", "slash fast", "spark fast", "wade fast"]
 ```
 
 Notice how everything is lowercase, does not contain punctuation, and does not contain stop words.
@@ -58,7 +61,7 @@ On the other hand, a _multiset_ is used to store multiple items (including dupli
 
 #### Significance
 
-Wade uses a special function to find how significant a term is to the data. This function takes in many factors, including the length of the documents, the length of a specific document with the term, and the number of occurrences of the term.
+Wade uses a special function to find how significant a term is to the data. This function takes various factors into account, including the length of the documents, the length of a specific document with the term, and the number of occurrences of the term.
 
 The significance of the term _t_ in the set of documents _d_ can be represented by the function:
 
@@ -72,14 +75,14 @@ wm(t, d) = 1.5 - \frac{\sum_{i=0}^{|d|} [\frac{\mu(t)}{\sum_{p \in d_i}(\mu(p))}
 4. `$\sum_{p \in d_i}(\mu(p))$` is the cardinality of the multiset `$d_i$`
 5. `$\frac{\mu(t)}{\sum_{p \in d_i}(\mu(p))}$` is the ratio of occurrences of the term `$t$` in the document `$d_i$` to the total amount of terms in the document `$d_i$`
 
-This works by finding the average of how often the term appears within a document. After this, the significance is normalized between `$0.5$` and `$1.5$`, allowing it to become higher when the average occurrence is lower. This allows for rarer terms to be amplified in significance.
+This works by finding the average of how often the term appears within a document. After this, the significance is normalized between `0.5` and `1.5`, allowing it to become higher when the average occurrence is lower. This allows for rarer terms to be amplified in significance.
 
 #### Example
 
 When given the processed data:
 
 ```js
-["moon best", "slash best", "spark best", "wade best", "wing best"]
+["moon fast", "slash", "spark", "wade fast"]
 ```
 
 An index is generated:
@@ -91,15 +94,15 @@ An index is generated:
       "o": {
         "n": {
           "data": [
-            1.4,
+            1.375,
             0
           ]
         }
       }
     }
   },
-  "b": {
-    "e": {
+  "f": {
+    "a": {
       "s": {
         "t": {
           "data": [
@@ -107,8 +110,7 @@ An index is generated:
             0,
             1,
             2,
-            3,
-            4
+            3
           ]
         }
       }
@@ -120,7 +122,7 @@ An index is generated:
         "s": {
           "h": {
             "data": [
-              1.4,
+              1.375,
               1
             ]
           }
@@ -132,7 +134,7 @@ An index is generated:
         "r": {
           "k": {
             "data": [
-              1.4,
+              1.375,
               2
             ]
           }
@@ -145,18 +147,8 @@ An index is generated:
       "d": {
         "e": {
           "data": [
-            1.4,
+            1.375,
             3
-          ]
-        }
-      }
-    },
-    "i": {
-      "n": {
-        "g": {
-          "data": [
-            1.4,
-            4
           ]
         }
       }
@@ -165,16 +157,200 @@ An index is generated:
 }
 ```
 
-This is a map of every single character, so that they can be searched through individually. At the end of a specific term, there is a `data` property. The first item in this array is the significance of the term. The other items are the indexes of the documents in which the term appears.
+This is a map of every single character so that they can be searched through individually. At the end of a specific term, there is a `data` property. The first item in this array is the significance of the term. The other items are the indexes of the documents in which the term appears.
 
-Notice how the unique terms `"moon"`, `"slash"`, `"spark"`, `"wade"`, and `"wing"` all have a higher weight of `1.4`. In contrast, the term `"best"` appears in all of the documents half of the time, and has a lower weight of `1`.
+Notice how the unique terms `"moon"`, `"slash"`, `"spark"`, and `"wade"` all have a higher weight of `1.375`. In contrast, the term `"fast"` appears in all of the documents half of the time, and has a lower weight of `1`.
 
 ### Search
 
-To be done
+Searching works by:
+
+1. Processing the query.
+2. Splitting the query into a multiset of terms.
+3. Searching the index for each term.
+
+To correctly increment the score, the relevance must be taken into account. The relevance of the term `$t$` in the query `$q$` to the set of documents `$d$` can be represented by the function:
+
+```math
+wr(t, q, d) = wm(t, d)[\frac{1}{\sum_{p \in\ q}(\mu(p))}]
+```
+
+1. `$q$` is a multiset
+2. `$\mu(p)$` is the multiplicity of `$p$` in the multiset `$q$`
+3. `$\sum_{p \in\ q}(\mu(p))$` is the cardinality of the multiset `$q$`
+
+This can be used to represent how much each term should affect the score of the query. It works by taking [significance](#significance) of the term and the length of the query into account.
+
+#### Example
+
+Let's say you are searching in real-time and have a partial query:
+
+```
+Fast S
+```
+
+First, this is processed and split into terms:
+
+```js
+["fast", "s"]
+```
+
+All terms except for the last term are searched for exact matches. This means that Wade will only increment the score for documents that have the term in them.
+
+First, the term `"fast"` is searched for in the index. The process looks like:
+
+1. Check if the letter `"f"` is in the index. Set it to the current node and continue.
+2. Set the current node to the `"a"` node.
+3. Set the current node to the `"s"` node.
+4. Set the current node to the `"t"` node.
+
+At this point, the current node is:
+
+```js
+"t": {
+  "data": [
+    1,
+    0,
+    1,
+    2,
+    3
+  ]
+}
+```
+
+It has a `data` property, meaning that this term was present in at least one document. We store the significance (`1`), and increment the score for the indexes.
+
+In this case, the indexes are `[0, 1, 2, 3]`. The current relevance can be evaluated using the `$wr$` function by setting `$t$` to `"fast"`, `$q$` to the query, and `$d$` to the documents.
+
+```math
+wr(t, q, d) = 1(\frac{1}{2}) = 0.5
+```
+
+As a result, we update the score for all documents containing the term `"fast"` by `0.5`. So far, the results are:
+
+```js
+[
+  {
+    index: 0,
+    score: 0.5
+  },
+  {
+    index: 1,
+    score: 0.5
+  },
+  {
+    index: 2,
+    score: 0.5
+  },
+  {
+    index: 3,
+    score: 0.5
+  }
+]
+```
+
+Next, we have the term `"s"`. This term is treated as a prefix, and every single document containing a term with the prefix `"s"` will have their score updated.
+
+After checking if `"s"` is in the index, we find the node:
+
+```js
+"s": {
+  "l": {
+    "a": {
+      "s": {
+        "h": {
+          "data": [
+            1.375,
+            1
+          ]
+        }
+      }
+    }
+  },
+  "p": {
+    "a": {
+      "r": {
+        "k": {
+          "data": [
+            1.375,
+            2
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+After looking through each individual node, we find `data` properties after `"slash"` and `"spark"`:
+
+```js
+// "slash"
+"h": {
+  "data": [
+    1.375,
+    1
+  ]
+}
+
+// "spark"
+"k": {
+  "data": [
+    1.375,
+    2
+  ]
+}
+```
+
+The relevance for the terms `"slash"` and `"spark"` can be calculated:
+
+```math
+wr(t, q, d) = 1.375(\frac{1}{2}) = 0.6875
+```
+
+With this value, we can update the score for the documents containing the terms `"slash"` and `"spark"` by `0.6875`.
+
+After updating the results using the indexes, the final results are:
+
+```js
+[
+  // Moon is fast!
+  {
+    index: 0,
+    score: 0.5
+  },
+
+  // Slash is fast also!
+  {
+    index: 1,
+    score: 1.1875
+  },
+
+  // Spark is fast too!
+  {
+    index: 2,
+    score: 1.1875
+  },
+
+  // Is Wade fast?
+  {
+    index: 3,
+    score: 0.5
+  }
+]
+```
+
+The most relevant results were:
+
+```
+"Slash is fast also!"
+"Spark is fast too!"
+```
+
+They both have a term with the prefix `"s"`, and the term `"fast"`. The rest of the results were given a lower score of `0.5` because they only had the term `"fast"` in them.
 
 ### Conclusion
 
 In a nutshell, Wade processes data, splits it into terms, and creates an index containing the indexes of the items along with how relevant each term is to the data. A query is also processed and split into terms. These terms are individually searched within the index and the scores are updated as needed.
 
-Be sure to check out the source on [GitHub](https://github.com/kbrsh/wade)
+Wade's source is available on [GitHub](https://github.com/kbrsh/wade).

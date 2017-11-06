@@ -140,14 +140,20 @@ Sold({
             const code = children[0];
             const codeText = code.children[0].content;
             const codeAttributes = code.attributes;
-            const lang = codeAttributes.className[0].substring(5);
-            if(lang === "math") {
-              typeSet(codeText, true, data.parentChildren, data.index, next);
-            } else {
-              codeAttributes.lang = lang;
-              delete codeAttributes.className;
-              code.children = Himalaya.parse(highlight(codeText, lang));
+            const codeAttributesClassName = codeAttributes.className;
+
+            if(codeAttributesClassName === undefined) {
               next();
+            } else {
+              const lang = codeAttributesClassName[0].substring(5);
+              if(lang === "math") {
+                typeSet(codeText, true, data.parentChildren, data.index, next);
+              } else {
+                codeAttributes.lang = lang;
+                delete codeAttributes.className;
+                code.children = Himalaya.parse(highlight(codeText, lang));
+                next();
+              }
             }
           } else if(tagName === "code") {
             const codeText = children[0].content;
