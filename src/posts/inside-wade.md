@@ -82,7 +82,7 @@ This works by finding the average of how often the term appears within a documen
 When given the processed data:
 
 ```js
-["moon fast", "slash", "spark", "wade fast"]
+["moon fast", "slash fast", "spark fast", "wade fast"]
 ```
 
 An index is generated:
