@@ -189,7 +189,7 @@ Let's say you are searching in real-time and have a partial query:
 Fast S
 ```
 
-First, this is processed and split into terms:
+This is processed and split into terms:
 
 ```js
 ["fast", "s"]
