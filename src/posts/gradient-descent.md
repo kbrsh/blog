@@ -19,3 +19,5 @@ Instead of jumping right into a 500-dimensional gradient descent example, let's 
 ```math
 f(x, w) = xw
 ```
+
+Looking at this, it is fairly straightforward to find how changing `$x$` by one changes the output by `$w$`, and how changing `$w$` by one changes the output by `$x$`.
