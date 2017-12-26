@@ -70,7 +70,7 @@ wm(t, d) = 1.5 - \frac{\sum_{i=0}^{|d|} [\frac{\mu(t)}{\sum_{p \in d_i}(\mu(p))}
 ```
 
 1. `$d$` is a set of multisets `$d_i$`
-2. `$t \in d_i$` for at least one `$d_i$`
+2. `$\exists d_i(t \in d_i) \lor \nexists d_i(t \in d_i)$`
 3. `$\mu(t)$` is the multiplicity of `$t$` in the multiset `$d_i$`
 4. `$\sum_{p \in d_i}(\mu(p))$` is the cardinality of the multiset `$d_i$`
 5. `$\frac{\mu(t)}{\sum_{p \in d_i}(\mu(p))}$` is the ratio of occurrences of the term `$t$` in the document `$d_i$` to the total amount of terms in the document `$d_i$`
