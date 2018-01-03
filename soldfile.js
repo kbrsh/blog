@@ -16,6 +16,12 @@ const COMMENT_RE = /(\/\/.*)/g;
 const HTML_COMMENT_RE = /(\&lt;\!\-\-(?:(?:.|\n)*)\-\-\&gt;)/g;
 const HTML_ATTRIBUTE_RE = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g;
 const HTML_TAG_RE = /(&lt;\/?[\w\d-]*?)(\s(?:.|\n)*?)?(\/?&gt;)/g;
+const escapeRE = /&(?:amp|gt|lt);/g;
+const escapeMap = {
+  "&amp;": '&',
+  "&gt;": '>',
+  "&lt;": '<'
+}
 
 MathJax.start();
 
@@ -28,6 +34,8 @@ Handlebars.registerHelper("list", function(arr) {
     }
   }
 });
+
+const escape = (text) => text.replace(escapeRE, (match) => escapeMap[match]);
 
 const loop = (arr, body, done) => {
   const next = () => {
@@ -92,7 +100,7 @@ const compileTemplate = (template, data) => {
 
 const typeSet = (math, display, parentChildren, index, next) => {
   MathJax.typeset({
-    math: math,
+    math: escape(math),
     type: "TeX",
     html: true,
     css: true
