@@ -65,4 +65,13 @@ We can find the partial derivative of the loss function example with respect to 
 \end{align}
 ```
 
-Looking at this, we can see that as `$w$` changes, `$l(x, w, t)$` changes by `$-x$`. We can use this information to change `$w$` to get lower and higher outputs as we please.
+Looking at this, we can see that as `$w$` changes, `$l(x, w, t)$` changes by `$-x$`. We can use this information to change `$w$` by _the opposite_ of the partial derivative, `$x$`, to get a lower value.
+
+```math
+r = 0.1 \\
+w \leftarrow 1 \\
+l(2, w, 4) = 4 - 2(1) = 2 \\
+\\
+w \leftarrow w + rx \leftarrow 1 + 0.1(2) \leftarrow 1.2 \\
+l(2, w, 4) = 4 - 2(1.2) = 1.6
+```
