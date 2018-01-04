@@ -20,7 +20,25 @@ Instead of jumping right into a 500-dimensional gradient descent example, let's 
 f(x, w) = xw
 ```
 
-Looking at this, it is fairly straightforward to find how changing `$x$` by one changes the output by `$w$`, and how changing `$w$` by one changes the output by `$x$`. Formally, seeing how one variable changes depending on another is called the _partial derivative_.
+Let's say we want to optimize the weight in a way that gives an output of `$4$` when given an input of `$2$`. We want `$f(2, w) = 4$`. First, let's start out with a random weight `$1$`. Currently, our function gives us a wrong output.
+
+```math
+f(2, 1) = 2
+```
+
+To help solve this problem, we can define a _loss function_ that takes the output of the function and tells us the error in our output.
+
+```math
+l(x, w, t) = t - f(x, w)
+```
+
+It just gives us the difference between the target output `$t$` and the output of our function `$f$` given `$x$` and `$w$`. With the initial random weight of `$1$`, we can find the current loss. Remember, we want the output of the function to be `$4$` when given `$2$`.
+
+```math
+l(2, 1, 4) = 4 - 2 = 2
+```
+
+This makes sense, since increasing the output by `$2$` would get us our target output `$4$`. Now, we need to find a way to decrease the output of our loss function by changing `$w$`. To do this, we need to see how changes in `$w$` affect the loss function. Formally, seeing how one variable changes depending on another is called the _partial derivative_.
 
 Finding _derivatives_ involves using a formula.
 
@@ -34,16 +52,17 @@ Finding _derivatives_ involves using a formula.
 
 Finding _partial derivatives_ involves the same formula, but represents how the output of `$f$` changes as only _one_ variable changes while treating other variables as constants.
 
-We can find the partial derivative of of the two variable example with respect to `$w$` by substituting the function into the formula.
+We can find the partial derivative of the loss function example with respect to `$w$` by substituting the function into the formula.
 
 ```math
 \begin{align}
-  \frac{df}{dw} & = \lim_{h \to 0}\frac{f(x, w + h) - f(x, w)}{h} \\
-  & = \lim_{h \to 0}\frac{x(w + h) - xw}{h} \\
-  & = \lim_{h \to 0}\frac{xw + xh - xw}{h} \\
-  & = \lim_{h \to 0}\frac{xh}{h} \\
-  & = x
+  \frac{\partial l}{\partial w} & = \lim_{h \to 0}\frac{l(x, w + h, t) - l(x, w, t)}{h} \\
+  & = \lim_{h \to 0}\frac{(t - f(x, w + h)) - (t - f(x, w))}{h} \\
+  & = \lim_{h \to 0}\frac{(t - x(w + h)) - (t - xw)}{h} \\
+  & = \lim_{h \to 0}\frac{t - xw - xh - t + xw}{h} \\
+  & = \lim_{h \to 0}\frac{-xh}{h} \\
+  & = -x
 \end{align}
 ```
 
-Looking at this, we can see that as `$w$` changes, `$f(x, w)$` changes by `$x$`. We can use this information to change `$w$` to get lower and higher outputs as we please.
+Looking at this, we can see that as `$w$` changes, `$l(x, w, t)$` changes by `$-x$`. We can use this information to change `$w$` to get lower and higher outputs as we please.
