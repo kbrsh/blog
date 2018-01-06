@@ -4,7 +4,7 @@ date: March 25, 2017
 order: 2
 ---
 
-I’ve been using [Vue](https://vuejs.org/) for a while now, it solves all my problems, and does it beautifully. After a while, in late 2015, I began to notice some performance issues with my application. So I began to create something new, as a learning project. Hopefully to see how this DOM stuff actually works, and write a solution specifically for me.
+I used [Vue](https://vuejs.org/) for a while, and it solved all of my problems beautifully. After a while, in late 2015, I began to notice some performance issues with my application. So I began to create something new, as a learning project. Hopefully to see how this DOM stuff actually works, and write a solution specifically for me.
 
 After researching how Vue actually works under the hood, I came across [React](https://facebook.github.io/react/). It had the concept of a virtual DOM, and diffing this against the previous state every time. I also came across the fact that Vue didn’t use this idea at the time (it does now).
 
