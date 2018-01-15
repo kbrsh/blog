@@ -28,8 +28,6 @@ You need to center everything **within** the `div`. So you would apply the follo
 }
 ```
 
-That should do the trick 👊
-
 <br/>
 
 ### Table
@@ -76,5 +74,3 @@ Now, you can style them:
 ```
 
 There, now you can center things supporting IE 6 and up.
-
-If you have read through, awesome! You now know how to center in CSS, pat yourself on the back 😎
