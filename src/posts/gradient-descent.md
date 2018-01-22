@@ -1,6 +1,6 @@
 ---
 title: Gradient Descent
-date: Draft
+date: January 1, 2018
 order: 8
 math: true
 draft: true
