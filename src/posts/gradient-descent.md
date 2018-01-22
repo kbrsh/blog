@@ -1,7 +1,7 @@
 ---
 title: Gradient Descent
 date: Draft
-order: 7
+order: 8
 math: true
 draft: true
 ---
