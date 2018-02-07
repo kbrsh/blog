@@ -1,5 +1,5 @@
 body {
-  font-family: "Lora", monospace;
+  font-family: "Lora", serif;
   color: #1A1A1A;
   background-color: #E6E6E6;
 }
@@ -65,7 +65,7 @@ body {
 
 .post-content code {
   color: #262626;
-  font-family: "Inconsolata", monospace;;
+  font-family: "Inconsolata", monospace;
 }
 
 .post-content pre code {
