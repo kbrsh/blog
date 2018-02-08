@@ -83,18 +83,24 @@ body {
   font-size: 15px;
 }
 
+/* Syntax Colors */
+
 .string {
   color: #02C1A7;
 }
+
 .special {
   color: #AC2EC5;
 }
+
 .global {
   color: #db9114;
 }
+
 .method {
   color: #00A2CD;
 }
+
 .comment {
   color: #989898;
 }
