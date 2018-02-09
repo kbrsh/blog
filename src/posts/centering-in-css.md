@@ -8,7 +8,7 @@ There is no built in support for centering in CSS, sadly, but there are some way
 
 ### Flexbox
 
-Using flexbox will provide clean, hack-free CSS to center elements, the only downside is browser support, don't use this if you need to support users with IE 10 and below.
+Using flexbox is a clean, hack-free way to center elements. The only downside is browser support, don't use this if you need to support IE 10 and below.
 
 Say you have the following HTML:
 
