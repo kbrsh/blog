@@ -13,7 +13,7 @@ Using flexbox is a clean, hack-free way to center elements. The only downside is
 Say you have the following HTML:
 
 ```html
-<div class='center'>
+<div class="center">
     <h1>I'm Centered!</h1>
 </div>
 ```
@@ -35,9 +35,9 @@ Using a table view will need a little more work than flexbox, but will support m
 Say you have the following HTML:
 
 ```html
-<div class='center'>
-    <div class='cell'>
-        <div class='content'>
+<div class="center">
+    <div class="cell">
+        <div class="content">
             <h1>I'm Centered!</h1>
         </div>
     </div>
