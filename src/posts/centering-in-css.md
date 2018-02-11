@@ -59,8 +59,8 @@ Now, you can style them:
 }
 
 .cell {
-    display: table-cell; /* make .cell act like a cell within the table */
-    vertical-align: middle; /* align the cell vertically in the middle */
+    display: table-cell; /* make table cell */
+    vertical-align: middle; /* vertically align cell in the middle */
 }
 
 .content {
