@@ -55,7 +55,7 @@ Now, you can style them:
 
 ```css
 .center {
-    display: table; /* make it so .center acts like a table */
+    display: table; /* make .center a table */
 }
 
 .cell {
