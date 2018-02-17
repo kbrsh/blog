@@ -5,7 +5,7 @@ order: 3
 math: true
 ---
 
-Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around a 6 months ago, I became interested in the topic.
+Artificial Intelligence is a topic that has been attracting a lot of interest from people lately, myself included. Around a 6 months ago, I became interested in machine learning.
 
 I tried looking for information on the internet, but most of the articles I found included complex mathematic notations and often used a machine learning framework to show code samples. While the frameworks are great, I think it is just as important to know what exactly goes on under the hood.
 
