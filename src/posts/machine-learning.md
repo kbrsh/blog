@@ -9,7 +9,7 @@ Artificial Intelligence is a topic that has been attracting a lot of interest fr
 
 I tried looking for information on the internet, but most of the articles I found included complex mathematic notations and often used a machine learning framework to show code samples. While the frameworks are great, I think it is just as important to know what exactly goes on under the hood.
 
-This will be a series of blog posts set to help you understand how machine learning works, and have the code to go with it. The code samples will use Python, with NumPy. NumPy allows for complex math operations to be extremely simple in code, and is not specifically for machine learning. We will be using it for matrix multiplication, dot products, etc.
+This will be a series of blog posts set to help you understand how machine learning works, with a in-depth guide and code samples. The code samples will use Python, with NumPy. NumPy allows for complex math operations to be extremely simple in code, and is not specifically for machine learning. We will be using it for matrix multiplication, dot products, etc.
 
 ## What is Machine Learning?
 
