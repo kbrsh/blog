@@ -1,5 +1,5 @@
 body {
-  background: #E6E6E6;
+  background: #EEEEEE;
 }
 
 #logo {
@@ -20,7 +20,7 @@ body {
 
 .post-date {
   margin-bottom: 0;
-  color: #262626;
+  color: #222222;
   font-family: "Inconsolata", monospace;
 }
 
@@ -36,7 +36,7 @@ body {
 }
 
 .post-title a:hover {
-  color: #1A1A1A;
+  color: #111111;
 }
 
 @media screen and (max-width: 768px) {
