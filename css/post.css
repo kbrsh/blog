@@ -1,7 +1,7 @@
 body {
   font-family: "Lora", serif;
-  color: #1A1A1A;
-  background-color: #E6E6E6;
+  color: #111111;
+  background-color: #EEEEEE;
 }
 
 .container {
@@ -11,25 +11,25 @@ body {
 }
 
 .post-title {
-  color: #1A1A1A;
+  color: #111111;
   font-family: "HK Nova", sans-serif;
 }
 
 .post-date {
   margin-bottom: 50px;
-  color: #262626;
+  color: #222222;
   font-family: "Inconsolata", monospace;
 }
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
   margin-top: 50px;
   margin-bottom: 20px;
-  color: #1A1A1A;
+  color: #111111;
   font-family: "HK Nova", sans-serif;
 }
 
 .post-content p, .post-content li, .post-content ol, .post-content ul {
-  color: #1A1A1A;
+  color: #111111;
   font-family: "Lora", serif;
   font-size: 20px;
 }
@@ -46,8 +46,8 @@ body {
 }
 
 .post-content a:hover {
-  color: #1A1A1A;
-  border-bottom: 2px solid #1A1A1A;
+  color: #111111;
+  border-bottom: 2px solid #111111;
 }
 
 .post-content img {
@@ -64,14 +64,14 @@ body {
 }
 
 .post-content code {
-  color: #262626;
+  color: #222222;
   font-family: "Inconsolata", monospace;
 }
 
 .post-content pre code {
   position: relative;
-  background: #F2F2F2;
-  border-color: #E6E6E6;
+  background: #DDDDDD;
+  border-color: #CCCCCC;
 }
 
 .post-content pre code::after {
@@ -86,23 +86,23 @@ body {
 /* Syntax Colors */
 
 .string {
-  color: #02C1A7;
+  color: #22c3a8;
 }
 
 .special {
-  color: #AC2EC5;
+  color: #a822c3;
 }
 
 .global {
-  color: #db9114;
+  color: #d99426;
 }
 
 .method {
-  color: #00A2CD;
+  color: #22a8c3;
 }
 
 .comment {
-  color: #989898;
+  color: #a6a6a6;
 }
 
 #back {
