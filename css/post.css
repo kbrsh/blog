@@ -23,6 +23,7 @@ body {
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
   margin-top: 50px;
+  margin-bottom: 20px;
   color: #111111;
   font-family: "HK Nova", sans-serif;
 }
@@ -31,6 +32,10 @@ body {
   color: #111111;
   font-family: "Lora", serif;
   font-size: 20px;
+}
+
+.post-content p, .post-content ol, .post-content ul {
+  margin-bottom: 20px;
 }
 
 .post-content a {
@@ -75,7 +80,7 @@ body {
   right: 10px;
   content: attr(lang);
   color: #CCCCCC;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 /* Syntax Colors */
