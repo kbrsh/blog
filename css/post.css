@@ -83,8 +83,7 @@ body {
   font-size: 1rem;
 }
 
-/* Syntax Colors */
-
+/* Syntax Highlighting Colors */
 .string {
   color: #22c3a8;
 }
