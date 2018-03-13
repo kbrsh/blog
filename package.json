@@ -15,9 +15,9 @@
   "homepage": "https://github.com/kbrsh/blog#readme",
   "devDependencies": {
     "handlebars": "^4.0.6",
-    "himalaya": "^0.3.0",
+    "himalaya": "^0.3.1",
     "html-minifier": "^3.5.6",
     "mathjax-node": "^1.2.1",
-    "sold": "github:kbrsh/sold"
+    "sold": "^2.0.0"
   }
 }
