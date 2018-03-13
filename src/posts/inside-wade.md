@@ -63,7 +63,7 @@ On the other hand, a _multiset_ is used to store multiple items (including dupli
 
 Wade uses a special function to find how significant a term is to the data. This function takes various factors into account, including the length of the documents, the length of a specific document with the term, and the number of occurrences of the term.
 
-The significance of the term _t_ in the set of documents _d_ can be represented by the function:
+The significance of the term `$t$` in the set of documents `$d$` can be represented by the function:
 
 ```math
 wm(t, d) = 1.5 - \frac{\sum_{i=0}^{|d|} [\frac{\mu(t)}{\sum_{p \in d_i}(\mu(p))}]}{|d|}
