@@ -29,7 +29,7 @@ Handlebars.registerHelper("list", function(arr) {
   arr.reverse();
   let i = arr.length;
   while((i--) !== 0) {
-    if(arr[i].draft === true) {
+    if(arr[i].draft) {
       arr.splice(i, 1);
     }
   }
