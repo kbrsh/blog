@@ -56,14 +56,14 @@ const highlight = function(compiled, lang) {
     compiled = compiled.replace(HTML_COMMENT_RE, "<span class=\"comment\">$1</span>");
     compiled = compiled.replace(HTML_TAG_RE, function(match, start, content, end) {
       if(content === undefined) {
-        content = "";
+        content = '';
       } else {
         content = content.replace(HTML_ATTRIBUTE_RE, function(match, name, value) {
           if(value !== "string") {
             if(value === undefined) {
-              value = "";
+              value = '';
             } else {
-              value = "=" + value;
+              value = '=' + value;
             }
             return "<span class=\"global\">" + name + "</span>" + value;
           }
@@ -124,7 +124,7 @@ Sold({
   root: __dirname,
   template: "template",
   source: "src",
-  destination: "",
+  destination: '',
   engine: (template, data, options, done) => {
     if(data.content === undefined) {
       done(compileTemplate(template, data));
@@ -165,7 +165,7 @@ Sold({
             }
           } else if(tagName === "code") {
             const codeText = children[0].content;
-            if(codeText[0] === "$" && codeText[codeText.length - 1] === "$") {
+            if(codeText[0] === '$' && codeText[codeText.length - 1] === '$') {
               typeSet(codeText.slice(1, -1), false, data.parentChildren, data.index, next);
             } else {
               element.children = Himalaya.parse(highlight(codeText, "js"));
