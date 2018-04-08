@@ -9,7 +9,7 @@ Life traps all of us into repetitive routines, forcing us to constantly be in th
 
 As younger children, people tell us that we are unique and encourage us to chase big dreams to make the world a better place.
 
-In our teen years, we are stuck in the constant loop of going to school with the same classes and people. We continually try and fail to find the time to do something meaningful. Even though we are capable of making sophisticated ideas that can potentially have a significant impact on the world around us, we tone down our dreams to make them seem more achievable. We create ambitious ideas, but when we try to spread them the world dismisses because of our age. A few popular bad examples have successfully failed us all by painting a stereotypical image in the mind of everyone else.
+In our teen years, we are stuck in the constant loop of going to school with the same classes and people. We continually try and fail to find the time to do something meaningful. Even though we are capable of making sophisticated ideas that can potentially have a significant impact on the world around us, we tone down our dreams to make them seem more achievable. We create ambitious ideas, but when we try to spread them they are dismissed because of our age. A few popular bad examples have successfully failed us all by painting a stereotypical image in the mind of everyone else.
 
 Once we finally reach adulthood we pursue one passion and attempt to find a job. We fall into a routine of waking up, commuting to work, working long hours in front of a screen, and coming back to sleep to start the cycle over again. We distract ourselves to separate ourselves from reality without realizing the bigger picture.
 
