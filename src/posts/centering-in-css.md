@@ -30,7 +30,7 @@ You need to center everything **within** the `div`. So you would apply the follo
 
 ### Table
 
-Using a table view will need a little more work than flexbox, but will support many more browsers. Including IE 6 and up! 👌
+Using a table view will need a little more work than flexbox, but will support many more browsers; this includes IE 6 and up!
 
 Say you have the following HTML:
 
@@ -44,7 +44,7 @@ Say you have the following HTML:
 </div>
 ```
 
-Unlike flexbox, you will need three containers:
+You will need three containers:
 
 1. One on the outside, representing a `table`
 2. A `cell` inside of of the `table`, this will be a `table-cell`
