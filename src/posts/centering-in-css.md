@@ -64,8 +64,8 @@ Now, you can style them:
 }
 
 .content {
-    margin-left: auto; /* the content's left side is auto (centering it) */
-    margin-right: auto; /* the content's right side is auto (centering it) */
+    margin-left: auto; /* the content's left side margin is auto (centering it) */
+    margin-right: auto; /* the content's right side is margin auto (centering it) */
     text-align: center; /* align any other text items in the center*/
     /* text-align: center; is optional */
 }
