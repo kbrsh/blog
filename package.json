@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "my blog",
+  "description": "Kabir Shah's Blog",
   "main": "index.js",
   "repository": {
     "type": "git",
