@@ -48,7 +48,7 @@ You will need three containers:
 
 1. One on the outside, representing a `table`
 2. A `cell` inside of of the `table`, this will be a `table-cell`
-3. Lastly, you will need a container for all of the content
+3. A container for all of the centered content
 
 
 Now, you can style them:
