@@ -32,7 +32,7 @@ You need to center everything **within** the `div`. So you would apply the follo
 
 Using a table will require more code than flexbox, but will support many more browsers; this includes IE 6 and up!
 
-Say you have the following HTML:
+With the following HTML:
 
 ```html
 <div class="center">
