@@ -4,7 +4,7 @@ date: September 3, 2016
 order: 1
 ---
 
-There is no built in support for centering in CSS, sadly, but there are some ways to do it. I will be talking about two of the most effective ways to do it.
+Unfortunately, there is no built in support for centering in CSS, but there are some ways to do it. I will be talking about two of the most effective ways to do it.
 
 ### Flexbox
 
