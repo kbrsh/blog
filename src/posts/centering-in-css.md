@@ -14,7 +14,7 @@ Say you have the following HTML:
 
 ```html
 <div class="center">
-    <h1>I'm Centered!</h1>
+    <h1>Centered Content</h1>
 </div>
 ```
 
@@ -38,7 +38,7 @@ With the following HTML:
 <div class="center">
     <div class="cell">
         <div class="content">
-            <h1>I'm Centered!</h1>
+            <h1>Centered Content</h1>
         </div>
     </div>
 </div>
