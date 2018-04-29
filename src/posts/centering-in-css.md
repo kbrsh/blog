@@ -22,7 +22,7 @@ You need to center everything **within** the `div`. So you would apply the follo
 
 ```css
 .center {
-   display: flex; /* activates the power of flexbox */
+   display: flex; /* activates flexbox */
    align-items: center; /* align items vertically */
    justify-content: center; /* align items horizontally */
 }
