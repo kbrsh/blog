@@ -6,7 +6,7 @@ math: true
 draft: true
 ---
 
-Neural networks work by receiving a set of inputs, multiplying them by a set of weights, and then returning an output. At first, the weights are initialized with random values. Over time, the neural network slowly refines the weights so that it can return a plausible output for any input.
+Neural networks work by receiving a set of inputs, multiplying them by a set of weights, and then returning an output. At first, the weights are initialized with random values. Over time, the neural network refines the weights so that it can return a plausible output for any input.
 
 A neural network uses a _loss function_ to find how close an output is to the target output. The goal of the network is to change the weights in such a way that the loss function returns an output close to zero. A low loss value means that the output for all inputs was incredibly close to the expected output for the inputs.
 
