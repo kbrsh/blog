@@ -14,7 +14,7 @@ A method called _gradient descent_ is often used to refine ("train") the weights
 
 ### Two Variables
 
-Instead of jumping right into a 500-dimensional gradient descent example, let's start out with a simple function that uses two variables, where `$x$` is the input, and `$w$` is the weight.
+Instead of jumping right into a 1000-dimensional gradient descent example, let's start out with a simple function that uses two variables, where `$x$` is the input, and `$w$` is the weight.
 
 ```math
 f(x, w) = xw
