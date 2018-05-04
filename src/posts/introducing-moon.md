@@ -6,7 +6,7 @@ order: 2
 
 I used [Vue](https://vuejs.org/) for a while, and it solved all of my problems beautifully. After a while, in late 2015, I began to notice some performance issues with my application. So I began to create something new, as a learning project. Hopefully to see how this DOM stuff actually works, and write a solution specifically for me.
 
-After researching how Vue works under the hood, I came across [React](https://facebook.github.io/react/). It had the concept of a virtual DOM, and diffing this against another virtual DOM every time in order to update the DOM. I also came across the fact that Vue didn’t use this idea at the time (it does now).
+After researching how Vue works under the hood, I came across [React](https://facebook.github.io/react/). It had the concept of a virtual DOM, and patching this with state updates in order to update the DOM. I also came across the fact that Vue didn’t use this idea at the time (it does now).
 
 I began writing a simple library, not meant for anyone else to use. It was a single file, with jumbled up code, attempting to make something. I just didn’t know what it was yet.
 
