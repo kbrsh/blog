@@ -10,7 +10,7 @@ After researching how Vue works under the hood, I came across [React](https://fa
 
 I began writing a simple library, not meant for anyone else to use. It was a single file, with jumbled up code, attempting to make something. I just didn’t know what it was yet.
 
-After getting it to work, no matter what I did, it was *ridiculously* *slow!* So I gave up, and kept on using my slow implementation.
+After getting it to work, no matter what I did, it was *ridiculously slow!* So I gave up, and kept on using my slow implementation.
 
 ### Remake
 
