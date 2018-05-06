@@ -1,7 +1,7 @@
 body {
   font-family: "Lora", serif;
-  color: #111111;
-  background-color: #EEEEEE;
+  color: #121212;
+  background-color: #F7F7F7;
 }
 
 .container {
@@ -11,25 +11,25 @@ body {
 }
 
 .post-title {
-  color: #111111;
+  color: #121212;
   font-family: "HK Nova", sans-serif;
 }
 
 .post-date {
   margin-bottom: 50px;
-  color: #222222;
+  color: #232323;
   font-family: "Inconsolata", monospace;
 }
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
   margin-top: 50px;
   margin-bottom: 20px;
-  color: #111111;
+  color: #121212;
   font-family: "HK Nova", sans-serif;
 }
 
 .post-content p, .post-content li, .post-content ol, .post-content ul {
-  color: #111111;
+  color: #121212;
   font-family: "Lora", serif;
   font-size: 20px;
 }
@@ -39,15 +39,10 @@ body {
 }
 
 .post-content a {
-  color: #2590ff;
+  color: #121212;
   text-decoration: none;
-  border-bottom: 2px solid #2590ff;
+  border-bottom: 2px solid #121212;
   transition: color .2s ease, border .2s ease;
-}
-
-.post-content a:hover {
-  color: #111111;
-  border-bottom: 2px solid #111111;
 }
 
 .post-content img {
@@ -58,20 +53,20 @@ body {
   display: block;
   margin-bottom: 10px;
   text-align: center;
-  color: #333333;
+  color: #343434;
   font-family: "Inconsolata", monospace;
   font-size: 15px;
 }
 
 .post-content code {
-  color: #222222;
+  color: #232323;
   font-family: "Inconsolata", monospace;
 }
 
 .post-content pre code {
   position: relative;
-  background-color: #DDDDDD;
-  border-color: #CCCCCC;
+  background-color: #E6E6E6;
+  border-color: #D5D5D5;
 }
 
 .post-content pre code::after {
@@ -79,7 +74,7 @@ body {
   top: 5px;
   right: 10px;
   content: attr(lang);
-  color: #CCCCCC;
+  color: #D5D5D5;
   font-size: 1rem;
 }
 

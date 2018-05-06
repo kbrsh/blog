@@ -1,5 +1,5 @@
 body {
-  background: #EEEEEE;
+  background: #F7F7F7;
 }
 
 #logo {
@@ -15,12 +15,13 @@ body {
 
 .post-date {
   margin-bottom: 0;
-  color: #222222;
+  color: #232323;
   font-family: "Inconsolata", monospace;
 }
 
 .post-title {
   margin-bottom: 30px;
+  color: #121212;
   font-family: "HK Nova", sans-serif;
 }
 
@@ -31,7 +32,7 @@ body {
 }
 
 .post-title a:hover {
-  color: #111111;
+  color: #121212;
 }
 
 @media screen and (max-width: 768px) {
