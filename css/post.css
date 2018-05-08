@@ -1,5 +1,5 @@
 body {
-  font-family: "Lora", serif;
+  font-family: "Fenix", serif;
   color: #121212;
   background-color: #F7F7F7;
 }
@@ -12,7 +12,7 @@ body {
 
 .post-title {
   color: #121212;
-  font-family: "HK Nova", sans-serif;
+  font-family: "Fenix", serif;
 }
 
 .post-date {
@@ -23,19 +23,18 @@ body {
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
   margin-top: 50px;
-  margin-bottom: 20px;
   color: #121212;
-  font-family: "HK Nova", sans-serif;
+  font-family: "Fenix", serif;
 }
 
 .post-content p, .post-content li, .post-content ol, .post-content ul {
   color: #121212;
-  font-family: "Lora", serif;
+  font-family: "Fenix", serif;
   font-size: 20px;
 }
 
-.post-content p, .post-content ol, .post-content ul {
-  margin-bottom: 20px;
+.post-content li {
+  margin-bottom: 8px;
 }
 
 .post-content a {
@@ -51,7 +50,7 @@ body {
 
 .post-content span.caption {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   text-align: center;
   color: #343434;
   font-family: "Inconsolata", monospace;
@@ -101,8 +100,8 @@ body {
 
 #back {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 16px;
+  left: 16px;
 }
 
 #back svg {
