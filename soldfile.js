@@ -21,7 +21,7 @@ const escapeMap = {
   "&amp;": '&',
   "&gt;": '>',
   "&lt;": '<'
-}
+};
 
 MathJax.start();
 
