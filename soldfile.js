@@ -47,7 +47,7 @@ const loop = (arr, body, done) => {
   }
 
   next();
-}
+};
 
 const highlight = function(compiled, lang) {
   compiled = compiled.replace(STR_RE, "<span class=\"string\">$1$2$1</span>");
@@ -96,7 +96,7 @@ const compileTemplate = (template, data) => {
     collapseWhitespace: true,
     minifyJS: true
   });
-}
+};
 
 const typeSet = (math, display, parentChildren, index, next) => {
   MathJax.typeset({
@@ -118,7 +118,7 @@ const typeSet = (math, display, parentChildren, index, next) => {
     parentChildren[index] = compiledMath;
     next();
   });
-}
+};
 
 Sold({
   root: __dirname,
