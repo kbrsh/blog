@@ -5,7 +5,6 @@ const toHTML = require("himalaya/translate").toHTML;
 const minifyHTML = require("html-minifier").minify;
 const MathJax = require("mathjax-node");
 
-const mathLink = Himalaya.parse(`<link rel="stylesheet" type="text/css" href="../css/post-math.css">`)[0];
 const STR_RE = /((?:&quot;)|'|`)((?:.|\n)*?)\1/g;
 const SPECIAL_RE = /\b(new|var|let|if|do|function|while|switch|for|foreach|in|continue|break|return)\b/g;
 const GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|undefined|true|false|Object|this|Boolean|Function|Number|\d+(?:\.\d+)?)\b/g;
