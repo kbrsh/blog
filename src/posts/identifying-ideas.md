@@ -14,7 +14,7 @@ It may seem like you can't find a problem with your daily life. That's because y
 
 These unique ideas are ones that solve a problem that a lot of people have. In hindsight, these are the types of ideas that seem the most obvious.
 
-Many creators automate tasks that they regularly encounter every day (especially developers). Attempt to find what's missing from your daily life. If there is a repetitive task that you frequently find yourself running into, ask yourself—_Can I automate this?_
+Many creators automate tasks that they regularly encounter every day (especially developers). Attempt to find what's missing from your daily life. If there is a repetitive task that you frequently find yourself running into, ask yourself — _Can I automate this?_
 
 Be aware of your surroundings. Instead of just dealing with the reality of something annoying you, _notice it as an opportunity_. Most will overlook any inefficiencies in what they do. Instead, it's crucial to see how the current situation can be improved.
 
