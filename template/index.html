@@ -30,13 +30,13 @@
     <div class="container">
       <a href="https://kabir.sh" id="logo"><img src="./img/logo.png" alt="Personal Logo"/></a>
       <div class="posts">
-        {{list data.posts}}
-        {{#data.posts}}
+        {{list posts}}
+        {{#posts}}
           <div class="post">
             <h5 class="post-date">{{date}}</h5>
             <h3 class="post-title"><a href="./posts/{{file}}">{{title}}</a></h3>
           </div>
-        {{/data.posts}}
+        {{/posts}}
       </div>
     </div>
   </body>
