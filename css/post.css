@@ -14,38 +14,38 @@ img {
 }
 
 span.caption {
-	color: #E0E0E0;
+	color: hsl(0, 0%, 88.2094776%);
 }
 
 code {
-	color: #1A1A1A;
+	color: hsl(0, 0%, 10%);
 	font-family: "Inconsolata", monospace;
 }
 
 pre {
-	background-color: #E0E0E0;
+	background-color: hsl(0, 0%, 88.2094776%);
 	white-space: pre-wrap;
 }
 
 /* Syntax Theme */
 .string {
-	color: #22c3a8;
+	color: hsl(170, 50%, 55%);
 }
 
 .special {
-	color: #a822c3;
+	color: hsl(290, 50%, 55%);
 }
 
 .global {
-	color: #d99426;
+	color: hsl(40, 50%, 55%);
 }
 
 .method {
-	color: #22a8c3;
+	color: hsl(190, 50%, 55%);
 }
 
 .comment {
-	color: #a6a6a6;
+	color: hsl(0, 0%, 55%);
 }
 
 #back {
