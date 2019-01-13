@@ -60,9 +60,10 @@ pre {
 }
 
 #back svg #back-arrow {
+	fill: hsl(0, 0%, 55%);
 	transition: fill .2s ease;
 }
 
 #back:hover svg #back-arrow {
-	fill: #2590ff;
+	fill: hsl(200, 50%, 55%);
 }
