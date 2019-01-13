@@ -1,49 +1,26 @@
+body {
+	text-align: center;
+}
+
 #logo {
-	position: absolute;
-	top: 7%;
-	left: 7%;
 	border-bottom: none;
 }
 
 .container {
-	max-width: 650px;
-	margin-top: 125px;
-	margin-left: auto;
-	margin-right: auto;
+	width: calc(100% - 17px);
+	max-width: 700px;
+	text-align: left;
 }
 
 .post-date {
-	margin-bottom: 0;
 	font-family: "Inconsolata", monospace;
 }
 
 .post-title {
-	margin-bottom: 30px;
 	font-family: "Fenix", serif;
 }
 
 .post-title a {
-	color: #2590FF;
 	border-bottom: none;
 	transition: color .2s ease;
-}
-
-.post-title a:hover {
-	color: #4A4A4A;
-}
-
-@media screen and (max-width: 768px) {
-	.container {
-		margin-top: 50px;
-	}
-
-	#logo {
-		position: relative;
-		top: 0;
-		left: 0;
-	}
-
-	#logo img {
-		margin-bottom: 50px;
-	}
 }

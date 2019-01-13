@@ -1,69 +1,30 @@
 body {
 	font-family: "Fenix", serif;
+	text-align: center;
 }
 
 .container {
-	max-width: 650px;
-	width: 80%;
-	margin-top: 70px;
-	margin-bottom: 70px;
-	margin-left: auto;
-	margin-right: auto;
+	width: calc(100% - 17px);
+	max-width: 700px;
+	text-align: left;
 }
 
-.post-title {
-	font-family: "Fenix", serif;
-}
-
-.post-date {
-	margin-bottom: 50px;
-	font-family: "Inconsolata", monospace;
-}
-
-.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
-	margin-top: 50px;
-	font-family: "Fenix", serif;
-}
-
-.post-content p, .post-content li, .post-content ol, .post-content ul {
-	font-family: "Fenix", serif;
-	font-size: 20px;
-}
-
-.post-content li {
-	margin-bottom: 8px;
-}
-
-.post-content img {
+img {
 	width: 100%;
 }
 
-.post-content span.caption {
-	display: block;
-	margin-bottom: 16px;
-	text-align: center;
-	color: #B0B0B0;
-	font-family: "Inconsolata", monospace;
-	font-size: 15px;
+span.caption {
+	color: #E0E0E0;
 }
 
-.post-content code {
-	padding: 1px;
-	color: #4A4A4A;
+code {
+	color: #1A1A1A;
 	font-family: "Inconsolata", monospace;
 }
 
-.post-content pre code {
-	position: relative;
-	padding: 17px;
-}
-
-.post-content pre code::after {
-	position: absolute;
-	top: 5px;
-	right: 10px;
-	content: attr(lang);
-	color: #B0B0B0;
+pre {
+	background-color: #E0E0E0;
+	white-space: pre-wrap;
 }
 
 /* Syntax Theme */
@@ -104,10 +65,4 @@ body {
 
 #back:hover svg #back-arrow {
 	fill: #2590ff;
-}
-
-@media screen and (max-width: 768px) {
-	.container {
-		margin-top: 50px;
-	}
 }
