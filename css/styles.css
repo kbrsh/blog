@@ -21,7 +21,7 @@ body {
 }
 
 .post-title a {
-	color: hsl(200, 50%, 55%);
+	color: #008db7;
 	border-bottom: none;
 	transition: color .2s ease;
 }

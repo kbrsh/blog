@@ -4,7 +4,7 @@
 
 html, body {
 	margin: 0;
-	background: hsl(0, 100%, 100%);
+	background: hsl(0, 0%, 99.1%);
 	color: hsl(0, 0%, 10%);
 }
 
@@ -71,11 +71,11 @@ a {
 }
 
 .a-m-f-1 {
-	color: hsl(0, 0%, 100%);
+	color: hsl(0, 0%, 99.1%);
 }
 
 .a-m-f-2 {
-	color: hsl(0, 0%, 88.2094776%);
+	color: hsl(0, 0%, 91%);
 }
 
 .a-m-f-3 {
@@ -83,11 +83,11 @@ a {
 }
 
 .a-m-b-1 {
-	background-color: hsl(0, 0%, 100%);
+	background-color: hsl(0, 0%, 99.1%);
 }
 
 .a-m-b-2 {
-	background-color: hsl(0, 0%, 88.2094776%);
+	background-color: hsl(0, 0%, 91%);
 }
 
 .a-m-b-3 {
@@ -95,11 +95,11 @@ a {
 }
 
 .a-r-f-1 {
-	color: hsl(0, 100%, 100%);
+	color: hsl(0, 100%, 99.1%);
 }
 
 .a-r-f-2 {
-	color: hsl(0, 100%, 88.2094776%);
+	color: hsl(0, 100%, 91%);
 }
 
 .a-r-f-3 {
@@ -107,11 +107,11 @@ a {
 }
 
 .a-r-b-1 {
-	background-color: hsl(0, 100%, 100%);
+	background-color: hsl(0, 100%, 99.1%);
 }
 
 .a-r-b-2 {
-	background-color: hsl(0, 100%, 88.2094776%);
+	background-color: hsl(0, 100%, 91%);
 }
 
 .a-r-b-3 {
@@ -119,11 +119,11 @@ a {
 }
 
 .a-y-f-1 {
-	color: hsl(50, 100%, 100%);
+	color: hsl(50, 100%, 99.1%);
 }
 
 .a-y-f-2 {
-	color: hsl(50, 100%, 88.2094776%);
+	color: hsl(50, 100%, 91%);
 }
 
 .a-y-f-3 {
@@ -131,11 +131,11 @@ a {
 }
 
 .a-y-b-1 {
-	background-color: hsl(50, 100%, 100%);
+	background-color: hsl(50, 100%, 99.1%);
 }
 
 .a-y-b-2 {
-	background-color: hsl(50, 100%, 88.2094776%);
+	background-color: hsl(50, 100%, 91%);
 }
 
 .a-y-b-3 {
@@ -143,11 +143,11 @@ a {
 }
 
 .a-g-f-1 {
-	color: hsl(150, 100%, 100%);
+	color: hsl(150, 100%, 99.1%);
 }
 
 .a-g-f-2 {
-	color: hsl(150, 100%, 88.2094776%);
+	color: hsl(150, 100%, 91%);
 }
 
 .a-g-f-3 {
@@ -155,11 +155,11 @@ a {
 }
 
 .a-g-b-1 {
-	background-color: hsl(150, 100%, 100%);
+	background-color: hsl(150, 100%, 99.1%);
 }
 
 .a-g-b-2 {
-	background-color: hsl(150, 100%, 88.2094776%);
+	background-color: hsl(150, 100%, 91%);
 }
 
 .a-g-b-3 {
@@ -167,11 +167,11 @@ a {
 }
 
 .a-b-f-1 {
-	color: hsl(200, 100%, 100%);
+	color: hsl(200, 100%, 99.1%);
 }
 
 .a-b-f-2 {
-	color: hsl(200, 100%, 88.2094776%);
+	color: hsl(200, 100%, 91%);
 }
 
 .a-b-f-3 {
@@ -179,11 +179,11 @@ a {
 }
 
 .a-b-b-1 {
-	background-color: hsl(200, 100%, 100%);
+	background-color: hsl(200, 100%, 99.1%);
 }
 
 .a-b-b-2 {
-	background-color: hsl(200, 100%, 88.2094776%);
+	background-color: hsl(200, 100%, 91%);
 }
 
 .a-b-b-3 {

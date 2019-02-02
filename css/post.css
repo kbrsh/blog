@@ -14,7 +14,7 @@ img {
 }
 
 span.caption {
-	color: hsl(0, 0%, 88.2094776%);
+	color: hsl(0, 0%, 91%);
 }
 
 code {
@@ -23,29 +23,29 @@ code {
 }
 
 pre {
-	background-color: hsl(0, 0%, 88.2094776%);
+	background-color: hsl(0, 0%, 91%);
 	white-space: pre-wrap;
 }
 
 /* Syntax Theme */
 .string {
-	color: hsl(170, 50%, 55%);
+	color: #4ba08f;
 }
 
 .special {
-	color: hsl(290, 50%, 55%);
+	color: #9a60b9;
 }
 
 .global {
-	color: hsl(40, 50%, 55%);
+	color: #c68348;
 }
 
 .method {
-	color: hsl(190, 50%, 55%);
+	color: #509abe;
 }
 
 .comment {
-	color: hsl(0, 0%, 55%);
+	color: #787878;
 }
 
 #back {
@@ -60,10 +60,10 @@ pre {
 }
 
 #back svg #back-arrow {
-	fill: hsl(0, 0%, 55%);
+	fill: #828282;
 	transition: fill .2s ease;
 }
 
 #back:hover svg #back-arrow {
-	fill: hsl(200, 50%, 55%);
+	fill: #008db7;
 }
