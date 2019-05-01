@@ -4,7 +4,7 @@
 
 html, body {
 	margin: 0;
-	background: hsl(0, 0%, 99.1%);
+	background: hsl(0, 0%, 100%);
 	color: hsl(0, 0%, 10%);
 	font-size: 19.89px;
 }
@@ -13,23 +13,13 @@ div {
 	display: inline-block;
 }
 
-body, div, ol, ul {
-	padding-left: 17px;
-	padding-right: 0;
-	padding-bottom: 17px;
-	padding-top: 0;
-}
-
-button, div, h1, h2, h3, h4, h5, h6, img, input, li, ol, p, pre, textarea, ul, video {
-	margin-left: 0;
-	margin-right: 17px;
-	margin-bottom: 0;
-	margin-top: 17px;
+body, button, div, h1, h2, h3, h4, h5, h6, img, input, li, ol, p, pre, textarea, ul, video {
+	margin: 7px;
 	border: none;
 }
 
 button, input, pre, textarea {
-	padding: 17px;
+	padding: 7px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -78,122 +68,138 @@ a {
 	text-decoration: none;
 }
 
-.a-m-f-1 {
-	color: hsl(0, 0%, 99.1%);
+.container {
+	max-width: 700px;
 }
 
-.a-m-f-2 {
+.c-m-f-1 {
+	color: hsl(0, 0%, 100%);
+}
+
+.c-m-f-2 {
 	color: hsl(0, 0%, 91%);
 }
 
-.a-m-f-3 {
+.c-m-f-3 {
 	color: hsl(0, 0%, 10%);
 }
 
-.a-m-b-1 {
-	background-color: hsl(0, 0%, 99.1%);
+.c-m-b-1 {
+	background-color: hsl(0, 0%, 100%);
 }
 
-.a-m-b-2 {
+.c-m-b-2 {
 	background-color: hsl(0, 0%, 91%);
 }
 
-.a-m-b-3 {
+.c-m-b-3 {
 	background-color: hsl(0, 0%, 10%);
 }
 
-.a-r-f-1 {
-	color: hsl(0, 100%, 99.1%);
+.c-r-f-1 {
+	color: hsl(0, 100%, 100%);
 }
 
-.a-r-f-2 {
+.c-r-f-2 {
 	color: hsl(0, 100%, 91%);
 }
 
-.a-r-f-3 {
+.c-r-f-3 {
 	color: hsl(0, 100%, 10%);
 }
 
-.a-r-b-1 {
-	background-color: hsl(0, 100%, 99.1%);
+.c-r-b-1 {
+	background-color: hsl(0, 100%, 100%);
 }
 
-.a-r-b-2 {
+.c-r-b-2 {
 	background-color: hsl(0, 100%, 91%);
 }
 
-.a-r-b-3 {
+.c-r-b-3 {
 	background-color: hsl(0, 100%, 10%);
 }
 
-.a-y-f-1 {
-	color: hsl(50, 100%, 99.1%);
+.c-y-f-1 {
+	color: hsl(50, 100%, 100%);
 }
 
-.a-y-f-2 {
+.c-y-f-2 {
 	color: hsl(50, 100%, 91%);
 }
 
-.a-y-f-3 {
+.c-y-f-3 {
 	color: hsl(50, 100%, 10%);
 }
 
-.a-y-b-1 {
-	background-color: hsl(50, 100%, 99.1%);
+.c-y-b-1 {
+	background-color: hsl(50, 100%, 100%);
 }
 
-.a-y-b-2 {
+.c-y-b-2 {
 	background-color: hsl(50, 100%, 91%);
 }
 
-.a-y-b-3 {
+.c-y-b-3 {
 	background-color: hsl(50, 100%, 10%);
 }
 
-.a-g-f-1 {
-	color: hsl(150, 100%, 99.1%);
+.c-g-f-1 {
+	color: hsl(150, 100%, 100%);
 }
 
-.a-g-f-2 {
+.c-g-f-2 {
 	color: hsl(150, 100%, 91%);
 }
 
-.a-g-f-3 {
+.c-g-f-3 {
 	color: hsl(150, 100%, 10%);
 }
 
-.a-g-b-1 {
-	background-color: hsl(150, 100%, 99.1%);
+.c-g-b-1 {
+	background-color: hsl(150, 100%, 100%);
 }
 
-.a-g-b-2 {
+.c-g-b-2 {
 	background-color: hsl(150, 100%, 91%);
 }
 
-.a-g-b-3 {
+.c-g-b-3 {
 	background-color: hsl(150, 100%, 10%);
 }
 
-.a-b-f-1 {
-	color: hsl(200, 100%, 99.1%);
+.c-b-f-1 {
+	color: hsl(200, 100%, 100%);
 }
 
-.a-b-f-2 {
+.c-b-f-2 {
 	color: hsl(200, 100%, 91%);
 }
 
-.a-b-f-3 {
+.c-b-f-3 {
 	color: hsl(200, 100%, 10%);
 }
 
-.a-b-b-1 {
-	background-color: hsl(200, 100%, 99.1%);
+.c-b-b-1 {
+	background-color: hsl(200, 100%, 100%);
 }
 
-.a-b-b-2 {
+.c-b-b-2 {
 	background-color: hsl(200, 100%, 91%);
 }
 
-.a-b-b-3 {
+.c-b-b-3 {
 	background-color: hsl(200, 100%, 10%);
+}
+
+.s-1 {
+	margin: 7px;
+}
+
+.s-2 {
+	margin: 49px;
+}
+
+.s-3 {
+	margin: 343px;
 }

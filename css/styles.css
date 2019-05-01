@@ -1,23 +1,37 @@
 body {
+	margin: 49px;
 	text-align: center;
+	font-family: "Fenix", serif;
 }
 
 #logo {
+	position: absolute;
+	top: 7%;
+	left: 7%;
 	border-bottom: none;
 }
 
+h1 {
+	margin-top: 49px;
+	margin-bottom: 49px;
+}
+
 .container {
-	width: calc(100% - 17px);
 	max-width: 700px;
 	text-align: left;
 }
 
+.post-box {
+	display: table;
+}
+
 .post-date {
-	font-family: "Inconsolata", monospace;
+	display: table-cell;
+	width: 210px;
 }
 
 .post-title {
-	font-family: "Fenix", serif;
+	display: table-cell;
 }
 
 .post-title a {

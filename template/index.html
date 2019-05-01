@@ -11,7 +11,7 @@
 
 		<link rel="shortcut icon" href="./img/logoFill.png"/>
 
-		<link href="https://fonts.googleapis.com/css?family=Fenix|Inconsolata" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Fenix" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/lib/grain.css" />
 		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
 
@@ -29,10 +29,15 @@
 	<body>
 		<div class="container">
 			<a href="https://kabir.sh" id="logo"><img src="./img/logo.png" alt="Personal Logo"/></a>
+			<h1>Blog</h1>
 			{{list posts}}
 			{{#posts}}
-				<h6 class="post-date">{{date}}</h6>
-				<h3 class="post-title"><a href="./posts/{{file}}">{{title}}</a></h3>
+			<span class="post-box">
+				<p>
+					<span class="post-date">{{date}}</span>
+					<span class="post-title"><a href="./posts/{{file}}">{{title}}</a>
+				</p>
+			</span>
 			{{/posts}}
 		</div>
 	</body>
