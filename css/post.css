@@ -1,4 +1,5 @@
 body {
+	margin: 49px;
 	font-family: "Fenix", serif;
 	text-align: center;
 }
@@ -9,8 +10,16 @@ body {
 	text-align: left;
 }
 
+h1 {
+	margin-top: 49px;
+}
+
 h2, h3, h4, h5, h6 {
 	font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6, p, pre, img {
+	margin-bottom: 18.52px;
 }
 
 img {
@@ -18,38 +27,43 @@ img {
 }
 
 span.caption {
-	color: hsl(0, 0%, 91%);
+	color: hsl(0, 0%, 56%);
+}
+
+pre, code {
+	background-color: hsl(200, 15%, 97%);
 }
 
 code {
+	padding: 3.9px;
 	color: hsl(0, 0%, 10%);
 	font-family: "Inconsolata", monospace;
 }
 
 pre {
-	background-color: hsl(0, 0%, 91%);
+	padding: 18.52px;
 	white-space: pre-wrap;
 }
 
 /* Syntax Theme */
 .string {
-	color: #4ba08f;
+	color: hsl(100, 30%, 56%);
 }
 
 .special {
-	color: #9a60b9;
+	color: hsl(300, 15%, 56%);
 }
 
 .global {
-	color: #c68348;
+	color: hsl(30, 45%, 66%);
 }
 
 .method {
-	color: #509abe;
+	color: hsl(200, 15%, 56%);
 }
 
 .comment {
-	color: #787878;
+	color: hsl(200, 15%, 56%);
 }
 
 #back {
