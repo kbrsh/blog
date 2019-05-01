@@ -1,17 +1,12 @@
 body {
-	margin: 49px;
+	margin: calc((100vh / 117) * 10) calc((100vw / 117) * 10);
 	font-family: "Fenix", serif;
 	text-align: center;
 }
 
 .container {
-	width: calc(100% - 17px);
 	max-width: 700px;
 	text-align: left;
-}
-
-h1 {
-	margin-top: 49px;
 }
 
 h2, h3, h4, h5, h6 {
@@ -19,7 +14,7 @@ h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, img {
-	margin-bottom: 18.52px;
+	margin: calc((100vh / 117) * 3) calc((100vw / 117) * 3);
 }
 
 img {
@@ -35,14 +30,18 @@ pre, code {
 }
 
 code {
-	padding: 3.9px;
+	padding: calc(100vh / 117) calc(100vw / 117);
 	color: hsl(0, 0%, 10%);
 	font-family: "Inconsolata", monospace;
 }
 
 pre {
-	padding: 18.52px;
+	padding: calc((100vh / 117) * 3) calc((100vw / 117) * 3);
 	white-space: pre-wrap;
+}
+
+pre code {
+	padding: 0;
 }
 
 /* Syntax Theme */
