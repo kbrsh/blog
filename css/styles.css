@@ -1,14 +1,13 @@
 body {
-	margin: calc((100vh / 117) * 17) calc((100vw / 117) * 17);
+	padding: 35px;
 	text-align: center;
 	font-family: "Fenix", serif;
 }
 
-#logo {
-	position: absolute;
-	top: 7%;
-	left: 7%;
+h1, #logo {
+	display: inline-block;
 	border-bottom: none;
+	vertical-align: middle;
 }
 
 .container {
@@ -16,17 +15,9 @@ body {
 	text-align: left;
 }
 
-.post-box {
-	display: table;
-}
-
-.post-date {
-	display: table-cell;
+.post-date, .post-title {
+	display: inline-block;
 	width: 210px;
-}
-
-.post-title {
-	display: table-cell;
 }
 
 .post-title a {

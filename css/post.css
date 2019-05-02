@@ -1,5 +1,5 @@
 body {
-	margin: calc((100vh / 117) * 10) calc((100vw / 117) * 10);
+	padding: 35px;
 	font-family: "Fenix", serif;
 	text-align: center;
 }
@@ -14,7 +14,7 @@ h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, img {
-	margin: calc((100vh / 117) * 3) calc((100vw / 117) * 3);
+	margin: 21px;
 }
 
 img {
@@ -30,13 +30,13 @@ pre, code {
 }
 
 code {
-	padding: calc(100vh / 117) calc(100vw / 117);
+	padding: 7px;
 	color: hsl(0, 0%, 10%);
 	font-family: "Inconsolata", monospace;
 }
 
 pre {
-	padding: calc((100vh / 117) * 3) calc((100vw / 117) * 3);
+	padding: 14px;
 	white-space: pre-wrap;
 }
 
@@ -50,15 +50,15 @@ pre code {
 }
 
 .special {
-	color: hsl(300, 15%, 56%);
+	color: hsl(300, 30%, 56%);
 }
 
 .global {
-	color: hsl(30, 45%, 66%);
+	color: hsl(30, 45%, 56%);
 }
 
 .method {
-	color: hsl(200, 15%, 56%);
+	color: hsl(200, 45%, 56%);
 }
 
 .comment {
@@ -67,8 +67,8 @@ pre code {
 
 #back {
 	position: absolute;
-	top: 16px;
-	left: 16px;
+	top: 14px;
+	left: 14px;
 	border-bottom: none;
 }
 
