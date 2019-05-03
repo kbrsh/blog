@@ -22,11 +22,11 @@ img {
 }
 
 span.caption {
-	color: hsl(0, 0%, 56%);
+	color: hsl(0, 0%, 75%);
 }
 
 pre, code {
-	background-color: hsl(200, 15%, 97%);
+	background-color: hsl(200, 15%, 96%);
 }
 
 code {
@@ -45,23 +45,23 @@ pre code {
 
 /* Syntax Theme */
 .string {
-	color: hsl(100, 30%, 56%);
+	color: hsl(100, 30%, 52%);
 }
 
 .special {
-	color: hsl(300, 30%, 56%);
+	color: hsl(300, 30%, 52%);
 }
 
 .global {
-	color: hsl(30, 45%, 56%);
+	color: hsl(30, 45%, 52%);
 }
 
 .method {
-	color: hsl(200, 45%, 56%);
+	color: hsl(200, 45%, 52%);
 }
 
 .comment {
-	color: hsl(200, 15%, 56%);
+	color: hsl(200, 15%, 75%);
 }
 
 #back {
