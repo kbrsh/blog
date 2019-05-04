@@ -22,11 +22,7 @@ img {
 }
 
 span.caption {
-	color: hsl(0, 0%, 75%);
-}
-
-pre, code {
-	background-color: hsl(200, 15%, 96%);
+	color: hsl(0, 0%, 74%);
 }
 
 code {
@@ -45,23 +41,23 @@ pre code {
 
 /* Syntax Theme */
 .string {
-	color: hsl(100, 30%, 52%);
+	color: hsl(100, 29%, 49%);
 }
 
 .special {
-	color: hsl(300, 30%, 52%);
+	color: hsl(300, 29%, 49%);
 }
 
 .global {
-	color: hsl(30, 45%, 52%);
+	color: hsl(30, 43%, 49%);
 }
 
 .method {
-	color: hsl(200, 45%, 52%);
+	color: hsl(200, 43%, 49%);
 }
 
 .comment {
-	color: hsl(200, 15%, 75%);
+	color: hsl(200, 14%, 74%);
 }
 
 #back {
@@ -76,10 +72,10 @@ pre code {
 }
 
 #back svg #back-arrow {
-	fill: #828282;
+	fill: hsl(0, 0%, 74%);
 	transition: fill .2s ease;
 }
 
 #back:hover svg #back-arrow {
-	fill: #008db7;
+	fill: hsl(200, 29%, 49%);
 }

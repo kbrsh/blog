@@ -21,7 +21,7 @@ h1, #logo {
 }
 
 .post-title a {
-	color: #008db7;
+	color: hsl(200, 29%, 49%);
 	border-bottom: none;
 	transition: color .2s ease;
 }
