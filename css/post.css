@@ -1,11 +1,11 @@
 body {
-	padding: 35px;
+	padding: 34.391px;
 	font-family: "Fenix", serif;
 	text-align: center;
 }
 
 .container {
-	max-width: 700px;
+	max-width: 830.115135479px;
 	text-align: left;
 }
 
@@ -14,7 +14,7 @@ h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, img {
-	padding: 14px;
+	padding: 20.23px;
 }
 
 img {
@@ -62,8 +62,8 @@ pre code {
 
 #back {
 	position: absolute;
-	top: 14px;
-	left: 14px;
+	top: 11.9px;
+	left: 11.9px;
 	border-bottom: none;
 }
 
