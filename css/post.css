@@ -14,7 +14,8 @@ h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, img {
-	padding: 20.23px;
+	margin: 11.9px;
+	padding: 11.9px;
 }
 
 img {
@@ -26,6 +27,8 @@ span.caption {
 }
 
 code {
+	margin: 0;
+	padding: 0;
 	color: hsl(0, 0%, 10%);
 	font-family: "Inconsolata", monospace;
 }
@@ -33,10 +36,6 @@ code {
 pre {
 	white-space: pre-wrap;
 	word-break: break-word;
-}
-
-pre code {
-	padding: 0;
 }
 
 /* Syntax Theme */
