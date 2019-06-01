@@ -1,11 +1,9 @@
 body {
-	padding: 34.391px;
 	font-family: "Fenix", serif;
 	text-align: center;
 }
 
 .container {
-	max-width: 830.115135479px;
 	text-align: left;
 }
 
@@ -14,8 +12,6 @@ h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, img {
-	margin: 11.9px;
-	padding: 11.9px;
 }
 
 img {
@@ -27,8 +23,6 @@ span.caption {
 }
 
 code {
-	margin: 0;
-	padding: 0;
 	color: hsl(0, 0%, 10%);
 	font-family: "Inconsolata", monospace;
 }

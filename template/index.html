@@ -27,17 +27,15 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="container x-8 s-4">
 			<a href="https://kabir.sh" id="logo"><img src="./img/logo.png" alt="Personal Logo"/></a>
 			<h1>Blog</h1>
 			{{list posts}}
 			{{#posts}}
-			<span class="post-box">
-				<p>
-					<span class="post-date">{{date}}</span>
-					<span class="post-title"><a href="./posts/{{file}}">{{title}}</a>
-				</p>
-			</span>
+			<p>
+				<span class="post-date">{{date}}</span>
+				<span class="post-title"><a href="./posts/{{file}}">{{title}}</a>
+			</p>
 			{{/posts}}
 		</div>
 	</body>

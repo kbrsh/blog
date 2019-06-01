@@ -1,7 +1,10 @@
 body {
-	padding: 34.391px;
 	text-align: center;
 	font-family: "Fenix", serif;
+}
+
+.container {
+	text-align: left;
 }
 
 h1, #logo {
@@ -10,14 +13,16 @@ h1, #logo {
 	vertical-align: middle;
 }
 
-.container {
-	max-width: 830.115135479px;
-	text-align: left;
+p {
+	clear: both;
 }
 
-.post-date, .post-title {
-	display: inline-block;
-	width: 287.2370711px;
+.post-date {
+	float: left;
+}
+
+.post-title {
+	float: right;
 }
 
 .post-title a {
