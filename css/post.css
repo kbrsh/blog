@@ -12,10 +12,8 @@ h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, img {
-}
-
-img {
-	width: 100%;
+	width: calc(100% - 2 * 20.23px);
+	margin: 20.23px;
 }
 
 span.caption {

@@ -13,6 +13,10 @@ h1, #logo {
 	vertical-align: middle;
 }
 
+#logo img {
+	width: 40px;
+}
+
 p {
 	clear: both;
 }
