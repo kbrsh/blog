@@ -1,14 +1,13 @@
 body {
-	text-align: center;
 	font-family: "Fenix", serif;
 }
 
 .container {
-	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 h1, #logo {
-	display: inline-block;
 	border-bottom: none;
 	vertical-align: middle;
 }
@@ -18,15 +17,10 @@ h1, #logo {
 }
 
 p {
-	clear: both;
-}
-
-.post-date {
-	float: left;
-}
-
-.post-title {
-	float: right;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
 }
 
 .post-title a {

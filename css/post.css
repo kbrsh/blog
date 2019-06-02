@@ -1,10 +1,10 @@
 body {
 	font-family: "Fenix", serif;
-	text-align: center;
 }
 
 .container {
-	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 h2, h3, h4, h5, h6 {
@@ -12,7 +12,7 @@ h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6, p, pre, img {
-	width: calc(100% - 2 * 20.23px);
+	width: 100%;
 	margin: 20.23px;
 }
 
