@@ -1,15 +1,20 @@
 body {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	font-family: "Fenix", serif;
 }
 
 .container {
-	margin-left: auto;
-	margin-right: auto;
+	max-width: 700px;
+	margin-left: 35px;
+	margin-right: 35px;
+	margin-top: 70px;
 }
 
-h1, #logo {
+#logo {
+	margin-bottom: 35px;
 	border-bottom: none;
-	vertical-align: middle;
 }
 
 #logo img {

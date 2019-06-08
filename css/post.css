@@ -1,19 +1,33 @@
 body {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	font-family: "Fenix", serif;
 }
 
 .container {
-	margin-left: auto;
-	margin-right: auto;
+	max-width: 700px;
+	margin-left: 35px;
+	margin-right: 35px;
+	margin-top: 70px;
+}
+
+.post-title {
+	margin-bottom: 0;
 }
 
 h2, h3, h4, h5, h6 {
 	font-weight: 400;
 }
 
-h1, h2, h3, h4, h5, h6, p, pre, img {
+h1, h2, h3, h4, h5, h6, p, pre, img, ol, ul {
 	width: 100%;
-	margin: 20.23px;
+	margin-bottom: 21px;
+}
+
+ol, ul {
+	list-style: inside;
+	margin-left: 35px;
 }
 
 span.caption {
@@ -51,10 +65,23 @@ pre {
 	color: hsl(200, 14%, 74%);
 }
 
+footer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+	padding: 35px;
+}
+
+footer a {
+	margin-left: 14px;
+	margin-right: 14px;
+}
+
 #back {
 	position: absolute;
-	top: 11.9px;
-	left: 11.9px;
+	top: 14px;
+	left: 14px;
 	border-bottom: none;
 }
 
