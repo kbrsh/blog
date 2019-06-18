@@ -29,7 +29,7 @@ p {
 }
 
 .post-title a {
-	color: hsl(200, 29%, 49%);
+	color: hsl(200, 43%, 43%);
 	border-bottom: none;
 	transition: color .2s ease;
 }

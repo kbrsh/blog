@@ -31,11 +31,11 @@ ol, ul {
 }
 
 span.caption {
-	color: hsl(0, 0%, 74%);
+	color: hsl(0, 0%, 71%);
 }
 
 code {
-	color: hsl(0, 0%, 10%);
+	color: hsl(0, 0%, 14%);
 	font-family: "Inconsolata", monospace;
 }
 
@@ -46,23 +46,23 @@ pre {
 
 /* Syntax Theme */
 .string {
-	color: hsl(100, 29%, 49%);
+	color: hsl(100, 29%, 57%);
 }
 
 .special {
-	color: hsl(300, 29%, 49%);
+	color: hsl(300, 29%, 57%);
 }
 
 .global {
-	color: hsl(30, 43%, 49%);
+	color: hsl(30, 43%, 57%);
 }
 
 .method {
-	color: hsl(200, 43%, 49%);
+	color: hsl(200, 43%, 57%);
 }
 
 .comment {
-	color: hsl(200, 14%, 74%);
+	color: hsl(200, 14%, 71%);
 }
 
 footer {
@@ -90,10 +90,10 @@ footer a {
 }
 
 #back svg #back-arrow {
-	fill: hsl(0, 0%, 74%);
+	fill: hsl(0, 0%, 71%);
 	transition: fill .2s ease;
 }
 
 #back:hover svg #back-arrow {
-	fill: hsl(200, 29%, 49%);
+	fill: hsl(200, 43%, 43%);
 }
