@@ -26,8 +26,12 @@ h1, h2, h3, h4, h5, h6, p, pre, img, ol, ul {
 }
 
 ol, ul {
-	list-style: inside;
 	margin-left: 35px;
+	margin-right: 35px;
+}
+
+li:not(:last-of-type) {
+	margin-bottom: 7px;
 }
 
 span.caption {
@@ -35,34 +39,47 @@ span.caption {
 }
 
 code {
-	color: hsl(0, 0%, 14%);
+	padding: 2px;
+	color: hsl(200, 29%, 14%);
+	background-color: hsl(200, 14%, 86%);
+	border-radius: 2px;
 	font-family: "Inconsolata", monospace;
 }
 
 pre {
+	padding: 14px;
+	background-color: hsl(200, 29%, 14%);
+	border-radius: 3.5px;
 	white-space: pre-wrap;
 	word-break: break-word;
 }
 
+pre code {
+	padding: 0;
+	color: hsl(200, 14%, 71%);
+	background-color: hsl(200, 29%, 14%);
+	border-radius: 0;
+}
+
 /* Syntax Theme */
 .string {
-	color: hsl(100, 29%, 57%);
+	color: hsl(100, 14%, 57%);
 }
 
 .special {
-	color: hsl(300, 29%, 57%);
+	color: hsl(300, 14%, 57%);
 }
 
 .global {
-	color: hsl(30, 43%, 57%);
+	color: hsl(20, 29%, 57%);
 }
 
 .method {
-	color: hsl(200, 43%, 57%);
+	color: hsl(200, 29%, 57%);
 }
 
 .comment {
-	color: hsl(200, 14%, 71%);
+	color: hsl(200, 29%, 29%);
 }
 
 footer {
