@@ -66,7 +66,7 @@ With all of that, we have the basic forward propagation of a feedforward neural 
 activation((X W_h) + b_h)
 ```
 
-#### Back Propagation
+### Back Propagation
 
 We multiplied some numbers, so what?
 

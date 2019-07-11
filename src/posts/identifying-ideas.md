@@ -8,7 +8,7 @@ Your perspective on problems is critical. Instead of treating a problem as an ob
 
 People often try to come up with ideas by creating solutions _first_ and then seeing what problems it solves _after_. This process is the _opposite_ of how to find a plausible idea.
 
-A while ago, I began working on a web application. The code became extremely bloated, and the user interface was painfully slow. Instead of viewing this as an obstacle, I saw it as an opportunity. I set out to create a minimal, blazing fast user interface library that worked for me, and it turned into [Moon](http://moonjs.ga).
+A while ago, I began working on a web application. The code became extremely bloated, and the user interface was painfully slow. Instead of viewing this as an obstacle, I saw it as an opportunity. I set out to create a minimal, blazing fast user interface library that worked for me, and it turned into [Moon](https://kbrsh.github.io/moon).
 
 It may seem like you can't find a problem with your daily life. That's because you need to change your perspective on things. A problem often won't be hard to find. Excellent ideas are always hiding in _plain sight_.
 
