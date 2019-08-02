@@ -13,54 +13,57 @@ Think of monads as a way to overload a semicolon. It might sound a little crazy 
 
 ## Blocks
 
-First, blocks of code wrapped in curly braces can usually be transformed into function calls. Being explicit about composing functions in this way can help clarify how exactly monads can modify the flow of a program.
+First, many languages have a pattern that allows for creating a set of bindings and then a value based on it. In JavaScript, this is accomplished with a self-invoking function. They can also be transformed into a recursive structure of function calls with variable values. Being explicit about composing functions in this way can help clarify how exactly monads can modify the flow of a program.
 
 For example, the following block of code:
 
 ```js
-{
+const middleName = (() => {
 	const id = getId ();
 	const user = getUser (id);
-	const middleName = getMiddleName (user);
-}
+	return getMiddleName (user);
+})();
 ```
 
 Can be represented as:
 
 ```js
-const middleName = (
-	id => (
-		user => getMiddleName (user)
-	) (getUser (id))
-) (getId ());
+const apply = x => f => f (x);
+const middleName = apply (getId()) (id =>
+	apply (getUser(id)) (user =>
+		getMiddleName(user)
+	)
+);
 ```
 
-It's a little confusing, but they are equivalent. Functions are called with a space between the name and parenthesis. This is done to simulate calling functions by juxtaposition, and it's helpful for calling curried functions. This functional version of block syntax is syntactically similar to turning everything inside out, with the last expression in the middle.
+It's a little confusing, but they are equivalent. Functions are called with a space between the name and parenthesis. This is done to simulate calling functions by juxtaposition, and it's helpful for calling curried functions. This functional version of blocks works by breaking it down into two blocks.
 
 It can be thought of this way:
 
 ```js
-{
+const middleName = (() => {
 	const id = getId ();
-
-	// Everything below is a function of "id".
-	const user = getUser (id);
-
-	// Everything below is a function of "user".
-	const middleName = getMiddleName (user);
-}
+	return (() => {
+		const user = getUser (id);
+		return getMiddleName (user);
+	})();
+})();
 ```
+
+Instead of having everything in the same block, we define a "block" simply as a value based on a variable. In the outer block, the `id` is the variable, and the value is a function of the `id`. In this case, the value is another block, where `user` is the variable and the value is a function of the user.
 
 ## Null Everywhere
 
 Revisiting the previous example, the code might look like this:
 
+
 ```js
-{
-	const id = getId ();
-	const user = getUser (id);
-	const middleName = getMiddleName (user);
-}
+const apply = x => f => f (x);
+const middleName = apply (getId()) (id =>
+	apply (getUser(id)) (user =>
+		getMiddleName(user)
+	)
+);
 ```
 
 It's clean enough, right? Now imagine if `id` could be `null`, `user` could be `null`, or `middleName` could be `null`. The utility functions will all end up looking like this:
@@ -101,30 +104,21 @@ Every utility function has to check and handle `null` values, and has the possib
 Once again, the functional version of the block would look like this:
 
 ```js
-const middleName = (
-	id => (
-		user => getMiddleName (user)
-	) (getUser (id))
-) (getId ());
+const apply = x => f => f (x);
+const middleName = apply (getId()) (id =>
+	apply (getUser(id)) (user =>
+		getMiddleName(user)
+	)
+);
 ```
 
-Looking at this, we can find a pattern: every function takes a nullable value as input and output. Instead of handling `null` within each function, we can create an `apply` function that will handle it for us.
+Looking at this, we can find a pattern: every `apply` takes a nullable value as input and applies it to a function. This function always returns another nullable value, and by extension `apply` needs to also return a nullable value because it may be used within the function itself. Instead of handling `null` within each function, `apply` can handle it.
 
 ```js
-const apply = f => x => x === null ? null : f (x);
+const apply = x => f => x === null ? null : f (x);
 ```
 
-This function takes the next function `f` along with the value `x` to pass to it. Since the inputs can be `null`, it checks and returns `null` whenever the input is `null`. If not, it passes `x` to the next function. Now the code will look like:
-
-```js
-const middleName = apply (
-	id => apply (
-		user => getMiddleName (user)
-	) (getUser (id))
-) (getId ());
-```
-
-This preserves the quality that every function returns a nullable value, but allows them to assume that their input is not `null`. Before, every function had the same input and output type. Now, the `apply` function has the same input and output type, but it is free to use its given function however it likes, as long as it keeps the same input and output type. With this, the full code can be written as:
+Since the inputs can be `null`, it checks and returns `null` whenever the input is `null`. If not, it passes `x` to the function. It treats the function as a black box that can return anything, but assumes that it takes a value as input. Since `apply` itself will have a nullable value as input, it handles the `null` case and then passes any real values into the function. Now, the full the code will look like this:
 
 ```js
 // Simulate the fetching of an ID.
@@ -145,12 +139,12 @@ const getUser = id => ({
 const getMiddleName = user => user.middle;
 
 // Get the middle name, if it exists.
-const apply = f => x => x === null ? null : f (x);
-const middleName = apply (
-	id => apply (
-		user => getMiddleName (user)
-	) (getUser (id))
-) (getId ());
+const apply = x => f => x === null ? null : f (x);
+const middleName = apply (getId()) (id =>
+	apply (getUser(id)) (user =>
+		getMiddleName(user)
+	)
+);
 
 console.log(middleName);
 // 49% => "Bob", 51% => null
@@ -169,23 +163,23 @@ const getUser = id => [{
 }, id[1] + " Got a user with name John Bob Doe."];
 const getMiddleName = user => [user[0].middle, user[1] + " Got the middle name of a user."];
 
-{
-	const id = getId ();
-	const user = getUser (id);
-	const middleName = getMiddleName (user);
-}
+const middleName = apply (getId()) (id =>
+	apply (getUser(id)) (user =>
+		getMiddleName(user)
+	)
+);
 ```
 
-This is messy, and we had to modify the utility functions in order to handle the incoming array input. Instead, we can write the block as functions again, but change the `apply` function to propagate the log for us. In this case, everything has the same array type `[output, log]`.
+This is messy, and we had to modify the utility functions in order to handle the incoming array input. Instead, we can change the `apply` function to propagate the log for us. In this case, the inputs to `apply` always have the structure of `[output, log]`. However, we want the function `f` to only receive the output. Unlike the previous example, we will now assume that `f` returns the same `[output, log]` pair. Since `f` can return the output of _another_ `apply`, we need to return the same type from `apply`.
 
 ```js
-const apply = f => x => {
+const apply = x => f => {
 	const result = f (x[0]);
 	return [result[0], x[1] + " " + result[1]];
 };
 ```
 
-Since everything has the same array type, we take it as an input. Instead of passing the log to the function though, we only pass the output of the value `x[0]` to the function `f`. This function will return its own output and log. We return a new pair with the function output along with the combined logs.
+Since everything has the same array type, we take it as an input. Instead of passing the log to the function though, we only pass the output of the value `x[0]` to the function `f`. We assume that this function will return its own output and log. Since this function can return the output of `apply`, we return a new pair with the function output along with the combined logs.
 
 The full code will then be much simpler, and doesn't include anything related to the previous log message in the utility functions:
 
@@ -200,15 +194,15 @@ const getUser = id => [{
 const getMiddleName = user => [user.middle, "Got the middle name of a user."];
 
 // Get the middle name along with logs.
-const apply = f => x => {
+const apply = x => f => {
 	const result = f (x[0]);
 	return [result[0], x[1] + " " + result[1]];
 };
-const middleName = apply (
-	id => apply (
-		user => getMiddleName (user)
-	) (getUser (id))
-) (getId ());
+const middleName = apply (getId()) (id =>
+	apply (getUser(id)) (user =>
+		getMiddleName(user)
+	)
+);
 
 console.log(middleName);
 // => ["Bob", "Got an id of 7. Got a user with name John Bob Doe. Got the middle name of a user."]
@@ -385,4 +379,21 @@ console.log(sum (7));
 
 ## Conclusion
 
-TODO
+You'll notice how I didn't mention monads throughout the examples. That's because the code was just written using a natural abstraction, and that abstraction was the `apply` function, which applied functions that made up do-blocks in special ways. The truth is, we just implemented four different monads:
+
+1. Null Everywhere - `Maybe` Monad - Assumed `x: nullable` and `f: nullable -> any`
+2. Logging - `Writer` Monad - Assumed `x: [any, string]` and `f: any -> [any, string]`
+3. Global Environment - `Reader` Monad - Assumed `x: environment -> any` and `f: any -> environment -> any`
+4. Passing State - `State` Monad - Assumed `x: state -> [any, state]` and `f: any -> state -> [any, state]`
+
+The monad itself is a triple of a type constructor, a type converter, and a type combinator.
+
+The type constructor is just a way of defining the type of value that stayed constant throughout the do-blocks. For example, the `Maybe` monad type constructor returns `T | null`, and the `State` monad type constructor returns `state -> [output, state]`.
+
+The type converter is a way of creating a "unit" value of the type. For example, the `Writer` monad type converter is `const unit = x => [x, ""]`. It wraps any value within a `Writer` type that includes the value along with an empty log. We didn't cover these much to reduce the complexity of getting started.
+
+The type combinator is another name for our `apply` function, with a signature of `m -> (any -> m) -> m`. It basically means that it accepts an input with the type constructor of a monad and a function that returns the same type. Using these two, it returns an output with the same type. This is commonly named `bind`.
+
+Together, the three of these form a monad. Think of it like this: if all values in a do-block have the same type, when it is represented as function applications then the functions have the same input and output type. The output type corresponds to the last expression in the do-block and the input type corresponds to the type of the rest of the expressions. Sometimes, these functions can be simplified by accepting a different input type. Monads are a way to create a wrapper function for each application that keeps the same input and output type, but allows the inner function to have a different input type.
+
+Together, the three of these form a monad. Think of it like this: a do-block can be split into recursive `apply` calls. If we make assumptions that every input is a certain type, then `apply` can transform the input before applying it to the function. If we make assumptions that the function outputs a certain type, then `apply` can use the output of the function to combine it with the original input. To make this even more useful, `apply` can return the same type that it assumes the function will return. This allows the function to use `apply` within itself.
