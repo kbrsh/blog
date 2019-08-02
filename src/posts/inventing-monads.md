@@ -124,7 +124,7 @@ const middleName = apply (
 ) (getId ());
 ```
 
-This preserves the quality that every function returns a nullable value, but allows them to assume that their input is not `null`. With this, the full code can be written as:
+This preserves the quality that every function returns a nullable value, but allows them to assume that their input is not `null`. Before, every function had the same input and output type. Now, the `apply` function has the same input and output type, but it is free to use its given function however it likes, as long as it keeps the same input and output type. With this, the full code can be written as:
 
 ```js
 // Simulate the fetching of an ID.

@@ -61,7 +61,7 @@
         user =&gt; <span class="method">getMiddleName </span>(user)
     ) (<span class="method">getUser </span>(id))
 ) (<span class="method">getId </span>());
-</code></pre><p>This preserves the quality that every function returns a nullable value, but allows them to assume that their input is not <code>null</code>. With this, the full code can be written as:</p><pre><code lang="js"><span class="comment">// Simulate the fetching of an ID.</span>
+</code></pre><p>This preserves the quality that every function returns a nullable value, but allows them to assume that their input is not <code>null</code>. Before, every function had the same input and output type. Now, the <code>apply</code> function has the same input and output type, but it is free to use its given function however it likes, as long as it keeps the same input and output type. With this, the full code can be written as:</p><pre><code lang="js"><span class="comment">// Simulate the fetching of an ID.</span>
 <span class="special">const </span><span class="global">getId</span> = () =&gt; {
     <span class="special">const </span><span class="global">random</span> = Math.<span class="method">floor</span>(Math.<span class="method">random</span>() * <span class="global">1000</span>);
 
