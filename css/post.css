@@ -62,7 +62,7 @@ pre code {
 }
 
 /* Syntax Theme */
-.string {
+.string, .string span {
 	color: hsl(100, 14%, 55%);
 }
 
@@ -78,7 +78,7 @@ pre code {
 	color: hsl(200, 31%, 55%);
 }
 
-.comment {
+.comment, .comment span {
 	color: hsl(200, 31%, 29%);
 }
 
