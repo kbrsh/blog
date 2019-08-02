@@ -114,7 +114,7 @@ Looking at this, we can find a pattern: every function takes a nullable value as
 const apply = f => x => x === null ? null : f (x);
 ```
 
-This function takes the next function `f` along with the value `x` to pass to it. Since the inputs can be `null`, it checks and returns `null` whenever the input is `null`. If not, it passes x to the next function. Now the code will look like:
+This function takes the next function `f` along with the value `x` to pass to it. Since the inputs can be `null`, it checks and returns `null` whenever the input is `null`. If not, it passes `x` to the next function. Now the code will look like:
 
 ```js
 const middleName = apply (

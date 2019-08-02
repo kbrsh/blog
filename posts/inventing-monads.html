@@ -56,7 +56,7 @@
     ) (<span class="method">getUser </span>(id))
 ) (<span class="method">getId </span>());
 </code></pre><p>Looking at this, we can find a pattern: every function takes a nullable value as input and output. Instead of handling <code>null</code> within each function, we can create an <code>apply</code> function that will handle it for us.</p><pre><code lang="js"><span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; x === <span class="global">null</span> ? <span class="global">null</span> : <span class="method">f </span>(x);
-</code></pre><p>This function takes the next function <code>f</code> along with the value <code>x</code> to pass to it. Since the inputs can be <code>null</code>, it checks and returns <code>null</code> whenever the input is <code>null</code>. If not, it passes x to the next function. Now the code will look like:</p><pre><code lang="js"><span class="special">const </span><span class="global">middleName</span> = <span class="method">apply </span>(
+</code></pre><p>This function takes the next function <code>f</code> along with the value <code>x</code> to pass to it. Since the inputs can be <code>null</code>, it checks and returns <code>null</code> whenever the input is <code>null</code>. If not, it passes <code>x</code> to the next function. Now the code will look like:</p><pre><code lang="js"><span class="special">const </span><span class="global">middleName</span> = <span class="method">apply </span>(
     id =&gt; <span class="method">apply </span>(
         user =&gt; <span class="method">getMiddleName </span>(user)
     ) (<span class="method">getUser </span>(id))
