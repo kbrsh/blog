@@ -176,4 +176,59 @@ console.<span class="method">log</span>(<span class="method">identity </span>({
     last: <span class="string">&quot;Doe&quot;</span>
 }));
 <span class="comment">// =&gt; <span class="global">7</span> JD John Doe</span>
-</code></pre><h2 id="passing-state">Passing State</h2><p>TODO</p><h2 id="conclusion">Conclusion</h2><p>TODO</p></div><footer><a href="https://kabir.sh">Portfolio</a> <a href="https://blog.kabir.sh">Blog</a> <a href="https://twitter.com/kbrshah">Twitter</a> <a href="https://github.com/kbrsh">GitHub</a></footer></body></html>
+</code></pre><h2 id="passing-state">Passing State</h2><p>Let&#39;s say we have a state for holding the seed of a random number generator.</p><pre><code lang="js"><span class="global">7</span>
+</code></pre><p>In pure functional languages, there is no concept of mutation, only pure functions. However, for things like random number generation, there is often a seed that is kept track of as state. It needs to be sent around so that the next number and seed can be generated from it. We can write a block like this:</p><pre><code lang="js"><span class="special">const </span><span class="global">getRandom</span> = state =&gt; {
+    <span class="special">const </span><span class="global">result</span> = <span class="global">7</span> * state + <span class="global">7</span>;
+    <span class="special">return</span> [result % <span class="global">100</span>, result];
+};
+
+<span class="special">const </span><span class="global">getSum</span> = x =&gt; y =&gt; state =&gt; {
+    <span class="special">const </span><span class="global">xResult</span> = <span class="method">x </span>(state);
+    <span class="special">const </span><span class="global">yResult</span> = <span class="method">y </span>(xResult[<span class="global">1</span>]);
+    <span class="special">return</span> [xResult[<span class="global">0</span>] + yResult[<span class="global">0</span>], yResult[<span class="global">1</span>]];
+};
+
+{
+    <span class="special">const </span><span class="global">random1</span> = getRandom;
+    <span class="special">const </span><span class="global">random2</span> = getRandom;
+    <span class="special">const </span><span class="global">sum</span> = <span class="method">getSum </span>(random1) (random2);
+}
+</code></pre><p>In this example, every value is a function of state that returns and output along with new state. It&#39;s not the best code though, because <code>getSum</code> has to call both of its arguments with the state in order to get their value, then it has to correctly manage the latest state and return it. The functional version of the block looks like:</p><pre><code lang="js"><span class="special">const </span><span class="global">random1</span> = getRandom;
+<span class="special">const </span><span class="global">random2</span> = getRandom;
+<span class="special">const </span><span class="global">sum</span> = <span class="method">getSum </span>(random1) (random2);
+
+<span class="special">const </span><span class="global">sum</span> = <span class="method">apply </span>(
+    random1 =&gt; <span class="method">apply </span>(
+        random2 =&gt; <span class="method">getSum </span>(random1) (random2)
+    ) (getRandom)
+) (getRandom);
+</code></pre><p>Every function has <em>a function of state that returns and output and new state</em> as its input and output. Instead of having to deal with a function as input, we can change <code>apply</code> to apply the function with an actual value and handle state changes.</p><pre><code lang="js"><span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; state =&gt; {
+    <span class="special">const </span><span class="global">result</span> = <span class="method">x </span>(state);
+    <span class="special">return</span> <span class="method">f </span>(result[<span class="global">0</span>]) (result[<span class="global">1</span>]);
+};
+</code></pre><p>It&#39;s elegant, but dense. Since the input <code>x</code> and the output of <code>apply</code> are both functions of state, it returns a new function of state. In this function, it first applies the input with the state and stores the <code>result</code>. Now, the next function <code>f</code> is applied with the <em>output</em> portion of the result, so it doesn&#39;t have to worry about the state. <code>f</code> outputs another function of state, so it is called with the <em>state</em> portion of the result in order to get a new output and new state.</p><p>The full code looks like:</p><pre><code lang="js"><span class="comment">// Utility functions <span class="special">for</span> number manipulation.</span>
+<span class="special">const </span><span class="global">getRandom</span> = state =&gt; {
+    <span class="special">const </span><span class="global">result</span> = <span class="global">7</span> * state + <span class="global">7</span>;
+    console.<span class="method">log</span>(<span class="string">&quot;Random number: &quot;</span> + (result % <span class="global">100</span>)); <span class="comment">// Log random numbers <span class="special">for</span> debugging.</span>
+    <span class="special">return</span> [result % <span class="global">100</span>, result];
+};
+
+<span class="special">const </span><span class="global">getSum</span> = x =&gt; y =&gt; state =&gt; [x + y, state];
+
+<span class="comment">// Generate the sum of two random numbers.</span>
+<span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; state =&gt; {
+    <span class="special">const </span><span class="global">result</span> = <span class="method">x </span>(state);
+    <span class="special">return</span> <span class="method">f </span>(result[<span class="global">0</span>]) (result[<span class="global">1</span>]);
+};
+
+<span class="special">const </span><span class="global">sum</span> = <span class="method">apply </span>(
+    random1 =&gt; <span class="method">apply </span>(
+        random2 =&gt; <span class="method">getSum </span>(random1) (random2)
+    ) (getRandom)
+) (getRandom);
+
+console.<span class="method">log</span>(<span class="method">sum </span>(<span class="global">7</span>));
+<span class="comment">// =&gt; Random number: <span class="global">56</span></span>
+<span class="comment">// =&gt; Random number: <span class="global">99</span></span>
+<span class="comment">// =&gt; [<span class="global">155</span>, <span class="global">399</span>]</span>
+</code></pre><h2 id="conclusion">Conclusion</h2><p>TODO</p></div><footer><a href="https://kabir.sh">Portfolio</a> <a href="https://blog.kabir.sh">Blog</a> <a href="https://twitter.com/kbrshah">Twitter</a> <a href="https://github.com/kbrsh">GitHub</a></footer></body></html>

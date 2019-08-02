@@ -301,7 +301,87 @@ console.log(identity ({
 
 ## Passing State
 
-TODO
+Let's say we have a state for holding the seed of a random number generator.
+
+```js
+7
+```
+
+In pure functional languages, there is no concept of mutation, only pure functions. However, for things like random number generation, there is often a seed that is kept track of as state. It needs to be sent around so that the next number and seed can be generated from it. We can write a block like this:
+
+```js
+const getRandom = state => {
+	const result = 7 * state + 7;
+	return [result % 100, result];
+};
+
+const getSum = x => y => state => {
+	const xResult = x (state);
+	const yResult = y (xResult[1]);
+	return [xResult[0] + yResult[0], yResult[1]];
+};
+
+{
+	const random1 = getRandom;
+	const random2 = getRandom;
+	const sum = getSum (random1) (random2);
+}
+```
+
+In this example, every value is a function of state that returns and output along with new state. It's not the best code though, because `getSum` has to call both of its arguments with the state in order to get their value, then it has to correctly manage the latest state and return it. The functional version of the block looks like:
+
+```js
+const random1 = getRandom;
+const random2 = getRandom;
+const sum = getSum (random1) (random2);
+
+const sum = apply (
+	random1 => apply (
+		random2 => getSum (random1) (random2)
+	) (getRandom)
+) (getRandom);
+```
+
+Every function has _a function of state that returns and output and new state_ as its input and output. Instead of having to deal with a function as input, we can change `apply` to apply the function with an actual value and handle state changes.
+
+```js
+const apply = f => x => state => {
+	const result = x (state);
+	return f (result[0]) (result[1]);
+};
+```
+
+It's elegant, but dense. Since the input `x` and the output of `apply` are both functions of state, it returns a new function of state. In this function, it first applies the input with the state and stores the `result`. Now, the next function `f` is applied with the _output_ portion of the result, so it doesn't have to worry about the state. `f` outputs another function of state, so it is called with the _state_ portion of the result in order to get a new output and new state.
+
+The full code looks like:
+
+```js
+// Utility functions for number manipulation.
+const getRandom = state => {
+	const result = 7 * state + 7;
+	console.log("Random number: " + (result % 100)); // Log random numbers for debugging.
+	return [result % 100, result];
+};
+
+const getSum = x => y => state => [x + y, state];
+
+// Generate the sum of two random numbers.
+const apply = f => x => state => {
+	const result = x (state);
+	return f (result[0]) (result[1]);
+};
+
+const sum = apply (
+	random1 => apply (
+		random2 => getSum (random1) (random2)
+	) (getRandom)
+) (getRandom);
+
+console.log(sum (7));
+// => Random number: 56
+// => Random number: 99
+// => [155, 399]
+```
 
 ## Conclusion
 
