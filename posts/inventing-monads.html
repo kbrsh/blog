@@ -1,0 +1,90 @@
+<!doctype html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Inventing Monads | Kabir Shah's blog on design, the web, servers, databases, systems, algorithms, artificial intelligence, cryptography, and ideas."><meta name="author" content="Kabir Shah"><title>Inventing Monads | Kabir Shah</title><link rel="shortcut icon" href="../img/logo-fill.png"/><link href="https://fonts.googleapis.com/css?family=Fenix|Inconsolata" rel="stylesheet"><link rel="stylesheet" type="text/css" href="../css/lib/grain.css"/><link rel="stylesheet" type="text/css" href="../css/post.css"/><script>!function(e,a,t,n,g,c,o){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),o=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script",0,"ga"),ga("create","UA-70792533-7","auto"),ga("send","pageview")</script></head><body><div class="container"><a href="../" id="back"><svg width="37" height="24" viewBox="0 0 37 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Arrow</title><path id="back-arrow" d="M36.0607 1.06066c.5857-.585786.5857-1.535534 0-2.12132l-9.546-9.54594c-.5858-.5858-1.5355-.5858-2.1213 0-.5858.5858-.5858 1.53553 0 2.12132L32.8787 0l-8.4853 8.48528c-.5858.58579-.5858 1.53552 0 2.12132.5858.5858 1.5355.5858 2.1213 0l9.546-9.54594zM0 1.5h35v-3H0v3z" transform="rotate(180 18.5 6)" fill="#888"/></svg></a><h1 class="post-title">Inventing Monads</h1><h3 class="post-date">August 1, 2019</h3><p>Monads are an esoteric concept to many, resulting in hundreds of tutorials, guides, and examples attempting to explain them. Curious developers might look into them only to find the classic answer, &quot;Monads are monoids in the category of endofunctors&quot;. In the end, they&#39;re just another abstraction to help deal with repetitive patterns in functional code.</p><p>This guide will use JavaScript instead of a pure functional programming language (e.g. Haskell) to make things more approachable for developers accustomed to imperative languages. It will, however, assume you have basic knowledge of functional programming, including currying and lambdas.</p><p>Think of monads as a way to overload a semicolon. It might sound a little crazy at first, but imagine being able to override the semicolon to reduce boilerplate in specific code blocks. That&#39;s basically how monads are used in practice.</p><h2 id="blocks">Blocks</h2><p>First, blocks of code wrapped in curly braces can usually be transformed into function calls. Being explicit about composing functions in this way can help clarify how exactly monads can modify the flow of a program.</p><p>For example, the following block of code:</p><pre><code lang="js">{
+    <span class="special">const </span><span class="global">id</span> = <span class="method">getId </span>();
+    <span class="special">const </span><span class="global">user</span> = <span class="method">getUser </span>(id);
+    <span class="special">const </span><span class="global">middleName</span> = <span class="method">getMiddleName </span>(user);
+}
+</code></pre><p>Can be represented as:</p><pre><code lang="js"><span class="special">const </span><span class="global">middleName</span> = (
+    id =&gt; (
+        user =&gt; <span class="method">getMiddleName </span>(user)
+    ) (<span class="method">getUser </span>(id))
+) (<span class="method">getId </span>());
+</code></pre><p>It&#39;s a little confusing, but they are equivalent. Functions are called with a space between the name and parenthesis. This is done to simulate calling functions by juxtaposition, and it&#39;s helpful for calling curried functions. This functional version of block syntax is syntactically similar to turning everything inside out, with the last expression in the middle.</p><p>It can be thought of this way:</p><pre><code lang="js">{
+    <span class="special">const </span><span class="global">id</span> = <span class="method">getId </span>();
+
+    <span class="comment">// Everything below is a <span class="special">function</span> of <span class="string">&quot;id&quot;</span>.</span>
+    <span class="special">const </span><span class="global">user</span> = <span class="method">getUser </span>(id);
+
+    <span class="comment">// Everything below is a <span class="special">function</span> of <span class="string">&quot;user&quot;</span>.</span>
+    <span class="special">const </span><span class="global">middleName</span> = <span class="method">getMiddleName </span>(user);
+}
+</code></pre><h2 id="null-everywhere">Null Everywhere</h2><p>Revisiting the previous example, the code might look like this:</p><pre><code lang="js">{
+    <span class="special">const </span><span class="global">id</span> = <span class="method">getId </span>();
+    <span class="special">const </span><span class="global">user</span> = <span class="method">getUser </span>(id);
+    <span class="special">const </span><span class="global">middleName</span> = <span class="method">getMiddleName </span>(user);
+}
+</code></pre><p>It&#39;s clean enough, right? Now imagine if <code>id</code> could be <code>null</code>, <code>user</code> could be <code>null</code>, or <code>middleName</code> could be <code>null</code>. The utility functions will all end up looking like this:</p><pre><code lang="js"><span class="comment">// Simulate the fetching of an ID.</span>
+<span class="special">const </span><span class="global">getId</span> = () =&gt; {
+    <span class="special">const </span><span class="global">random</span> = Math.<span class="method">floor</span>(Math.<span class="method">random</span>() * <span class="global">1000</span>);
+
+    <span class="special">return</span> random &lt; <span class="global">700</span> ? random : <span class="global">null</span>;
+};
+
+<span class="comment">// Simulate the fetching of a user.</span>
+<span class="special">const </span><span class="global">getUser</span> = id =&gt; {
+    <span class="special">if</span> (id === <span class="global">null</span>) {
+        <span class="special">return</span> <span class="global">null</span>;
+    } <span class="special">else</span> {
+        <span class="special">return</span> {
+            first: <span class="string">&quot;John&quot;</span>,
+            last: <span class="string">&quot;Doe&quot;</span>,
+            middle: Math.<span class="method">random</span>() &lt; <span class="global">0.7</span> ? <span class="string">&quot;Bob&quot;</span> : <span class="global">null</span>
+        };
+    }
+};
+
+<span class="comment">// Simulate the fetching of a middle name.</span>
+<span class="special">const </span><span class="global">getMiddleName</span> = user =&gt; {
+    <span class="special">if</span> (user.middle === <span class="global">null</span>) {
+        <span class="special">return</span> <span class="global">null</span>;
+    } <span class="special">else</span> {
+        <span class="special">return</span> user.middle;
+    }
+};
+</code></pre><p>Every utility function has to check and handle <code>null</code> values, and has the possibility of returning <code>null</code> as well. But what if it could be checked for automatically? That&#39;s where monads come in.</p><p>Once again, the functional version of the block would look like this:</p><pre><code lang="js"><span class="special">const </span><span class="global">middleName</span> = (
+    id =&gt; (
+        user =&gt; <span class="method">getMiddleName </span>(user)
+    ) (<span class="method">getUser </span>(id))
+) (<span class="method">getId </span>());
+</code></pre><p>Looking at this, we can find a pattern: every function takes a nullable value as input and output. Instead of handling <code>null</code> within each function, we can create an <code>apply</code> function that will handle it for us.</p><pre><code lang="js"><span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; x === <span class="global">null</span> ? <span class="global">null</span> : <span class="method">f </span>(x);
+</code></pre><p>This function takes the next function <code>f</code> along with the value <code>x</code> to pass to it. Since the inputs can be <code>null</code>, it checks and returns <code>null</code> whenever the input is <code>null</code>. If not, it passes x to the next function. Now the code will look like:</p><pre><code lang="js"><span class="special">const </span><span class="global">middleName</span> = <span class="method">apply </span>(
+    id =&gt; <span class="method">apply </span>(
+        user =&gt; <span class="method">getMiddleName </span>(user)
+    ) (<span class="method">getUser </span>(id))
+) (<span class="method">getId </span>());
+</code></pre><p>This preserves the quality that every function returns a nullable value, but allows them to assume that their input is not <code>null</code>. With this, the full code can be written as:</p><pre><code lang="js"><span class="comment">// Simulate the fetching of an ID.</span>
+<span class="special">const </span><span class="global">getId</span> = () =&gt; {
+    <span class="special">const </span><span class="global">random</span> = Math.<span class="method">floor</span>(Math.<span class="method">random</span>() * <span class="global">1000</span>);
+
+    <span class="special">return</span> random &lt; <span class="global">700</span> ? random : <span class="global">null</span>;
+};
+
+<span class="comment">// Simulate the fetching of a user.</span>
+<span class="special">const </span><span class="global">getUser</span> = id =&gt; ({
+    first: <span class="string">&quot;John&quot;</span>,
+    last: <span class="string">&quot;Doe&quot;</span>,
+    middle: Math.<span class="method">random</span>() &lt; <span class="global">0.7</span> ? <span class="string">&quot;Bob&quot;</span> : <span class="global">null</span>
+});
+
+<span class="comment">// Simulate the fetching of a middle name.</span>
+<span class="special">const </span><span class="global">getMiddleName</span> = user =&gt; user.middle;
+
+<span class="comment">// Get the middle name, <span class="special">if</span> it exists.</span>
+<span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; x === <span class="global">null</span> ? <span class="global">null</span> : <span class="method">f </span>(x);
+<span class="special">const </span><span class="global">middleName</span> = <span class="method">apply </span>(
+    id =&gt; <span class="method">apply </span>(
+        user =&gt; <span class="method">getMiddleName </span>(user)
+    ) (<span class="method">getUser </span>(id))
+) (<span class="method">getId </span>());
+
+console.<span class="method">log</span>(middleName);
+</code></pre><h2 id="logging">Logging</h2><p>TODO</p><h2 id="global-configuration">Global Configuration</h2><p>TODO</p><h2 id="passing-state">Passing State</h2><p>TODO</p><h2 id="conclusion">Conclusion</h2><p>TODO</p></div><footer><a href="https://kabir.sh">Portfolio</a> <a href="https://blog.kabir.sh">Blog</a> <a href="https://twitter.com/kbrshah">Twitter</a> <a href="https://github.com/kbrsh">GitHub</a></footer></body></html>

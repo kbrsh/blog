@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Template Optimizations | Kabir Shah's blog on design, the web, servers, databases, systems, algorithms, artificial intelligence, cryptography, and ideas."><meta name="author" content="Kabir Shah"><title>Template Optimizations | Kabir Shah</title><link rel="shortcut icon" href="../img/logo-fill.png"/><link href="https://fonts.googleapis.com/css?family=Fenix|Inconsolata" rel="stylesheet"><link rel="stylesheet" type="text/css" href="../css/lib/grain.css"/><link rel="stylesheet" type="text/css" href="../css/post.css"/><script>!function(e,a,t,n,g,c,o){e.GoogleAnalyticsObject=g,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),o=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",o.parentNode.insertBefore(c,o)}(window,document,"script",0,"ga"),ga("create","UA-70792533-7","auto"),ga("send","pageview")</script></head><body><div class="container"><a href="../" id="back"><svg width="37" height="24" viewBox="0 0 37 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Arrow</title><path id="back-arrow" d="M36.0607 1.06066c.5857-.585786.5857-1.535534 0-2.12132l-9.546-9.54594c-.5858-.5858-1.5355-.5858-2.1213 0-.5858.5858-.5858 1.53553 0 2.12132L32.8787 0l-8.4853 8.48528c-.5858.58579-.5858 1.53552 0 2.12132.5858.5858 1.5355.5858 2.1213 0l9.546-9.54594zM0 1.5h35v-3H0v3z" transform="rotate(180 18.5 6)" fill="#888"/></svg></a><h1 class="post-title">Template Optimizations</h1><h3 class="post-date">October 28, 2017</h3><p>The majority of JavaScript libraries/frameworks use either templates or JSX to define a view. Templates allow for a well-defined structure, using a special syntax for binding data to the view. JSX allows for JavaScript to be used anywhere in the template, which adds a lot of power but can result in repetitive code.</p><p><a href="http://moonjs.ga">Moon</a> is a 7kb library with syntax inspired by Vue. Both Moon and Vue use a template system (although JSX can be used with Vue as well). To implement the template syntax, they have compilers that optimize the templates in different ways.</p><h2 id="virtual-dom">Virtual DOM</h2><p>In the end, a compiler has the job of converting the template syntax into a function that can return a virtual DOM tree.</p><p>The virtual DOM is essentially a representation of the DOM as a set of objects. This lightweight representation is important because it can be implemented as a function of the current state. Every time data in an app is updated, an entirely new version of the virtual DOM can be generated and compared with the current version.</p><p>While the virtual DOM is lightweight, creating the whole tree for every render can use a lot of memory and impact performance. That is why it is important for compilers to be able to optimize templates and reuse static virtual nodes, as they do not need to be recreated on every render.</p><p>The virtual DOM consists of virtual nodes, which look something like:</p><pre><code lang="js">{
   type: <span class="string">&quot;div&quot;</span>, <span class="comment">// Type of element</span>
-  props: {}, <span class="comment">// Properties (attributes, directives, DOM properties),</span>
-  data: {}, <span class="comment">// Internal data (SVG utilities, event listeners)</span>
+  props: {}, <span class="comment">// <span class="method">Properties </span>(attributes, directives, DOM properties),</span>
+  data: {}, <span class="comment">// Internal <span class="method">data </span>(SVG utilities, event listeners)</span>
   children: [] <span class="comment">// Children virtual nodes</span>
 }
 </code></pre><p>Moon and Vue both compare a new virtual DOM with the old one, and update the DOM with a minimum amount of transformations. They also both have different ways of creating the virtual DOM.</p><p>Both provide a function to create virtual nodes. These functions are responsible for transforming a set of arguments into an object containing all of the required data for the current state of the view.</p><h3 id="vue">Vue</h3><p>In Vue, a developer-friendly function is used to define a virtual DOM tree. This function is extremely flexible and can accept a variety of arguments with multiple types. This flexibility requires a normalization step at runtime.</p><p>For example:</p><pre><code lang="js"><span class="method">_c</span>(
@@ -37,13 +37,13 @@
   <span class="method">&lt;h1</span><span class="method">&gt;</span>Static Heading<span class="method">&lt;/h1</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="method">_m</span>(<span class="global">0</span>): <span class="special">function</span> <span class="method">anonymous</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [<span class="method">_c</span>(<span class="string">&quot;h1&quot;</span>, [<span class="method">_v</span>(<span class="string">&quot;Static Heading&quot;</span>)])]);
   }
 }
 
 <span class="special">function</span> <span class="method">render</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_m</span>(<span class="global">0</span>);
   }
 }
@@ -74,13 +74,13 @@
   <span class="method">&lt;/div</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="method">_m</span>(<span class="global">0</span>): <span class="special">function</span> <span class="method">anonymous</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [<span class="method">_c</span>(<span class="string">&quot;p&quot;</span>, [<span class="method">_v</span>(<span class="string">&quot;Static&quot;</span>)])]);
   }
 }
 
 <span class="special">function</span> <span class="method">render</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [
       <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [<span class="method">_m</span>(<span class="global">0</span>), <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [<span class="method">_c</span>(<span class="string">&quot;p&quot;</span>, [<span class="method">_v</span>(<span class="string">&quot;Dynamic &quot;</span> + <span class="method">_s</span>(foo))])])])
     ]);
@@ -119,7 +119,7 @@
   <span class="method">&lt;p</span><span class="method">&gt;</span>Dynamic Paragraph: {{foo}}<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="special">function</span> <span class="method">render</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [
       <span class="method">_c</span>(<span class="string">&quot;h1&quot;</span>, [<span class="method">_v</span>(<span class="string">&quot;Static Heading&quot;</span>)]),
       <span class="method">_c</span>(<span class="string">&quot;p&quot;</span>, [<span class="method">_v</span>(<span class="string">&quot;Dynamic Paragraph: &quot;</span> + <span class="method">_s</span>(foo))])
@@ -151,7 +151,7 @@
   <span class="method">&lt;p</span> <span class="global">v-bind:foo</span>=<span undefined>&quot;foo&quot;</span><span class="method">&gt;</span>Dynamic Paragraph<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="special">function</span> <span class="method">render</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [
       <span class="method">_c</span>(<span class="string">&quot;h1&quot;</span>, [<span class="method">_v</span>(<span class="string">&quot;Static Heading&quot;</span>)]),
       <span class="method">_c</span>(<span class="string">&quot;p&quot;</span>, { attrs: { foo: foo } }, [<span class="method">_v</span>(<span class="string">&quot;Dynamic Paragraph&quot;</span>)])
@@ -184,7 +184,7 @@
   <span class="method">&lt;p</span> v-else<span class="method">&gt;</span>Condition False<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="special">function</span> <span class="method">render</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [
       fooCondition
         ? <span class="method">_c</span>(<span class="string">&quot;p&quot;</span>, [<span class="method">_v</span>(<span class="string">&quot;Condition True&quot;</span>)])
@@ -215,7 +215,7 @@
   <span class="method">&lt;button</span> <span class="global">v-on:click</span>=<span undefined>&quot;fooMethod&quot;</span><span class="method">&gt;</span><span class="method">&lt;/button</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="special">function</span> <span class="method">render</span>() {
-  with (<span class="global">this</span>) {
+  <span class="method">with </span>(<span class="global">this</span>) {
     <span class="special">return</span> <span class="method">_c</span>(<span class="string">&quot;div&quot;</span>, [
       <span class="method">_c</span>(<span class="string">&quot;button&quot;</span>, {
         on: {

@@ -6,10 +6,10 @@ const minifyHTML = require("html-minifier").minify;
 const MathJax = require("mathjax-node");
 
 const STR_RE = /((?:&quot;)|'|`)((?:.|\n)*?)\1/g;
-const SPECIAL_RE = /\b(new|var|let|if|do|function|while|switch|for|foreach|in|continue|break|return)\b/g;
-const GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|undefined|true|false|Object|this|Boolean|Function|Number|\d+(?:\.\d+)?)\b/g;
+const SPECIAL_RE = /\b(new|var|let|if|else|do|function|while|switch|for|foreach|in|continue|break|return)\b/g;
+const GLOBAL_VARIABLE_RE = /\b(document|window|Array|String|undefined|null|true|false|Object|this|Boolean|Function|Number|\d+(?:\.\d+)?)\b/g;
 const CONST_RE = /\b(const )([\w\d]+)/g;
-const METHODS_RE = /\b([\w\d]+)\(/g;
+const METHODS_RE = /\b([\w\d]+\s?)\(/g;
 const MULTILINE_COMMENT_RE  = /(\/\*.*\*\/)/g;
 const COMMENT_RE = /(\/\/.*)/g;
 const HTML_COMMENT_RE = /(\&lt;\!\-\-(?:(?:.|\n)*)\-\-\&gt;)/g;
