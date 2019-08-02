@@ -87,4 +87,44 @@
 ) (<span class="method">getId </span>());
 
 console.<span class="method">log</span>(middleName);
-</code></pre><h2 id="logging">Logging</h2><p>TODO</p><h2 id="global-configuration">Global Configuration</h2><p>TODO</p><h2 id="passing-state">Passing State</h2><p>TODO</p><h2 id="conclusion">Conclusion</h2><p>TODO</p></div><footer><a href="https://kabir.sh">Portfolio</a> <a href="https://blog.kabir.sh">Blog</a> <a href="https://twitter.com/kbrshah">Twitter</a> <a href="https://github.com/kbrsh">GitHub</a></footer></body></html>
+<span class="comment">// <span class="global">49</span>% =&gt; <span class="string">&quot;Bob&quot;</span>, <span class="global">51</span>% =&gt; <span class="global">null</span></span>
+</code></pre><h2 id="logging">Logging</h2><p>Keeping the same example, let&#39;s say we want to keep track of log messages. In a functional language, you can&#39;t modify a global variable to keep track of all of the messages. Instead, each function can return an output along with a log message.</p><pre><code lang="js"><span class="special">const </span><span class="global">getId</span> = () =&gt; [<span class="global">7</span>, <span class="string">&quot;Got an id of <span class="global">7</span>.&quot;</span>];
+<span class="special">const </span><span class="global">getUser</span> = id =&gt; [{
+    first: <span class="string">&quot;John&quot;</span>,
+    last: <span class="string">&quot;Doe&quot;</span>,
+    middle: <span class="string">&quot;Bob&quot;</span>
+}, id[<span class="global">1</span>] + <span class="string">&quot; Got a user with name John Bob Doe.&quot;</span>];
+<span class="special">const </span><span class="global">getMiddleName</span> = user =&gt; [user[<span class="global">0</span>].middle, user[<span class="global">1</span>] + <span class="string">&quot; Got the middle name of a user.&quot;</span>];
+
+{
+    <span class="special">const </span><span class="global">id</span> = <span class="method">getId </span>();
+    <span class="special">const </span><span class="global">user</span> = <span class="method">getUser </span>(id);
+    <span class="special">const </span><span class="global">middleName</span> = <span class="method">getMiddleName </span>(user);
+}
+</code></pre><p>This is messy, and we had to modify the utility functions in order to handle the incoming array input. Instead, we can write the block as functions again, but change the <code>apply</code> function to propagate the log for us. In this case, everything has the same array type <code>[output, log]</code>.</p><pre><code lang="js"><span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; {
+    <span class="special">const </span><span class="global">result</span> = <span class="method">f </span>(x[<span class="global">0</span>]);
+    <span class="special">return</span> [result[<span class="global">0</span>], x[<span class="global">1</span>] + <span class="string">&quot; &quot;</span> + result[<span class="global">1</span>]];
+};
+</code></pre><p>Since everything has the same array type, we take it as an input. Instead of passing the log to the function though, we only pass the output of the value <code>x[0]</code> to the function <code>f</code>. This function will return its own output and log. We return a new pair with the function output along with the combined logs.</p><p>The full code will then be much simpler, and doesn&#39;t include anything related to the previous log message in the utility functions:</p><pre><code lang="js"><span class="comment">// Get various data from a user.</span>
+<span class="special">const </span><span class="global">getId</span> = () =&gt; [<span class="global">7</span>, <span class="string">&quot;Got an id of <span class="global">7</span>.&quot;</span>];
+<span class="special">const </span><span class="global">getUser</span> = id =&gt; [{
+    first: <span class="string">&quot;John&quot;</span>,
+    last: <span class="string">&quot;Doe&quot;</span>,
+    middle: <span class="string">&quot;Bob&quot;</span>
+}, <span class="string">&quot;Got a user with name John Bob Doe.&quot;</span>];
+<span class="special">const </span><span class="global">getMiddleName</span> = user =&gt; [user.middle, <span class="string">&quot;Got the middle name of a user.&quot;</span>];
+
+<span class="comment">// Get the middle name along with logs.</span>
+<span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; {
+    <span class="special">const </span><span class="global">result</span> = <span class="method">f </span>(x[<span class="global">0</span>]);
+    <span class="special">return</span> [result[<span class="global">0</span>], x[<span class="global">1</span>] + <span class="string">&quot; &quot;</span> + result[<span class="global">1</span>]];
+};
+<span class="special">const </span><span class="global">middleName</span> = <span class="method">apply </span>(
+    id =&gt; <span class="method">apply </span>(
+        user =&gt; <span class="method">getMiddleName </span>(user)
+    ) (<span class="method">getUser </span>(id))
+) (<span class="method">getId </span>());
+
+console.<span class="method">log</span>(middleName);
+<span class="comment">// =&gt; [<span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Got an id of <span class="global">7</span>. Got a user with name John Bob Doe. Got the middle name of a user.&quot;</span>]</span>
+</code></pre><h2 id="global-configuration">Global Configuration</h2><p>TODO</p><h2 id="passing-state">Passing State</h2><p>TODO</p><h2 id="conclusion">Conclusion</h2><p>TODO</p></div><footer><a href="https://kabir.sh">Portfolio</a> <a href="https://blog.kabir.sh">Blog</a> <a href="https://twitter.com/kbrshah">Twitter</a> <a href="https://github.com/kbrsh">GitHub</a></footer></body></html>

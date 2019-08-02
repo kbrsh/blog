@@ -153,11 +153,66 @@ const middleName = apply (
 ) (getId ());
 
 console.log(middleName);
+// 49% => "Bob", 51% => null
 ```
 
 ## Logging
 
-TODO
+Keeping the same example, let's say we want to keep track of log messages. In a functional language, you can't modify a global variable to keep track of all of the messages. Instead, each function can return an output along with a log message.
+
+```js
+const getId = () => [7, "Got an id of 7."];
+const getUser = id => [{
+	first: "John",
+	last: "Doe",
+	middle: "Bob"
+}, id[1] + " Got a user with name John Bob Doe."];
+const getMiddleName = user => [user[0].middle, user[1] + " Got the middle name of a user."];
+
+{
+	const id = getId ();
+	const user = getUser (id);
+	const middleName = getMiddleName (user);
+}
+```
+
+This is messy, and we had to modify the utility functions in order to handle the incoming array input. Instead, we can write the block as functions again, but change the `apply` function to propagate the log for us. In this case, everything has the same array type `[output, log]`.
+
+```js
+const apply = f => x => {
+	const result = f (x[0]);
+	return [result[0], x[1] + " " + result[1]];
+};
+```
+
+Since everything has the same array type, we take it as an input. Instead of passing the log to the function though, we only pass the output of the value `x[0]` to the function `f`. This function will return its own output and log. We return a new pair with the function output along with the combined logs.
+
+The full code will then be much simpler, and doesn't include anything related to the previous log message in the utility functions:
+
+```js
+// Get various data from a user.
+const getId = () => [7, "Got an id of 7."];
+const getUser = id => [{
+	first: "John",
+	last: "Doe",
+	middle: "Bob"
+}, "Got a user with name John Bob Doe."];
+const getMiddleName = user => [user.middle, "Got the middle name of a user."];
+
+// Get the middle name along with logs.
+const apply = f => x => {
+	const result = f (x[0]);
+	return [result[0], x[1] + " " + result[1]];
+};
+const middleName = apply (
+	id => apply (
+		user => getMiddleName (user)
+	) (getUser (id))
+) (getId ());
+
+console.log(middleName);
+// => ["Bob", "Got an id of 7. Got a user with name John Bob Doe. Got the middle name of a user."]
+```
 
 ## Global Configuration
 
