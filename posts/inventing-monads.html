@@ -127,4 +127,53 @@ console.<span class="method">log</span>(middleName);
 
 console.<span class="method">log</span>(middleName);
 <span class="comment">// =&gt; [<span class="string">&quot;Bob&quot;</span>, <span class="string">&quot;Got an id of <span class="global">7</span>. Got a user with name John Bob Doe. Got the middle name of a user.&quot;</span>]</span>
-</code></pre><h2 id="global-configuration">Global Configuration</h2><p>TODO</p><h2 id="passing-state">Passing State</h2><p>TODO</p><h2 id="conclusion">Conclusion</h2><p>TODO</p></div><footer><a href="https://kabir.sh">Portfolio</a> <a href="https://blog.kabir.sh">Blog</a> <a href="https://twitter.com/kbrshah">Twitter</a> <a href="https://github.com/kbrsh">GitHub</a></footer></body></html>
+</code></pre><h2 id="global-environment">Global Environment</h2><p>Let&#39;s say we have a global object fetched from somewhere, and it holds data for a user.</p><pre><code lang="js">{
+    id: <span class="global">7</span>,
+    first: <span class="string">&quot;John&quot;</span>,
+    last: <span class="string">&quot;Doe&quot;</span>
+}
+</code></pre><p>Along with that, we have a calculation based on this environment.</p><pre><code lang="js"><span class="special">const </span><span class="global">getInitials</span> = environment =&gt; environment.first[<span class="global">0</span>] + environment.last[<span class="global">0</span>];
+<span class="special">const </span><span class="global">getName</span> = initials =&gt; environment =&gt; <span class="string">`${initials} ${environment.first} ${environment.last}`</span>;
+<span class="special">const </span><span class="global">getIdentity</span> = name =&gt; environment =&gt; environment.id.<span class="method">toString</span>() + <span class="string">&quot; &quot;</span> + name;
+
+{
+    <span class="special">const </span><span class="global">initials</span> = <span class="method">getInitials </span>(environment);
+    <span class="special">const </span><span class="global">name</span> = <span class="method">getName </span>(initials) (environment);
+    <span class="special">const </span><span class="global">identity</span> = <span class="method">getIdentity </span>(name) (environment);
+}
+</code></pre><p>In this case, every single function requires the <code>environment</code> as an input. What if we made that implicit?</p><pre><code lang="js"><span class="special">const </span><span class="global">getInitials</span> = environment =&gt; environment.first[<span class="global">0</span>] + environment.last[<span class="global">0</span>];
+<span class="special">const </span><span class="global">getName</span> = initials =&gt; environment =&gt; <span class="string">`${<span class="method">initials </span>(environment)} ${environment.first} ${environment.last}`</span>;
+<span class="special">const </span><span class="global">getIdentity</span> = name =&gt; environment =&gt; environment.id.<span class="method">toString</span>() + <span class="string">&quot; &quot;</span> + <span class="method">name </span>(environment);
+
+{
+    <span class="special">const </span><span class="global">initials</span> = getInitials;
+    <span class="special">const </span><span class="global">name</span> = <span class="method">getName </span>(initials);
+    <span class="special">const </span><span class="global">identity</span> = <span class="method">getIdentity </span>(name);
+}
+</code></pre><p>It looks nicer, but the utility functions had to change. They now have to call their first argument with the environment in order to get their true value. The functional version of the block would look like this:</p><pre><code lang="js"><span class="special">const </span><span class="global">identity</span> = <span class="method">apply </span>(
+    initials =&gt; <span class="method">apply </span>(
+        name =&gt; <span class="method">getIdentity </span>(name)
+    ) (<span class="method">getName </span>(initials))
+) (getInitials);
+</code></pre><p>Here, every function has a <em>function of the environment</em> as both input and output. What if we kept that property, but the applied function could get the previous value directly? We can change the definition of <code>apply</code>:</p><pre><code lang="js"><span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; environment =&gt; <span class="method">f </span>(<span class="method">x </span>(environment)) (environment);
+</code></pre><p>It&#39;s a little confusing, but the <code>apply</code> function still has a function of the environment as input and output. It returns a new function that takes the environment as input. In this function, it takes the input value <code>x</code>, which is a function of the environment, and applies it with the environment. This value is fed into <code>f</code>, so that it can expect the actual output of the function without having to worry about passing it the environment. Since <code>f</code> returns yet another function of the environment, it finally applies it with the environment once again.</p><p>It&#39;s a lot of function application, but the key idea is that <code>apply</code> keeps the property that every input and every output is a function of the environment. It just applies the next function with an actual value so it won&#39;t have to worry about the input being a function.</p><p>With that, the final code looks like:</p><pre><code lang="js"><span class="comment">// Utility functions to <span class="special">return</span> calculations based on an environment.</span>
+<span class="special">const </span><span class="global">getInitials</span> = environment =&gt; environment.first[<span class="global">0</span>] + environment.last[<span class="global">0</span>];
+<span class="special">const </span><span class="global">getName</span> = initials =&gt; environment =&gt; <span class="string">`${initials} ${environment.first} ${environment.last}`</span>;
+<span class="special">const </span><span class="global">getIdentity</span> = name =&gt; environment =&gt; environment.id.<span class="method">toString</span>() + <span class="string">&quot; &quot;</span> + name;
+
+<span class="comment">// Get the identity of the environment user.</span>
+<span class="special">const </span><span class="global">apply</span> = f =&gt; x =&gt; environment =&gt; <span class="method">f </span>(<span class="method">x </span>(environment)) (environment);
+<span class="special">const </span><span class="global">identity</span> = <span class="method">apply </span>(
+    initials =&gt; <span class="method">apply </span>(
+        name =&gt; <span class="method">getIdentity </span>(name)
+    ) (<span class="method">getName </span>(initials))
+) (getInitials);
+
+<span class="comment">// Since <span class="string">`identity`</span> is a <span class="special">function</span> of an environment, we can pass it any environment.</span>
+console.<span class="method">log</span>(<span class="method">identity </span>({
+    id: <span class="global">7</span>,
+    first: <span class="string">&quot;John&quot;</span>,
+    last: <span class="string">&quot;Doe&quot;</span>
+}));
+<span class="comment">// =&gt; <span class="global">7</span> JD John Doe</span>
+</code></pre><h2 id="passing-state">Passing State</h2><p>TODO</p><h2 id="conclusion">Conclusion</h2><p>TODO</p></div><footer><a href="https://kabir.sh">Portfolio</a> <a href="https://blog.kabir.sh">Blog</a> <a href="https://twitter.com/kbrshah">Twitter</a> <a href="https://github.com/kbrsh">GitHub</a></footer></body></html>

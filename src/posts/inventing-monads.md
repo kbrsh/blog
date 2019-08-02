@@ -214,9 +214,90 @@ console.log(middleName);
 // => ["Bob", "Got an id of 7. Got a user with name John Bob Doe. Got the middle name of a user."]
 ```
 
-## Global Configuration
+## Global Environment
 
-TODO
+Let's say we have a global object fetched from somewhere, and it holds data for a user.
+
+```js
+{
+	id: 7,
+	first: "John",
+	last: "Doe"
+}
+```
+
+Along with that, we have a calculation based on this environment.
+
+```js
+const getInitials = environment => environment.first[0] + environment.last[0];
+const getName = initials => environment => `${initials} ${environment.first} ${environment.last}`;
+const getIdentity = name => environment => environment.id.toString() + " " + name;
+
+{
+	const initials = getInitials (environment);
+	const name = getName (initials) (environment);
+	const identity = getIdentity (name) (environment);
+}
+```
+
+In this case, every single function requires the `environment` as an input. What if we made that implicit?
+
+```js
+const getInitials = environment => environment.first[0] + environment.last[0];
+const getName = initials => environment => `${initials (environment)} ${environment.first} ${environment.last}`;
+const getIdentity = name => environment => environment.id.toString() + " " + name (environment);
+
+{
+	const initials = getInitials;
+	const name = getName (initials);
+	const identity = getIdentity (name);
+}
+```
+
+It looks nicer, but the utility functions had to change. They now have to call their first argument with the environment in order to get their true value. The functional version of the block would look like this:
+
+```js
+const identity = apply (
+	initials => apply (
+		name => getIdentity (name)
+	) (getName (initials))
+) (getInitials);
+```
+
+Here, every function has a _function of the environment_ as both input and output. What if we kept that property, but the applied function could get the previous value directly? We can change the definition of `apply`:
+
+```js
+const apply = f => x => environment => f (x (environment)) (environment);
+```
+
+It's a little confusing, but the `apply` function still has a function of the environment as input and output. It returns a new function that takes the environment as input. In this function, it takes the input value `x`, which is a function of the environment, and applies it with the environment. This value is fed into `f`, so that it can expect the actual output of the function without having to worry about passing it the environment. Since `f` returns yet another function of the environment, it finally applies it with the environment once again.
+
+It's a lot of function application, but the key idea is that `apply` keeps the property that every input and every output is a function of the environment. It just applies the next function with an actual value so it won't have to worry about the input being a function.
+
+With that, the final code looks like:
+
+```js
+// Utility functions to return calculations based on an environment.
+const getInitials = environment => environment.first[0] + environment.last[0];
+const getName = initials => environment => `${initials} ${environment.first} ${environment.last}`;
+const getIdentity = name => environment => environment.id.toString() + " " + name;
+
+// Get the identity of the environment user.
+const apply = f => x => environment => f (x (environment)) (environment);
+const identity = apply (
+	initials => apply (
+		name => getIdentity (name)
+	) (getName (initials))
+) (getInitials);
+
+// Since `identity` is a function of an environment, we can pass it any environment.
+console.log(identity ({
+	id: 7,
+	first: "John",
+	last: "Doe"
+}));
+// => 7 JD John Doe
+```
 
 ## Passing State
 
