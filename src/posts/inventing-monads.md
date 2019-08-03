@@ -163,6 +163,7 @@ const getUser = id => [{
 }, id[1] + " Got a user with name John Bob Doe."];
 const getMiddleName = user => [user[0].middle, user[1] + " Got the middle name of a user."];
 
+const apply = x => f => f (x);
 const middleName = apply (getId()) (id =>
 	apply (getUser(id)) (user =>
 		getMiddleName(user)
@@ -227,11 +228,12 @@ const getInitials = environment => environment.first[0] + environment.last[0];
 const getName = initials => environment => `${initials} ${environment.first} ${environment.last}`;
 const getIdentity = name => environment => environment.id.toString() + " " + name;
 
-{
-	const initials = getInitials (environment);
-	const name = getName (initials) (environment);
-	const identity = getIdentity (name) (environment);
-}
+const apply = x => f => f (x);
+const identity = apply (getInitials (environment)) (initials =>
+	apply (getName (initials) (environment)) (name =>
+		getIdentity (name) (environment)
+	)
+);
 ```
 
 In this case, every single function requires the `environment` as an input. What if we made that implicit?
@@ -241,32 +243,21 @@ const getInitials = environment => environment.first[0] + environment.last[0];
 const getName = initials => environment => `${initials (environment)} ${environment.first} ${environment.last}`;
 const getIdentity = name => environment => environment.id.toString() + " " + name (environment);
 
-{
-	const initials = getInitials;
-	const name = getName (initials);
-	const identity = getIdentity (name);
-}
+const apply = x => f => f (x);
+const identity = apply (getInitials) (initials =>
+	apply (getName (initials)) (name =>
+		getIdentity (name)
+	)
+);
 ```
 
-It looks nicer, but the utility functions had to change. They now have to call their first argument with the environment in order to get their true value. The functional version of the block would look like this:
+It looks nicer, but the utility functions had to change. They now have to call their first argument with the environment in order to get their true value. However, `apply` can make some assumptions in this case. It can assume that every input is a _function of the environment_, and every function takes a value and returns another function of the environment.
 
 ```js
-const identity = apply (
-	initials => apply (
-		name => getIdentity (name)
-	) (getName (initials))
-) (getInitials);
+const apply = x => f => environment => f (x (environment)) (environment);
 ```
 
-Here, every function has a _function of the environment_ as both input and output. What if we kept that property, but the applied function could get the previous value directly? We can change the definition of `apply`:
-
-```js
-const apply = f => x => environment => f (x (environment)) (environment);
-```
-
-It's a little confusing, but the `apply` function still has a function of the environment as input and output. It returns a new function that takes the environment as input. In this function, it takes the input value `x`, which is a function of the environment, and applies it with the environment. This value is fed into `f`, so that it can expect the actual output of the function without having to worry about passing it the environment. Since `f` returns yet another function of the environment, it finally applies it with the environment once again.
-
-It's a lot of function application, but the key idea is that `apply` keeps the property that every input and every output is a function of the environment. It just applies the next function with an actual value so it won't have to worry about the input being a function.
+It's a little confusing, but now `apply` uses the assumptions to its advantage. First of all, it returns a function of the environment. This function applies the environment to the input `x`, and passes it to `f`. Since we assume `f` returns another function of the environment, we apply it with the given environment _again_ and return its output.
 
 With that, the final code looks like:
 
@@ -277,12 +268,12 @@ const getName = initials => environment => `${initials} ${environment.first} ${e
 const getIdentity = name => environment => environment.id.toString() + " " + name;
 
 // Get the identity of the environment user.
-const apply = f => x => environment => f (x (environment)) (environment);
-const identity = apply (
-	initials => apply (
-		name => getIdentity (name)
-	) (getName (initials))
-) (getInitials);
+const apply = x => f => environment => f (x (environment)) (environment);
+const identity = apply (getInitials) (initials =>
+	apply (getName (initials)) (name =>
+		getIdentity (name)
+	)
+);
 
 // Since `identity` is a function of an environment, we can pass it any environment.
 console.log(identity ({
