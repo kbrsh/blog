@@ -10,7 +10,7 @@ This guide will use JavaScript instead of a pure functional programming language
 
 Think of monads as a way to overload a semicolon. It might sound a little crazy at first, but imagine being able to override the semicolon to reduce boilerplate in specific code blocks. That's basically how monads are used in practice.
 
-As a final note before we start, monads are complex and closely tied with category theory, which is a very abstract and vast branch of mathematics that can be hard to grok. I'm fifteen years old with good knowledge of mostly high school level math, and may have missed some parts. If I have, feel free to reach out and let me know — I'm always open to learning something new.
+As a final note before we start, I am by no means an expert on this topic. I'm fifteen years old with good knowledge of mostly high school level math, and may have missed some parts. Monads are complex and closely tied with category theory, which is a very abstract and vast branch of mathematics that can be hard to grok. If I missed something, feel free to reach out and let me know — I'm always open to learning something new.
 
 ## Blocks
 
