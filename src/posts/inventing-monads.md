@@ -10,6 +10,8 @@ This guide will use JavaScript instead of a pure functional programming language
 
 Think of monads as a way to overload a semicolon. It might sound a little crazy at first, but imagine being able to override the semicolon to reduce boilerplate in specific code blocks. That's basically how monads are used in practice.
 
+As a final note before we start, monads are complex and closely tied with category theory, which is a very abstract and vast branch of mathematics that can be hard to grok. I'm fifteen years old with good knowledge of mostly high school level math, and may have missed some parts. If I have, feel free to reach out and let me know — I'm always open to learning something new.
+
 ## Blocks
 
 First, many languages have a pattern that allows for creating a set of bindings and then a value based on it. In JavaScript, this is accomplished with a self-invoking function. They can also be transformed into a recursive structure of function calls with variable values. Being explicit about composing functions in this way can help clarify how exactly monads can modify the flow of a program.
@@ -374,5 +376,3 @@ The type converter is a way of creating a "unit" value of the type. For example,
 The type combinator is another name for our `apply` function, with a signature of `m -> (any -> m) -> m`. It basically means that it accepts an input with the type constructor of a monad and a function that returns the same type. Using these two, it returns an output with the same type. This is commonly named `bind`.
 
 Together, the three of these form a monad. Think of it like this: a do-block can be split into recursive `apply` calls. If we make assumptions that every input is a certain type, then `apply` can transform the input before applying it to the function. If we make assumptions that the function outputs a certain type, then `apply` can transform the output of the function to combine it with the original input. Basically, it can return whatever it wants using the given input and function. To make this even more useful, `apply` can return the same type that it assumes the function will return. This allows the function to use `apply` within itself.
-
-As a final note, monads are complex and closely tied with category theory, which is a very abstract and vast branch of mathematics that can be hard to grok. I'm fifteen years old with good knowledge of mostly high school level math, and may have missed some parts. If I have, feel free to reach out and let me know — I'm always open to learning something new.
