@@ -306,37 +306,26 @@ const getSum = x => y => state => {
 	return [xResult[0] + yResult[0], yResult[1]];
 };
 
-{
-	const random1 = getRandom;
-	const random2 = getRandom;
-	const sum = getSum (random1) (random2);
-}
+const apply = x => f => f (x);
+const sum = apply (getRandom) (random1 =>
+	apply (getRandom) (random2 =>
+		getSum (random1) (random2)
+	)
+);
 ```
 
-In this example, every value is a function of state that returns and output along with new state. It's not the best code though, because `getSum` has to call both of its arguments with the state in order to get their value, then it has to correctly manage the latest state and return it. The functional version of the block looks like:
+In this example, every value is a function of state that returns and output along with new state. It's not the best code though, because `getSum` has to call both of its arguments with the state in order to get their value, then it has to correctly manage the latest state and return it.
+
+However, `apply` can assume that every input is a _function of state that returns output and new state_. It can also assume that the function takes only an output value and returns another function of state.
 
 ```js
-const random1 = getRandom;
-const random2 = getRandom;
-const sum = getSum (random1) (random2);
-
-const sum = apply (
-	random1 => apply (
-		random2 => getSum (random1) (random2)
-	) (getRandom)
-) (getRandom);
-```
-
-Every function has _a function of state that returns and output and new state_ as its input and output. Instead of having to deal with a function as input, we can change `apply` to apply the function with an actual value and handle state changes.
-
-```js
-const apply = f => x => state => {
+const apply = x => f => state => {
 	const result = x (state);
 	return f (result[0]) (result[1]);
 };
 ```
 
-It's elegant, but dense. Since the input `x` and the output of `apply` are both functions of state, it returns a new function of state. In this function, it first applies the input with the state and stores the `result`. Now, the next function `f` is applied with the _output_ portion of the result, so it doesn't have to worry about the state. `f` outputs another function of state, so it is called with the _state_ portion of the result in order to get a new output and new state.
+It's elegant, but dense. Since the output of the given function is assumed to be another function of state, `apply` starts by returning a new function of state. This function calls the input `x` with the state to get an output along with new state. It passes the output to `f`, which expects just the output of `x` as its input. Since `f` returns another function of state, it calls it again with the new state returned by `x`.
 
 The full code looks like:
 
@@ -351,16 +340,16 @@ const getRandom = state => {
 const getSum = x => y => state => [x + y, state];
 
 // Generate the sum of two random numbers.
-const apply = f => x => state => {
+const apply = x => f => state => {
 	const result = x (state);
 	return f (result[0]) (result[1]);
 };
 
-const sum = apply (
-	random1 => apply (
-		random2 => getSum (random1) (random2)
-	) (getRandom)
-) (getRandom);
+const sum = apply (getRandom) (random1 =>
+	apply (getRandom) (random2 =>
+		getSum (random1) (random2)
+	)
+);
 
 console.log(sum (7));
 // => Random number: 56
@@ -386,3 +375,5 @@ The type converter is a way of creating a "unit" value of the type. For example,
 The type combinator is another name for our `apply` function, with a signature of `m -> (any -> m) -> m`. It basically means that it accepts an input with the type constructor of a monad and a function that returns the same type. Using these two, it returns an output with the same type. This is commonly named `bind`.
 
 Together, the three of these form a monad. Think of it like this: a do-block can be split into recursive `apply` calls. If we make assumptions that every input is a certain type, then `apply` can transform the input before applying it to the function. If we make assumptions that the function outputs a certain type, then `apply` can use the output of the function to combine it with the original input. To make this even more useful, `apply` can return the same type that it assumes the function will return. This allows the function to use `apply` within itself.
+
+As a final note, monads are complex and closely tied with category theory, which is a very abstract and vast branch of mathematics that can be hard to grok. I'm fifteen years old with good knowledge of mostly high school level math, and may have missed some parts. If I have, feel free to reach out and let me know — I'm always open to learning something new.
