@@ -9,7 +9,7 @@
         <span class="method">getMiddleName</span>(user)
     )
 );
-</code></pre><p>It&#39;s a little confusing, but they are equivalent. Functions are called with a space between the name and parenthesis. This is done to simulate calling functions by juxtaposition, and it&#39;s helpful for calling curried functions. This functional version of blocks works by breaking it down into two blocks.</p><p>It can be thought of this way:</p><pre><code lang="js"><span class="special">const </span><span class="global">middleName</span> = (() =&gt; {
+</code></pre><p>It&#39;s a dense representation, but they are equivalent. Note that functions are called with a space between the name and opening parenthesis, this isn&#39;t common syntax but it&#39;s valid JavaScript. It&#39;s there to simulate &quot;call by juxtaposition&quot; syntax in languages like Haskell, where functions are called with <code>f x y z</code>. But instead of calling them like you normally would in JavaScript with <code>f(x)(y)(z)</code>, we call them with <code>f (x) (y) (z)</code>.</p><p>This functional version of blocks works by breaking it down into two blocks. It can be thought of this way:</p><pre><code lang="js"><span class="special">const </span><span class="global">middleName</span> = (() =&gt; {
     <span class="special">const </span><span class="global">id</span> = <span class="method">getId </span>();
     <span class="special">return</span> (() =&gt; {
         <span class="special">const </span><span class="global">user</span> = <span class="method">getUser </span>(id);

@@ -37,9 +37,9 @@ const middleName = apply (getId()) (id =>
 );
 ```
 
-It's a little confusing, but they are equivalent. Functions are called with a space between the name and parenthesis. This is done to simulate calling functions by juxtaposition, and it's helpful for calling curried functions. This functional version of blocks works by breaking it down into two blocks.
+It's a dense representation, but they are equivalent. Note that functions are called with a space between the name and opening parenthesis, this isn't common syntax but it's valid JavaScript. It's there to simulate "call by juxtaposition" syntax in languages like Haskell, where functions are called with `f x y z`. But instead of calling them like you normally would in JavaScript with `f(x)(y)(z)`, we call them with `f (x) (y) (z)`.
 
-It can be thought of this way:
+This functional version of blocks works by breaking it down into two blocks. It can be thought of this way:
 
 ```js
 const middleName = (() => {
