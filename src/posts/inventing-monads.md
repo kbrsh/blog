@@ -39,7 +39,7 @@ const middleName = apply (getId()) (id =>
 
 It's a dense representation, but they are equivalent. Note that functions are called with a space between the name and opening parenthesis, this isn't common syntax but it's valid JavaScript. It's there to simulate "call by juxtaposition" syntax in languages like Haskell, where functions are called with `f x y z`. But instead of calling them like you normally would in JavaScript with `f(x)(y)(z)`, we call them with `f (x) (y) (z)`.
 
-This functional version of blocks works by breaking it down into two blocks. It can be thought of this way:
+This functional version of blocks works by breaking them down into two parts:
 
 ```js
 const middleName = (() => {
@@ -100,7 +100,7 @@ const getMiddleName = user => {
 };
 ```
 
-Every utility function has to check and handle `null` values, and has the possibility of returning `null` as well. But what if it could be checked for automatically? That's where monads come in.
+Every utility function has to check and handle `null` values, and has the possibility of returning `null` as well. But what if we checked for it automatically?
 
 Once again, the functional version of the block would look like this:
 
@@ -119,7 +119,7 @@ Looking at this, we can find a pattern: every `apply` takes a nullable value as 
 const apply = x => f => x === null ? null : f (x);
 ```
 
-Since the inputs can be `null`, it checks and returns `null` whenever the input is `null`. If not, it passes `x` to the function. It treats the function as a black box that can return anything, but assumes that it takes a value as input. Since `apply` itself will have a nullable value as input, it handles the `null` case and then passes any real values into the function. Now, the full the code will look like this:
+Since the inputs can be `null`, it checks and returns `null` whenever the input is `null`. If not, it passes `x` to the function. It treats the function as a black box that can return anything, but assumes that it takes a non-null value as input. Since `apply` itself will have a nullable value as input, it handles the `null` case and then passes any real values into the function. Now, the full the code will look like this:
 
 ```js
 // Simulate the fetching of an ID.
@@ -254,11 +254,13 @@ const identity = apply (getInitials) (initials =>
 
 It looks nicer, but the utility functions had to change. They now have to call their first argument with the environment in order to get their true value. However, `apply` can make some assumptions in this case. It can assume that every input is a _function of the environment_, and every function takes a value and returns another function of the environment.
 
+We can solve this problem using `apply`. Every input `x` is a function of the environment, but it would be nice if given function `f` could expect the _output_ of `x`. How can we get the output out of `x`? We need to pass it the environment, so we can return a _new function_ that depends on the environment and calls `x`. Now it can pass the output to `f` as it expects. Since `f` is also a function of the environment, we can call it with our given environment and finally return the result.
+
 ```js
 const apply = x => f => environment => f (x (environment)) (environment);
 ```
 
-It's a little confusing, but now `apply` uses the assumptions to its advantage. First of all, it returns a function of the environment. This function applies the environment to the input `x`, and passes it to `f`. Since we assume `f` returns another function of the environment, we apply it with the given environment _again_ and return its output.
+It's a little confusing, but `apply` uses the assumptions to its advantage. First of all, it returns a function of the environment. This function applies the environment to the input `x`, and passes it to `f`. Since we assume `f` returns another function of the environment, we apply it with the given environment _again_ and return its output.
 
 With that, the final code looks like:
 
@@ -318,6 +320,8 @@ const sum = apply (getRandom) (random1 =>
 In this example, every value is a function of state that returns and output along with new state. It's not the best code though, because `getSum` has to call both of its arguments with the state in order to get their value, then it has to correctly manage the latest state and return it.
 
 However, `apply` can assume that every input is a _function of state that returns output and new state_. It can also assume that the function takes only an output value and returns another function of state.
+
+Using these assumptions, it would be nice if the function `f` could expect only the output portion of `x`'s return value. To get `x`'s output, we need to call it with the state, so we can return a new function of state. Within this function, we can pass `x` the state and get an output along with new state. Now we can supply `f` the output, and since `f` returns a function of state, we can call it again with the new state returned by `x`. Finally, we can return this result.
 
 ```js
 const apply = x => f => state => {
