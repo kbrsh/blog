@@ -380,3 +380,12 @@ The type converter is a way of creating a "unit" value of the type. For example,
 The type combinator is another name for our `apply` function, with a signature of `m -> (any -> m) -> m`. It basically means that it accepts an input with the type constructor of a monad and a function that returns the same type. Using these two, it returns an output with the same type. This is commonly named `bind`.
 
 Together, the three of these form a monad. Think of it like this: a do-block can be split into recursive `apply` calls. If we make assumptions that every input is a certain type, then `apply` can transform the input before applying it to the function. If we make assumptions that the function outputs a certain type, then `apply` can transform the output of the function to combine it with the original input. Basically, it can return whatever it wants using the given input and function. To make this even more useful, `apply` can return the same type that it assumes the function will return. This allows the function to use `apply` within itself.
+
+Some other great resources on monads include:
+
+* [You Could Have Invented Monads! (And Maybe You Already Have.)](http://blog.sigfpe.com/2006/08/you-could-have-invented-monads-and.html)
+* [Functors, Applicatives, And Monads In Pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
+* [Three Useful Monads](http://adit.io/posts/2013-06-10-three-useful-monads.html)
+* <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">Monad (functional programming)</a>
+
+In the end, the monad is just an abstraction that has access to the inner workings of block expressions, giving it control over how things flow from input to function.
