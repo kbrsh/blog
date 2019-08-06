@@ -124,6 +124,12 @@ Sold({
 	template: "template",
 	source: "src",
 	destination: '',
+	feed: {
+		JSON: {
+			title: "Kabir Shah's Blog",
+			home_page_url: "https://blog.kabir.sh",
+		}
+	},
 	engine: (template, data, options, done) => {
 		if (data.content === undefined) {
 			done(compileTemplate(template, data));
