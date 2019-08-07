@@ -1,7 +1,6 @@
 ---
 title: Inside Wade
 date: July 16, 2017
-order: 4
 math: true
 ---
 

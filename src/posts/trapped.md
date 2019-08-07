@@ -1,7 +1,6 @@
 ---
 title: Trapped
 date: April 7, 2018
-order: 8
 draft: true
 ---
 

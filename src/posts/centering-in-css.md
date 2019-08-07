@@ -1,7 +1,6 @@
 ---
 title: Centering In CSS
 date: September 3, 2016
-order: 1
 ---
 
 Unfortunately, there is no built in support for centering in CSS, but there are some ways to do it. I will be talking about two of the most effective ways to do it.

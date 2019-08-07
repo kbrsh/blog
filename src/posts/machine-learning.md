@@ -1,7 +1,6 @@
 ---
 title: Machine Learning
 date: April 29, 2017
-order: 3
 math: true
 ---
 

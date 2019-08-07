@@ -1,7 +1,6 @@
 ---
 title: Identifying Ideas
 date: September 30, 2017
-order: 5
 ---
 
 Your perspective on problems is critical. Instead of treating a problem as an obstacle, it is important to treat it as an opportunity instead.

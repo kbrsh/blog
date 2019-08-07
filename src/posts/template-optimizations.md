@@ -1,7 +1,6 @@
 ---
 title: Template Optimizations
 date: October 28, 2017
-order: 6
 ---
 
 The majority of JavaScript libraries/frameworks use either templates or JSX to define a view. Templates allow for a well-defined structure, using a special syntax for binding data to the view. JSX allows for JavaScript to be used anywhere in the template, which adds a lot of power but can result in repetitive code.

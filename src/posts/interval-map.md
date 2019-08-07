@@ -1,7 +1,6 @@
 ---
 title: Interval Map
 date: January 21, 2018
-order: 7
 math: true
 ---
 

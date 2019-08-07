@@ -1,7 +1,6 @@
 ---
 title: Inventing Monads
 date: August 1, 2019
-order: 8
 ---
 
 Monads are an esoteric concept to many, resulting in hundreds of tutorials, guides, and examples attempting to explain them. Curious developers might look into them only to find the classic answer, "Monads are monoids in the category of endofunctors". In the end, they're just another abstraction to help deal with repetitive patterns in functional code.

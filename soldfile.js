@@ -25,7 +25,6 @@ const escapeMap = {
 MathJax.start();
 
 Handlebars.registerHelper("list", function(arr) {
-	arr.reverse();
 	let i = arr.length;
 	while ((i--) !== 0) {
 		if (arr[i].draft) {
@@ -123,7 +122,7 @@ Sold({
 	root: __dirname,
 	template: "template",
 	source: "src",
-	destination: '',
+	destination: "",
 	feed: {
 		JSON: {
 			title: "Kabir Shah's Blog",
