@@ -10,6 +10,7 @@
 		<title>Blog | Kabir Shah</title>
 
 		<link rel="shortcut icon" href="./img/logo-fill.png"/>
+		<link rel="alternate" type="application/json" title="JSON Feed" href="/feed.json"/>
 
 		<link href="https://fonts.googleapis.com/css?family=Fenix" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/lib/grain.css" />
@@ -32,8 +33,8 @@
 			{{list posts}}
 			{{#posts}}
 			<p>
-				<span class="post-title"><a href="./posts/{{file}}">{{title}}</a></span>
-				<span class="post-date">{{date}}</span>
+			<span class="post-title"><a href="./posts/{{file}}">{{title}}</a></span>
+			<span class="post-date">{{date}}</span>
 			</p>
 			{{/posts}}
 		</div>
