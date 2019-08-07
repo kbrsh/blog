@@ -18,6 +18,6 @@
     "himalaya": "^0.3.1",
     "html-minifier": "^3.5.6",
     "mathjax-node": "^1.2.1",
-    "sold": "^2.3.0"
+    "sold": "^2.3.1"
   }
 }
