@@ -11,7 +11,7 @@ Many programs require a mathematical function capable of mapping an interval of 
 \mathit{map}(x) = \frac{d - c}{b - a}(x - a) + c
 ```
 
-### Example
+## Example
 
 The interval `$[0, 10]$` can be mapped to `$[0, 100]$` using `$\mathit{map}$`.
 
@@ -24,7 +24,7 @@ The interval `$[0, 10]$` can be mapped to `$[0, 100]$` using `$\mathit{map}$`.
 \end{align}
 ```
 
-### Derivation
+## Derivation
 
 The `$\mathit{map}$` function can be thought of as a linear function that passes through the points `$(a,c)$` and `$(b,d)$`. This means that the function should map `$a$` to `$c$` and `$b$` to `$d$`.
 

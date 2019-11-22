@@ -30,8 +30,6 @@ Moon and Vue both compare a new virtual DOM with the old one, and update the DOM
 
 Both provide a function to create virtual nodes. These functions are responsible for transforming a set of arguments into an object containing all of the required data for the current state of the view.
 
-### Vue
-
 In Vue, a developer-friendly function is used to define a virtual DOM tree. This function is extremely flexible and can accept a variety of arguments with multiple types. This flexibility requires a normalization step at runtime.
 
 For example:
@@ -51,8 +49,6 @@ _c(
   ]
 );
 ```
-
-### Moon
 
 The virtual DOM utilities in Moon are more verbose and require fewer checks at runtime. Moon can allow this syntax because the compiler is meant to generate the normalized code rather than a developer.
 
@@ -77,8 +73,6 @@ m("div", {}, {}, [
 ]);
 ```
 
-### Optimizations
-
 Both Moon and Vue have ways of detecting static elements at compile time. On top of that, Moon optimizes static directives and attributes.
 
 Moon optimizes by hoisting virtual DOM nodes. Instead of returning a new virtual DOM node with a function call, static virtual nodes are cached and reused every time. When comparing this virtual DOM with the actual DOM, Moon skips static nodes because they have the same reference.
@@ -88,8 +82,6 @@ It has a recursive method to detect static nodes. When a parent element is compo
 ## Static Elements
 
 Moon and Vue both detect a completely static template, and optimize by hoisting the whole virtual DOM tree out of the render function.
-
-### Vue
 
 ```html
 <div>
@@ -112,8 +104,6 @@ function render() {
 ```
 
 In this case, the function `_m(0)` is created, and it returns a tree used in the render function.
-
-### Moon
 
 ```html
 <div>
@@ -147,8 +137,6 @@ In this case, Moon marks the outer `div` as static and creates it once. After th
 
 When nesting multiple elements, it is important for the compiler to hoist all of the static elements out of the render function, while only creating new nodes for the dynamic parts.
 
-### Vue
-
 ```html
 <div>
   <div>
@@ -179,8 +167,6 @@ function render() {
 ```
 
 Vue optimizes the `div` containing the static paragraph by hoisting it out of the render function into `_m(0)`.
-
-### Moon
 
 ```html
 <div>
@@ -222,8 +208,6 @@ Moon does the same optimization by hoisting the `div` containing the static para
 
 Surprisingly, when given a dynamic property, Vue ignores any static elements inside of the parent element. On the other hand, Moon detects the static element and hoists it out of the render function.
 
-### Vue
-
 ```html
 <div>
   <h1>Static Heading</h1>
@@ -243,8 +227,6 @@ function render() {
 ```
 
 In this case, Vue did not optimize the static heading, and a new virtual node is being created and returned every time.
-
-### Moon
 
 ```html
 <div>
@@ -278,8 +260,6 @@ In this case, Moon detects the static `h1` and hoists it out of the render funct
 
 When given dynamic attributes, Vue does not optimize static elements. In contrast, Moon optimizes the static children elements.
 
-### Vue
-
 ```html
 <div>
   <h1>Static Heading</h1>
@@ -299,8 +279,6 @@ function render() {
 ```
 
 Here Vue does not optimize the static `h1` element or the static paragraph text element.
-
-### Moon
 
 ```html
 <div>
@@ -335,8 +313,6 @@ Moon detects the static text of the paragraph and the static `h1` node. It hoist
 
 When conditionally rendering elements, Vue does not optimize the conditional elements at all. Moon detects static elements and hoists them out of the render function. Also, when given a static condition (although unlikely), Moon will hoist the whole condition out of the render function.
 
-### Vue
-
 ```html
 <div>
   <p v-if="fooCondition">Condition True</p>
@@ -357,8 +333,6 @@ function render() {
 ```
 
 Vue does not optimize by hoisting the static paragraphs and will recreate them on every render depending on `fooCondition`.
-
-### Moon
 
 ```html
 <div>
@@ -391,8 +365,6 @@ Moon marks both paragraphs as static and hoists them out of the function in `sta
 
 Lastly, Vue does not optimize on static events with `on`. This is likely done because methods and data in Vue are mutable, and they can change at any time. On the contrary, methods in Moon are immutable, and Moon's compiler can optimize them as a result.
 
-### Vue
-
 ```html
 <div>
   <button v-on:click="fooMethod"></button>
@@ -414,8 +386,6 @@ function render() {
 ```
 
 On each render, new virtual nodes for the `div` and the `button` will be created, and Vue will update the event listeners if they changed.
-
-### Moon
 
 ```html
 <div>

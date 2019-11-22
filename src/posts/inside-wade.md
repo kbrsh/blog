@@ -29,9 +29,7 @@ Wade processes all documents and queries. This works by moving each item through
 * Remove stop words.
   Wade has a list of stop words that are removed from all data and queries. Stop words are extra words that have little meaning or can apply to any item in the data, and removing them allows for more relevant results to be returned. These can be configured through `Wade.config.stopWords`.
 
-### Example
-
-When given the data:
+For example, when given the data:
 
 ```js
 ["Moon is fast!", "Slash is fast also!", "Spark is fast too!", "Is Wade fast?"]
@@ -58,8 +56,6 @@ A _set_ is used to store multiple unique items. The _cardinality_ of a set repre
 
 On the other hand, a _multiset_ is used to store multiple items (including duplicates). The _multiplicity_ of an item in a multiset is the number of instances of that item in the multiset.
 
-### Significance
-
 Wade uses a special function to find how significant a term is to the data. This function takes various factors into account, including the length of the documents, the length of a specific document with the term, and the number of occurrences of the term.
 
 The significance of the term `$t$` in the set of documents `$d$` can be represented by the function:
@@ -76,9 +72,7 @@ wm(t, d) = 1.5 - \frac{\sum_{i=0}^{|d|} [\frac{\mu(t)}{\sum_{p \in d_i}(\mu(p))}
 
 This works by finding the average of how often the term appears within a document. After this, the significance is normalized between `0.5` and `1.5`, allowing it to become higher when the average occurrence is lower. This allows for rarer terms to be amplified in significance.
 
-### Example
-
-When given the processed data:
+For example, when given the processed data:
 
 ```js
 ["moon fast", "slash fast", "spark fast", "wade fast"]
@@ -180,9 +174,7 @@ wr(t, q, d) = wm(t, d)[\frac{1}{\sum_{p \in\ q}(\mu(p))}]
 
 This can be used to represent how much each term should affect the score of the query. It works by taking [significance](#significance) of the term and the length of the query into account.
 
-### Example
-
-Let's say you are searching in real-time and have a partial query:
+For example, let's say you are searching in real-time and have a partial query:
 
 ```
 Fast S

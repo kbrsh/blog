@@ -11,7 +11,7 @@ A neural network uses a _loss function_ to find how close a neural network outpu
 
 A method called _gradient descent_ is often used to refine ("train") the weights so that the loss value gradually becomes smaller.
 
-### Two Variables
+## Two Variables
 
 Instead of jumping right into a 1000-dimensional gradient descent example, let's start out with a simple function that uses two variables, where `$x$` is the input, and `$w$` is the weight.
 

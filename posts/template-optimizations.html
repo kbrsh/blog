@@ -4,7 +4,7 @@
   data: {}, <span class="comment">// Internal <span class="method">data </span>(SVG utilities, event listeners)</span>
   children: [] <span class="comment">// Children virtual nodes</span>
 }
-</code></pre><p>Moon and Vue both compare a new virtual DOM with the old one, and update the DOM with a minimum amount of transformations. They also both have different ways of creating the virtual DOM.</p><p>Both provide a function to create virtual nodes. These functions are responsible for transforming a set of arguments into an object containing all of the required data for the current state of the view.</p><h3 id="vue">Vue</h3><p>In Vue, a developer-friendly function is used to define a virtual DOM tree. This function is extremely flexible and can accept a variety of arguments with multiple types. This flexibility requires a normalization step at runtime.</p><p>For example:</p><pre><code lang="js"><span class="method">_c</span>(
+</code></pre><p>Moon and Vue both compare a new virtual DOM with the old one, and update the DOM with a minimum amount of transformations. They also both have different ways of creating the virtual DOM.</p><p>Both provide a function to create virtual nodes. These functions are responsible for transforming a set of arguments into an object containing all of the required data for the current state of the view.</p><p>In Vue, a developer-friendly function is used to define a virtual DOM tree. This function is extremely flexible and can accept a variety of arguments with multiple types. This flexibility requires a normalization step at runtime.</p><p>For example:</p><pre><code lang="js"><span class="method">_c</span>(
   <span class="string">&quot;div&quot;</span>,
   {},
   [
@@ -17,7 +17,7 @@
     })
   ]
 );
-</code></pre><h3 id="moon">Moon</h3><p>The virtual DOM utilities in Moon are more verbose and require fewer checks at runtime. Moon can allow this syntax because the compiler is meant to generate the normalized code rather than a developer.</p><p>For example:</p><pre><code lang="js"><span class="method">m</span>(<span class="string">&quot;div&quot;</span>, {}, {}, [
+</code></pre><p>The virtual DOM utilities in Moon are more verbose and require fewer checks at runtime. Moon can allow this syntax because the compiler is meant to generate the normalized code rather than a developer.</p><p>For example:</p><pre><code lang="js"><span class="method">m</span>(<span class="string">&quot;div&quot;</span>, {}, {}, [
   <span class="method">m</span>(<span class="string">&quot;#text&quot;</span>, <span class="string">&quot;Text&quot;</span>),
   <span class="method">m</span>(<span class="string">&quot;h1&quot;</span>, {}, {}, [<span class="method">m</span>(<span class="string">&quot;#text&quot;</span>, <span class="string">&quot;Heading&quot;</span>)]),
   <span class="method">m</span>(
@@ -33,7 +33,7 @@
     []
   )
 ]);
-</code></pre><h3 id="optimizations">Optimizations</h3><p>Both Moon and Vue have ways of detecting static elements at compile time. On top of that, Moon optimizes static directives and attributes.</p><p>Moon optimizes by hoisting virtual DOM nodes. Instead of returning a new virtual DOM node with a function call, static virtual nodes are cached and reused every time. When comparing this virtual DOM with the actual DOM, Moon skips static nodes because they have the same reference.</p><p>It has a recursive method to detect static nodes. When a parent element is composed of all static children, the parent will be hoisted out of the render function, rather than the children.</p><h2 id="static-elements">Static Elements</h2><p>Moon and Vue both detect a completely static template, and optimize by hoisting the whole virtual DOM tree out of the render function.</p><h3 id="vue">Vue</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>Both Moon and Vue have ways of detecting static elements at compile time. On top of that, Moon optimizes static directives and attributes.</p><p>Moon optimizes by hoisting virtual DOM nodes. Instead of returning a new virtual DOM node with a function call, static virtual nodes are cached and reused every time. When comparing this virtual DOM with the actual DOM, Moon skips static nodes because they have the same reference.</p><p>It has a recursive method to detect static nodes. When a parent element is composed of all static children, the parent will be hoisted out of the render function, rather than the children.</p><h2 id="static-elements">Static Elements</h2><p>Moon and Vue both detect a completely static template, and optimize by hoisting the whole virtual DOM tree out of the render function.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;h1</span><span class="method">&gt;</span>Static Heading<span class="method">&lt;/h1</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="method">_m</span>(<span class="global">0</span>): <span class="special">function</span> <span class="method">anonymous</span>() {
@@ -47,7 +47,7 @@
     <span class="special">return</span> <span class="method">_m</span>(<span class="global">0</span>);
   }
 }
-</code></pre><p>In this case, the function <code>_m(0)</code> is created, and it returns a tree used in the render function.</p><h3 id="moon">Moon</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>In this case, the function <code>_m(0)</code> is created, and it returns a tree used in the render function.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;h1</span><span class="method">&gt;</span>Static Heading<span class="method">&lt;/h1</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="special">function</span> <span class="method">render</span>(m) {
@@ -63,7 +63,7 @@
 
   <span class="special">return</span> staticNodes[<span class="global">0</span>]; <span class="comment">// Cached root element</span>
 }
-</code></pre><p>The most significant difference here is the prelude of the function. At the start of every render function, Moon inserts a declaration of the static nodes of that instance.</p><p>First, this part checks if the <code>instance.compiledRender.staticNodes</code> array exists. If it doesn&#39;t, then Moon declares all of the static nodes in it. This initial step only happens <em>once</em>, and the static nodes will be reused on every subsequent render.</p><p>In this case, Moon marks the outer <code>div</code> as static and creates it once. After the initial creation, it will always return the same virtual node from <code>staticNodes[0]</code>.</p><h2 id="nested-elements">Nested Elements</h2><p>When nesting multiple elements, it is important for the compiler to hoist all of the static elements out of the render function, while only creating new nodes for the dynamic parts.</p><h3 id="vue">Vue</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>The most significant difference here is the prelude of the function. At the start of every render function, Moon inserts a declaration of the static nodes of that instance.</p><p>First, this part checks if the <code>instance.compiledRender.staticNodes</code> array exists. If it doesn&#39;t, then Moon declares all of the static nodes in it. This initial step only happens <em>once</em>, and the static nodes will be reused on every subsequent render.</p><p>In this case, Moon marks the outer <code>div</code> as static and creates it once. After the initial creation, it will always return the same virtual node from <code>staticNodes[0]</code>.</p><h2 id="nested-elements">Nested Elements</h2><p>When nesting multiple elements, it is important for the compiler to hoist all of the static elements out of the render function, while only creating new nodes for the dynamic parts.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;div</span><span class="method">&gt;</span>
     <span class="method">&lt;div</span><span class="method">&gt;</span>
       <span class="method">&lt;p</span><span class="method">&gt;</span>Static<span class="method">&lt;/p</span><span class="method">&gt;</span>
@@ -86,7 +86,7 @@
     ]);
   }
 }
-</code></pre><p>Vue optimizes the <code>div</code> containing the static paragraph by hoisting it out of the render function into <code>_m(0)</code>.</p><h3 id="moon">Moon</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>Vue optimizes the <code>div</code> containing the static paragraph by hoisting it out of the render function into <code>_m(0)</code>.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;div</span><span class="method">&gt;</span>
     <span class="method">&lt;div</span><span class="method">&gt;</span>
       <span class="method">&lt;p</span><span class="method">&gt;</span>Static<span class="method">&lt;/p</span><span class="method">&gt;</span>
@@ -114,7 +114,7 @@
     ])
   ]);
 }
-</code></pre><p>Moon does the same optimization by hoisting the <code>div</code> containing the static paragraph out of the render function.</p><h2 id="dynamic-properties">Dynamic Properties</h2><p>Surprisingly, when given a dynamic property, Vue ignores any static elements inside of the parent element. On the other hand, Moon detects the static element and hoists it out of the render function.</p><h3 id="vue">Vue</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>Moon does the same optimization by hoisting the <code>div</code> containing the static paragraph out of the render function.</p><h2 id="dynamic-properties">Dynamic Properties</h2><p>Surprisingly, when given a dynamic property, Vue ignores any static elements inside of the parent element. On the other hand, Moon detects the static element and hoists it out of the render function.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;h1</span><span class="method">&gt;</span>Static Heading<span class="method">&lt;/h1</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span><span class="method">&gt;</span>Dynamic Paragraph: {{foo}}<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
@@ -126,7 +126,7 @@
     ]);
   }
 }
-</code></pre><p>In this case, Vue did not optimize the static heading, and a new virtual node is being created and returned every time.</p><h3 id="moon">Moon</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>In this case, Vue did not optimize the static heading, and a new virtual node is being created and returned every time.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;h1</span><span class="method">&gt;</span>Static Heading<span class="method">&lt;/h1</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span><span class="method">&gt;</span>Dynamic Paragraph: {{foo}}<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
@@ -146,7 +146,7 @@
     <span class="method">m</span>(<span class="string">&quot;p&quot;</span>, {}, {}, [<span class="method">m</span>(<span class="string">&quot;#text&quot;</span>, <span class="string">&quot;Dynamic Paragraph: &quot;</span> + foo)])
   ]);
 }
-</code></pre><p>In this case, Moon detects the static <code>h1</code> and hoists it out of the render function. After this, it is cached and referenced as <code>staticNodes[0]</code>, allowing Moon to skip it when rendering.</p><h2 id="dynamic-attributes">Dynamic Attributes</h2><p>When given dynamic attributes, Vue does not optimize static elements. In contrast, Moon optimizes the static children elements.</p><h3 id="vue">Vue</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>In this case, Moon detects the static <code>h1</code> and hoists it out of the render function. After this, it is cached and referenced as <code>staticNodes[0]</code>, allowing Moon to skip it when rendering.</p><h2 id="dynamic-attributes">Dynamic Attributes</h2><p>When given dynamic attributes, Vue does not optimize static elements. In contrast, Moon optimizes the static children elements.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;h1</span><span class="method">&gt;</span>Static Heading<span class="method">&lt;/h1</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span> <span class="global">v-bind:foo</span>=<span undefined>&quot;foo&quot;</span><span class="method">&gt;</span>Dynamic Paragraph<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
@@ -158,7 +158,7 @@
     ]);
   }
 }
-</code></pre><p>Here Vue does not optimize the static <code>h1</code> element or the static paragraph text element.</p><h3 id="moon">Moon</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>Here Vue does not optimize the static <code>h1</code> element or the static paragraph text element.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;h1</span><span class="method">&gt;</span>Static Heading<span class="method">&lt;/h1</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span> <span class="global">m-literal:foo</span>=<span undefined>&quot;foo&quot;</span><span class="method">&gt;</span>Dynamic Paragraph<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
@@ -179,7 +179,7 @@
     <span class="method">m</span>(<span class="string">&quot;p&quot;</span>, { attrs: { foo: foo } }, {}, [staticNodes[<span class="global">0</span>]]) <span class="comment">// Cached text</span>
   ]);
 }
-</code></pre><p>Moon detects the static text of the paragraph and the static <code>h1</code> node. It hoists both elements out of the render function. When updating the DOM, these elements will be skipped because they have the same reference.</p><h2 id="conditionals">Conditionals</h2><p>When conditionally rendering elements, Vue does not optimize the conditional elements at all. Moon detects static elements and hoists them out of the render function. Also, when given a static condition (although unlikely), Moon will hoist the whole condition out of the render function.</p><h3 id="vue">Vue</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>Moon detects the static text of the paragraph and the static <code>h1</code> node. It hoists both elements out of the render function. When updating the DOM, these elements will be skipped because they have the same reference.</p><h2 id="conditionals">Conditionals</h2><p>When conditionally rendering elements, Vue does not optimize the conditional elements at all. Moon detects static elements and hoists them out of the render function. Also, when given a static condition (although unlikely), Moon will hoist the whole condition out of the render function.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span> <span class="global">v-if</span>=<span undefined>&quot;fooCondition&quot;</span><span class="method">&gt;</span>Condition True<span class="method">&lt;/p</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span> v-else<span class="method">&gt;</span>Condition False<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
@@ -192,7 +192,7 @@
     ]);
   }
 }
-</code></pre><p>Vue does not optimize by hoisting the static paragraphs and will recreate them on every render depending on <code>fooCondition</code>.</p><h3 id="moon">Moon</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>Vue does not optimize by hoisting the static paragraphs and will recreate them on every render depending on <code>fooCondition</code>.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span> <span class="global">m-if</span>=<span undefined>&quot;fooCondition&quot;</span><span class="method">&gt;</span>Condition True<span class="method">&lt;/p</span><span class="method">&gt;</span>
   <span class="method">&lt;p</span> m-else<span class="method">&gt;</span>Condition False<span class="method">&lt;/p</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
@@ -211,7 +211,7 @@
   <span class="comment">// Cached paragraphs</span>
   <span class="special">return</span> <span class="method">m</span>(<span class="string">&quot;div&quot;</span>, {}, {}, [fooCondition ? staticNodes[<span class="global">0</span>] : staticNodes[<span class="global">1</span>]]);
 }
-</code></pre><p>Moon marks both paragraphs as static and hoists them out of the function in <code>staticNodes[0]</code> and <code>staticNodes[1]</code>. The function returns the same paragraphs whenever the condition is evaluated.</p><h2 id="events">Events</h2><p>Lastly, Vue does not optimize on static events with <code>on</code>. This is likely done because methods and data in Vue are mutable, and they can change at any time. On the contrary, methods in Moon are immutable, and Moon&#39;s compiler can optimize them as a result.</p><h3 id="vue">Vue</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>Moon marks both paragraphs as static and hoists them out of the function in <code>staticNodes[0]</code> and <code>staticNodes[1]</code>. The function returns the same paragraphs whenever the condition is evaluated.</p><h2 id="events">Events</h2><p>Lastly, Vue does not optimize on static events with <code>on</code>. This is likely done because methods and data in Vue are mutable, and they can change at any time. On the contrary, methods in Moon are immutable, and Moon&#39;s compiler can optimize them as a result.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;button</span> <span class="global">v-on:click</span>=<span undefined>&quot;fooMethod&quot;</span><span class="method">&gt;</span><span class="method">&lt;/button</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="special">function</span> <span class="method">render</span>() {
@@ -225,7 +225,7 @@
     ]);
   }
 }
-</code></pre><p>On each render, new virtual nodes for the <code>div</code> and the <code>button</code> will be created, and Vue will update the event listeners if they changed.</p><h3 id="moon">Moon</h3><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
+</code></pre><p>On each render, new virtual nodes for the <code>div</code> and the <code>button</code> will be created, and Vue will update the event listeners if they changed.</p><pre><code lang="html"><span class="method">&lt;div</span><span class="method">&gt;</span>
   <span class="method">&lt;button</span> <span class="global">m-on:click</span>=<span undefined>&quot;fooMethod&quot;</span><span class="method">&gt;</span><span class="method">&lt;/button</span><span class="method">&gt;</span>
 <span class="method">&lt;/div</span><span class="method">&gt;</span>
 </code></pre><pre><code lang="js"><span class="special">function</span> <span class="method">render</span>(m) {

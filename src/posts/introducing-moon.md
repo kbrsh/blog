@@ -39,7 +39,7 @@ reactive DOM updates, computed properties, etc.
 * 🔨 It has a built in component system, allowing you to compose your UI out of
 different components.
 
-### Benchmarks
+## Benchmarks
 
 Here are the DBMonster results (higher is better):
 
@@ -53,7 +53,7 @@ Here are the results benchmarking TodoMVC implementations (lower is better):
 ![](../img/introducing-moon/benchmark.png)
 <span class="caption">Benchmark for adding 100 items, completing 100 items, and deleting 100 items</span>
 
-### Another One?
+## Another One?
 
 I know, I know, there seems to be a new Javascript framework released every day. Moon is one of them.
 
@@ -61,7 +61,7 @@ This doesn’t mean you have to use it, in fact, it doesn’t mean anyone has to
 
 If you are starting a new project, or are looking for some performance benefits, or want a nice API, feel free to try out Moon!
 
-### Why so Long?
+## Why so Long?
 
 Moon, an idea that started in late 2015, is now almost production ready in early 2017. Why did it take so long?
 
