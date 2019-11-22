@@ -128,7 +128,8 @@ footer {
 	flex-wrap: wrap;
 	justify-content: center;
 	width: 100%;
-	padding: 36px;
+	margin-top: 21px;
+	margin-bottom: 66px;
 }
 
 footer a {
