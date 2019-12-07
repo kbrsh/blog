@@ -6,9 +6,9 @@ draft: true
 
 The virtual DOM is an idea that stems from functional programming in user interfaces. On every update new UI trees replace the current one. The problem arises, however, when this idea of an immutable, declarative view is applied in the browser.
 
-The DOM is inherently imperative; it is updated through mutating method calls. A virtual DOM bridges the gap between declarative and imperative environments, allowing users to create lightweight trees while mutating the DOM under the hood.
+The DOM is inherently imperative; it is updated through mutating method calls. A virtual DOM bridges the gap between declarative and imperative environments, accepting lightweight trees while mutating the DOM under the hood.
 
-Still, a fast implementation of the virtual DOM can be a difficult task. As I've worked on [Moon](https://kbrsh.github.io/moon), I've tried many different approaches to the diffing algorithm, with the most [recent revision](https://github.com/kbrsh/moon/commit/e7a7cd9ab427be89cb7efee70df86dfe0401d770) being explained here. It's very fast on benchmarks because it sticks to one principle: avoiding the DOM as much as possible.
+Still, a fast implementation of the virtual DOM can be a difficult task. As I've worked on [Moon](https://kbrsh.github.io/moon), I've tried many different approaches to the diffing algorithm, with the most [recent revision](https://github.com/kbrsh/moon/commit/e7a7cd9ab427be89cb7efee70df86dfe0401d770) being explained here. It's good at benchmarks because it sticks to one principle: avoiding the DOM as much as possible.
 
 There are many ways to approach a virtual DOM implementation, each building on top of the previous one to gain better performance.
 
