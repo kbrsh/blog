@@ -4,16 +4,15 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="{{title}} | Kabir Shah's blog on design, the web, servers, databases, systems, algorithms, artificial intelligence, cryptography, and ideas.">
 		<meta name="author" content="Kabir Shah">
 
-		<title>{{title}} | Kabir Shah</title>
+		<title>{{title}} | Blog of Kabir Shah</title>
 
 		<link rel="shortcut icon" href="../img/logo-fill.png"/>
 		<link rel="alternate" type="application/json" title="Kabir Shah" href="/feed.json"/>
 
 		<link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400,700|Inconsolata&display=swap" rel="stylesheet"/>
-		<link rel="stylesheet" type="text/css" href="../css/lib/grain.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/lib/grain.min.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css"/>
 		{{#if math}}<link rel="stylesheet" type="text/css" href="../css/math.css"/>{{/if}}
 
@@ -28,24 +27,22 @@
 		</script>
 	</head>
 
-	<body>
+	<body class="a-x-c">
 		<a href="../" id="back"><svg width="37" height="24" viewBox="0 0 37 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Arrow</title><path id="back-arrow" d="M36.0607 1.06066c.5857-.585786.5857-1.535534 0-2.12132l-9.546-9.54594c-.5858-.5858-1.5355-.5858-2.1213 0-.5858.5858-.5858 1.53553 0 2.12132L32.8787 0l-8.4853 8.48528c-.5858.58579-.5858 1.53552 0 2.12132.5858.5858 1.5355.5858 2.1213 0l9.546-9.54594zM0 1.5h35v-3H0v3z" transform="rotate(180 18.5 6)" fill="#888" /></svg></a>
-		<div class="container">
-			<div class="head">
-				<div class="head-title">
-					<h1>{{title}}</h1>
-				</div>
-				<p>{{date}}</p>
+		<div class="s-x-26 m-y-5">
+			<div>
+				<h1 class="s-x-26 a-t-c">{{title}}</h1>
+				<p class="s-x-26 a-t-c">{{date}}</p>
 			</div>
-			<div class="post">
+			<div class="s-x-26 m-y-3">
 				{{{content}}}
 			</div>
+			<div class="s-x-26 a-x-sb">
+				<p><a href="https://kabir.sh">Portfolio</a></p>
+				<p><a href="https://blog.kabir.sh">Blog</a></p>
+				<p><a href="https://twitter.com/kbrshah">Twitter</a></p>
+				<p><a href="https://github.com/kbrsh">GitHub</a></p>
+			</div>
 		</div>
-		<footer>
-			<a href="https://kabir.sh">Portfolio</a>
-			<a href="https://blog.kabir.sh">Blog</a>
-			<a href="https://twitter.com/kbrshah">Twitter</a>
-			<a href="https://github.com/kbrsh">GitHub</a>
-		</footer>
 	</body>
 </html>

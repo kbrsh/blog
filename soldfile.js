@@ -146,13 +146,22 @@ Sold({
 				const element = data.element;
 				if (element.type === "Element") {
 					const tagName = element.tagName;
+					const attributes = element.attributes;
 					const children = element.children;
+
+					if ("className" in attributes) {
+						attributes.className.push("s-x-26");
+					} else {
+						attributes.className = ["s-x-26"];
+					}
 
 					if (tagName === "pre") {
 						const code = children[0];
 						const codeText = code.children[0].content;
 						const codeAttributes = code.attributes;
 						const codeAttributesClassName = codeAttributes.className;
+						attributes.className = ["s-x-26", "s-b-2", "p-x-4", "p-y-4"];
+						codeAttributes.className = ["s-x-26"];
 
 						if (codeAttributesClassName === undefined) {
 							next();
@@ -162,13 +171,14 @@ Sold({
 								typeSet(codeText, true, data.parentChildren, data.index, next);
 							} else {
 								codeAttributes.lang = lang;
-								delete codeAttributes.className;
 								code.children = Himalaya.parse(highlight(codeText, lang));
 								next();
 							}
 						}
 					} else if (tagName === "code") {
 						const codeText = children[0].content;
+						attributes.className = ["s-x-26", "s-b-2", "p-x-2", "p-y-2"];
+
 						if (codeText[0] === '$' && codeText[codeText.length - 1] === '$') {
 							typeSet(codeText.slice(1, -1), false, data.parentChildren, data.index, next);
 						} else {

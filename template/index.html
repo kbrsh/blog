@@ -4,16 +4,16 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Design, the web, servers, databases, systems, algorithms, artificial intelligence, cryptography, and ideas.">
+		<meta name="description" content="musings of a maker">
 		<meta name="author" content="Kabir Shah">
 
-		<title>Blog | Kabir Shah</title>
+		<title>Blog of Kabir Shah</title>
 
 		<link rel="shortcut icon" href="./img/logo-fill.png"/>
 		<link rel="alternate" type="application/json" title="Kabir Shah" href="/feed.json"/>
 
 		<link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400,700&display=swap" rel="stylesheet"/>
-		<link rel="stylesheet" type="text/css" href="./css/lib/grain.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/lib/grain.min.css"/>
 		<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
 
 		<script>
@@ -27,22 +27,24 @@
 		</script>
 	</head>
 
-	<body>
-		<div class="container">
-			<div class="head">
-				<div class="head-title">
-					<a href="https://kabir.sh" id="logo"><img src="./img/logo-fill.png" alt="Personal Logo"/></a>
+	<body class="a-x-c">
+		<div class="s-x-26 m-y-5">
+			<div>
+				<div class="s-x-26 a-x-c a-y-l-c m-x-3">
+					<a href="https://kabir.sh" id="logo"><img src="./img/logo-fill.png" alt="Personal Logo" class="s-x-8 s-y-8 s-b-3"/></a>
 					<h1>Blog</h1>
 				</div>
-				<p>musings of a maker</p>
+				<p class="s-x-26 a-t-c">musings of a maker</p>
 			</div>
-			{{list posts}}
-			{{#posts}}
-			<p class="posts-post">
-				<span><a href="./posts/{{file}}">{{title}}</a></span>
-				<span>{{date}}</span>
-			</p>
-			{{/posts}}
+			<div class="m-y-3">
+				{{list posts}}
+				{{#posts}}
+				<div class="s-x-26 a-x-sb">
+					<p><a href="./posts/{{file}}">{{title}}</a></p>
+					<p>{{date}}</p>
+				</div>
+				{{/posts}}
+			</div>
 		</div>
 	</body>
 </html>
