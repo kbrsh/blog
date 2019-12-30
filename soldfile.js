@@ -33,6 +33,10 @@ Handlebars.registerHelper("list", function(arr) {
 	}
 });
 
+Handlebars.registerHelper("strip", function(file) {
+	return file.slice(0, -5);
+});
+
 const escape = (text) => text.replace(escapeRE, (match) => escapeMap[match]);
 
 const loop = (arr, body, done) => {
