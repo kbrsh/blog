@@ -1,0 +1,90 @@
+html {
+	background: url("../img/background.png"), linear-gradient(90deg, hsl(160, 100%, 98%), hsl(200, 100%, 98%));
+	font-family: "Crimson Pro", Georgia, sans-serif;
+	color: hsl(0, 0%, 6%);
+}
+
+#logo {
+	border-bottom: none;
+}
+
+h2 {
+	font-size: calc(15px * var(--grain-scale));
+}
+
+li {
+	margin-left: 1em;
+	line-height: 1.5;
+}
+
+img {
+	max-width: 100%;
+}
+
+span.caption {
+	display: block;
+	color: hsl(0, 0%, 71%);
+}
+
+code {
+	color: hsl(200, 31%, 14%);
+	background-color: hsl(200, 14%, 90%);
+	font-family: "Inconsolata", monospace;
+}
+
+pre {
+	background-color: hsl(200, 31%, 14%);
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+pre code {
+	color: hsl(200, 14%, 65%);
+	background-color: hsl(200, 31%, 14%);
+}
+
+/* Syntax Theme */
+.string, .string span {
+	color: hsl(100, 14%, 55%);
+}
+
+.special {
+	color: hsl(300, 14%, 55%);
+}
+
+.global {
+	color: hsl(20, 31%, 55%);
+}
+
+.method {
+	color: hsl(200, 31%, 55%);
+}
+
+.comment, .comment span {
+	color: hsl(200, 31%, 29%);
+}
+
+a {
+	color: hsl(0, 0%, 6%);
+	border-bottom: 1px solid hsl(0, 0%, 6%);
+}
+
+#back {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	border-bottom: none;
+}
+
+#back svg {
+	height: 15px;
+}
+
+#back svg #back-arrow {
+	fill: hsl(0, 0%, 71%);
+	transition: fill .2s ease;
+}
+
+#back:hover svg #back-arrow {
+	fill: hsl(200, 51%, 51%);
+}
