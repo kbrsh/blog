@@ -44,24 +44,32 @@ pre code {
 }
 
 /* Syntax Theme */
-.string, .string span {
+.token.string, .token.attr-value {
 	color: hsl(100, 14%, 55%);
 }
 
-.special {
+.token.keyword {
 	color: hsl(300, 14%, 55%);
 }
 
-.global {
+.token.number, .token.attr-name {
 	color: hsl(20, 31%, 55%);
 }
 
-.method {
+.token.function, .token.tag {
 	color: hsl(200, 31%, 55%);
 }
 
-.comment, .comment span {
+.token.comment {
 	color: hsl(200, 31%, 29%);
+}
+
+.katex {
+	font-size: calc(15px * var(--grain-scale));
+}
+
+.katex-display {
+	width: calc(351px * var(--grain-scale));
 }
 
 a {

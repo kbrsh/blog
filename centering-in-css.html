@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Kabir Shah">
+
+		<title>Centering In CSS | Blog of Kabir Shah</title>
+
+		<link rel="shortcut icon" href="/img/logo-fill.png"/>
+		<link rel="alternate" type="application/json" title="Kabir Shah" href="/feed.json"/>
+
+		<link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400,700|Inconsolata&display=swap" rel="stylesheet"/>
+		
+		<link rel="stylesheet" type="text/css" href="/css/lib/grain.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+
+		<script>
+			(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
+
+			ga("create", "UA-70792533-7", "auto");
+			ga("send", "pageview");
+		</script>
+	</head>
+
+	<body class="a-x-c">
+		<a href="/" id="back"><svg width="37" height="24" viewBox="0 0 37 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Arrow</title><path id="back-arrow" d="M36.0607 1.06066c.5857-.585786.5857-1.535534 0-2.12132l-9.546-9.54594c-.5858-.5858-1.5355-.5858-2.1213 0-.5858.5858-.5858 1.53553 0 2.12132L32.8787 0l-8.4853 8.48528c-.5858.58579-.5858 1.53552 0 2.12132.5858.5858 1.5355.5858 2.1213 0l9.546-9.54594zM0 1.5h35v-3H0v3z" transform="rotate(180 18.5 6)" fill="#888" /></svg></a>
+		<div class="s-x-26 m-y-5">
+			<div>
+				<h1 class="s-x-26 a-t-c">Centering In CSS</h1>
+				<p class="s-x-26 a-t-c">September 3, 2016</p>
+			</div>
+			<div class="s-x-26 m-y-3">
+				<p class="s-x-26">Unfortunately, there is no built in support for centering in CSS, but there are some ways to do it. I will be talking about two of the most effective ways to do it.</p><h2 id="flexbox" class="s-x-26">Flexbox</h2><p class="s-x-26">Using flexbox is a clean, hack-free way to center elements. The only downside is browser support, don&#39;t use this if you need to support IE 10 and below.</p><p class="s-x-26">Say you have the following HTML:</p><pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Centered Content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre><p class="s-x-26">You need to center everything <strong>within</strong> the <code class="s-b-2 p-x-2 p-y-2">div</code>. So you would apply the following styles to the <strong>parent element</strong>. Which is <code class="s-b-2 p-x-2 p-y-2">.center</code> in this case.</p><pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code><span class="token selector">.center</span> <span class="token punctuation">{</span>
+   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span> <span class="token comment">/* activates flexbox */</span>
+   <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* align items vertically */</span>
+   <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* align items horizontally */</span>
+<span class="token punctuation">}</span></code></pre><h2 id="table" class="s-x-26">Table</h2><p class="s-x-26">Using a table will require more code than flexbox, but will support many more browsers; this includes IE 6 and up!</p><p class="s-x-26">With the following HTML:</p><pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cell<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Centered Content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre><p class="s-x-26">You will need three containers:</p><ol>
+<li><p class="s-x-26">One on the outside, representing a <code class="s-b-2 p-x-2 p-y-2">table</code></p></li><li><p class="s-x-26">A <code class="s-b-2 p-x-2 p-y-2">cell</code> inside of of the <code class="s-b-2 p-x-2 p-y-2">table</code>, this will be a <code class="s-b-2 p-x-2 p-y-2">table-cell</code></p></li><li><p class="s-x-26">A container for all of the centered content</p></li></ol>
+<p class="s-x-26">Now, you can style them:</p><pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code><span class="token selector">.center</span> <span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span> <span class="token comment">/* make .center a table */</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.cell</span> <span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> table-cell<span class="token punctuation">;</span> <span class="token comment">/* make table cell */</span>
+    <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span> <span class="token comment">/* vertically align cell in the middle */</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.content</span> <span class="token punctuation">{</span>
+    <span class="token property">margin-left</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token comment">/* the content's left side margin is auto (centering it) */</span>
+    <span class="token property">margin-right</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span> <span class="token comment">/* the content's right side margin is auto (centering it) */</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* align any other text items in the center*/</span>
+    <span class="token comment">/* text-align: center; is optional */</span>
+<span class="token punctuation">}</span></code></pre><p class="s-x-26">There, now you can center things supporting IE 6 and up.</p>
+			</div>
+			<div class="s-x-26 a-x-sb">
+				<p><a href="https://kabir.sh">Portfolio</a></p>
+				<p><a href="https://blog.kabir.sh">Blog</a></p>
+				<p><a href="https://twitter.com/kbrshah">Twitter</a></p>
+				<p><a href="https://github.com/kbrsh">GitHub</a></p>
+			</div>
+		</div>
+	</body>
+</html>

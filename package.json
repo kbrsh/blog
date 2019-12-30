@@ -1,23 +1,19 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "description": "Kabir Shah's Blog",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kbrsh/blog.git"
-  },
-  "author": "Kabir Shah",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kbrsh/blog/issues"
-  },
-  "homepage": "https://github.com/kbrsh/blog#readme",
-  "devDependencies": {
-    "handlebars": "^4.0.6",
-    "himalaya": "^0.3.1",
-    "html-minifier": "^3.5.6",
-    "mathjax-node": "^1.2.1",
-    "sold": "^2.3.2"
-  }
+	"name": "blog",
+	"description": "Blog of Kabir Shah",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kbrsh/blog.git"
+	},
+	"author": "Kabir Shah",
+	"bugs": {
+		"url": "https://github.com/kbrsh/blog/issues"
+	},
+	"homepage": "https://github.com/kbrsh/blog#readme",
+	"devDependencies": {
+		"katex": "^0.11.1",
+		"prismjs": "^1.17.1",
+		"sold": "^3.0.0"
+	}
 }

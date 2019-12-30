@@ -54,14 +54,14 @@ Finding _partial derivatives_ involves the same formula, but represents how the 
 We can find the partial derivative of the loss function example with respect to `$w$` by substituting the function into the formula.
 
 ```math
-\begin{align}
+\begin{aligned}
   \frac{\partial l}{\partial w} & = \lim_{h \to 0}\frac{l(x, w + h, t) - l(x, w, t)}{h} \\
   & = \lim_{h \to 0}\frac{(t - f(x, w + h)) - (t - f(x, w))}{h} \\
   & = \lim_{h \to 0}\frac{(t - x(w + h)) - (t - xw)}{h} \\
   & = \lim_{h \to 0}\frac{t - xw - xh - t + xw}{h} \\
   & = \lim_{h \to 0}\frac{-xh}{h} \\
   & = -x
-\end{align}
+\end{aligned}
 ```
 
 Looking at this, we can see that as `$w$` changes, `$l(x, w, t)$` changes by `$-x$`. We can use this information to change `$w$` by _the opposite_ of the partial derivative, `$x$`, to get a lower value.

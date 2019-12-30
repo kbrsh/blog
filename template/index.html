@@ -37,13 +37,14 @@
 				<p class="s-x-26 a-t-c">musings of a maker</p>
 			</div>
 			<div class="m-y-3">
-				{{list posts}}
-				{{#posts}}
-				<div class="s-x-26 a-x-sb">
-					<p><a href="/{{strip file}}">{{title}}</a></p>
-					<p>{{date}}</p>
-				</div>
-				{{/posts}}
+				<% posts.forEach(post => { %>
+					<% if (!post.draft) { %>
+						<div class="s-x-26 a-x-sb">
+							<p><a href="/<%= post.file %>"><%= post.title %></a></p>
+							<p><%= post.date %></p>
+						</div>
+					<% } %>
+				<% }); %>
 			</div>
 		</div>
 	</body>
