@@ -7,15 +7,15 @@ const renderer = new marked.Renderer();
 
 renderer.heading = (text, level, raw, slugger) => {
 	return `<h${level} id="${slugger.slug(text)}" class="s-x-26">${text}</h${level}>`;
-}
+};
 
 renderer.paragraph = text => {
 	return `<p class="s-x-26">${text}</p>`;
-}
+};
 
 renderer.listitem = text => {
 	return `<li><p class="s-x-26">${text}</p></li>`;
-}
+};
 
 renderer.code = (code, lang, escaped) => {
 	if (lang === "js") {
