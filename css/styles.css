@@ -60,6 +60,10 @@ pre code {
 	color: hsl(200, 31%, 55%);
 }
 
+.token.attr-value {
+	color: hsl(200, 14%, 65%);
+}
+
 .token.comment {
 	color: hsl(200, 31%, 29%);
 }
