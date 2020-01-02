@@ -5,6 +5,10 @@ const katex = require("katex");
 
 const renderer = new marked.Renderer();
 
+Prism.languages.markup.tag.inside["attr-value"].pattern = /=([@$\w.]+|"[^"]*"|'[^']*'|`[^`]*`|\([^)]+\)|\[[^]]+\]|\{[^}]+\})/;
+Prism.languages.markup.tag.inside["attr-value"].inside = Prism.languages.javascript;
+Prism.languages.javascript = Prism.languages.extend("markup", Prism.util.clone(Prism.languages.javascript));
+
 renderer.heading = (text, level, raw, slugger) => {
 	return `<h${level} id="${slugger.slug(text)}" class="s-x-26">${text}</h${level}>`;
 };

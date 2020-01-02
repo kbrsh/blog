@@ -44,7 +44,7 @@ pre code {
 }
 
 /* Syntax Theme */
-.token.string, .token.attr-value {
+.token.string {
 	color: hsl(100, 14%, 55%);
 }
 
