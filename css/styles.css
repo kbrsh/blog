@@ -45,7 +45,7 @@ pre code {
 	color: hsl(300, 14%, 55%);
 }
 
-.token.number, .token.attr-name {
+.token.number, .token.boolean, .token.attr-name {
 	color: hsl(20, 31%, 55%);
 }
 
