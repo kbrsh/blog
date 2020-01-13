@@ -25,4 +25,4 @@ With this definition, UI becomes a pure function.
 ui(sensory input from computer) = output for computer to do
 ```
 
-Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the patency only reinforces that functions are a natural way of defining UIs.
+Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity only reinforces that functions are a natural way of defining UIs.
