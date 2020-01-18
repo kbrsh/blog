@@ -15,7 +15,7 @@ That week quickly grew philosophical as I questioned modern UI development:
 * _Why do components have local state?_
 * _If the view is a function of state, what about other effects?_
 
-Popular UI libraries treat views as functions of state, but UIs aren't just states and views. They're everything: mapping inputs from the user to outputs on the computer.
+Popular UI libraries treat views as functions of state, but UIs aren't states and views. They're everything: mapping inputs from the user to outputs on the computer.
 
 A UI can take information from the mouse, keyboard, webcam, or mic. After processing this data, it can output to the screen, speakers, network, or hard drive.
 
@@ -26,3 +26,51 @@ ui(sensory input from computer) = output for computer to do
 ```
 
 Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity only reinforces that functions are a natural way of defining UIs.
+
+## Drivers
+
+Computers are imperative, based on operations that mutate the internal state. This includes registers, memory, and other hardware. Until computers treat software as a function, providing inputs and handling outputs, we'll use drivers.
+
+Drivers are an interface between software and hardware. They bridge the gap between functional applications and imperative devices.
+
+A driver captures data coming in from devices and sends data back to them. Consequently, in most modern languages, a driver is a module with two functions: one for input and one for output.
+
+Ideally, a computer would call an application function every cycle. To simulate this, one can pipe input data from drivers to the application. The return values can then be routed to the appropriate driver output functions.
+
+Moon's [run](https://github.com/kbrsh/moon/blob/master/packages/moon/src/run.js) function does exactly this. The implementation (without error handling) is succinct:
+
+```js
+function run(application) {
+	// Get inputs from all drivers.
+	const input = {};
+
+	for (const driver in drivers) {
+		input[driver] = drivers[driver].input();
+	}
+
+	// Get the application output.
+	const output = application(input);
+
+	// Execute drivers with the outputs.
+	for (const driver in output) {
+		drivers[driver].output(output[driver]);
+	}
+}
+```
+
+Each driver is an object with an input and output function. For example, a driver for manipulating RAM, i.e. storing data in a variable:
+
+```js
+let data;
+
+const driver = {
+	input() {
+		return data;
+	},
+	output(dataNew) {
+		data = dataNew;
+	}
+};
+```
+
+In fact, this is exactly how Moon's [data driver](https://github.com/kbrsh/moon/blob/master/packages/moon/src/data/driver.js) works.
