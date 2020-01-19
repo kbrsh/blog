@@ -39,7 +39,7 @@ UI development is drifting away from the Model-View-Controller (MVC) model and m
 application(state) = view
 ```
 
-[React](https://reactjs.org) popularized this idea. For example, a counter application in React looks like this:
+[React](https://reactjs.org) popularized this idea. For example, a counter application in React stores a count in state and renders it to a view.
 
 ```js
 import React, { useState } from "react";
@@ -61,6 +61,37 @@ The goal is to represent the view as a pure function of state, but React uses "h
 
 Local state replacing function parameters means that React apps are not pure. They rely on positions in the tree to store local state, requiring abstractions like keys, context, and state libraries to maintain.
 
+The React model also limits UI input to state and output to views. All other inputs and effects are second-class citizens.
+
+For example, displaying the time would break out of the functional mental model. It requires input from an impure function and depends on the developer to handle timing effects.
+
+```js
+import React, { useState } from "react";
+
+function Time() {
+	// Store time in state.
+	const [time, setTime] = useState(Date.now());
+
+	// Manually handle a timing interval effect.
+	useEffect(() => {
+		const interval = () => {
+			setTime(Date.now());
+		};
+
+		setInterval(interval, 1000);
+
+		return () => clearInterval(interval);
+	}, []);
+
+	// Return a view based on the time stored in the state.
+	return <p>{new Date(time).toLocaleTimeString()}</p>;
+}
+```
+
+Most applications require inputs other than state and effects other than views. Even the basic clock UI needs them. React allows writing custom events with the effect hook. But as with all other hooks, writing effects in the body of a function rather than as a return value introduces impurity.
+
+Since local state is the only input, the time must be stored in it. However, this is convoluted. Passing it as an input to the function is clearer.
+
 ## Drivers
 
 Computers are imperative, based on operations that mutate the internal state. This includes registers, memory, and other hardware. Until computers treat software as a function, providing inputs and handling outputs, we'll use drivers.
@@ -71,7 +102,7 @@ A driver captures data coming in from devices and sends data back to them. Conse
 
 Ideally, a computer would call an application function every cycle. To simulate this, one can pipe input data from drivers to the application. The return values can then be routed to the appropriate driver output functions.
 
-Moon's [run](https://github.com/kbrsh/moon/blob/master/packages/moon/src/run.js) function does exactly this. The implementation (without error handling) is succinct:
+Moon's [run](https://github.com/kbrsh/moon/blob/master/packages/moon/src/run.js) function does exactly this. The implementation (without error handling) is succinct.
 
 ```js
 function run(application) {
@@ -92,7 +123,7 @@ function run(application) {
 }
 ```
 
-Each driver is an object with an input and output function. For example, a driver for manipulating RAM, i.e. storing data in a variable:
+Each driver is an object with an input and output function. For example, a driver for manipulating RAM, i.e. storing data in a variable is trivial to implement.
 
 ```js
 let data;
