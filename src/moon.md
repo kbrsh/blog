@@ -10,7 +10,7 @@ I've lost count of the number of times that I've redesigned Moon's API. Every si
 
 Other libraries had conditioned me to lean towards similar designs. The mental model that came with React or Vue always found its way into Moon. So, over a week, I erased everything that I knew about user interfaces and tried to create something from scratch.
 
-That week quickly grew philosophical as I questioned modern UI development:
+That week grew philosophical as I questioned modern UI development:
 
 * _Why is view a function of state?_
 * _Why do we need components?_
@@ -27,7 +27,13 @@ With this definition, UI becomes a pure function.
 application(sensory input) = output signals
 ```
 
-Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity only reinforces that functions are a natural way of defining UIs.
+Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity reinforces that functions are a natural way of defining UIs.
+
+Developing UIs is complex. As with other software, a UI transforms and processes data. Moreover, it forms a link between the user and computer. Much of the input data comes from users. The outputs also affect the user in real time.
+
+This means that a UI must be responsive and easy to conceptualize. Users interact with the application expecting constant, instant feedback. They want to work with it to solve their problems. The interface is the barrier between the problem and solution. Users shouldn't have to wrestle with it. Thus, they should be capable of forming a clear mental representation of the UI.
+
+Functional programming, responsiveness, and conceptualization are connected. Pure functions allow both developers and users to visualize input and output states. Being simple to grok means clear implementations, free of scattered imperative code. Clear implementations lead to speed and efficiency.
 
 Pure functions replace contrived models. They interact with the world using drivers. Moon revitalizes UI development with determinism, composition, single state trees, straightforward testing, and faster performance.
 
@@ -63,7 +69,7 @@ Local state replacing function parameters means that React apps are not pure. Th
 
 The React model also limits UI input to state and output to views. All other inputs and effects are second-class citizens.
 
-For example, displaying the time would break out of the functional mental model. It requires input from an impure function and depends on the developer to handle timing effects.
+For example, displaying the time would break out of the functional mental model. It needs input from an impure function and depends on the developer to handle timing effects.
 
 ```js
 import React, { useState } from "react";
@@ -88,9 +94,9 @@ function Time() {
 }
 ```
 
-Most applications require inputs other than state and effects other than views. Even the basic clock UI needs them. React allows writing custom events with the effect hook. But as with all other hooks, writing effects in the body of a function rather than as a return value introduces impurity.
+Most applications need inputs other than state and effects other than views. Even the basic clock UI needs them. React allows writing custom events with the effect hook. But as with all other hooks, writing effects in the body of a function rather than as a return value introduces impurity.
 
-Since local state is the only input, the time must be stored in it. However, this is convoluted. Passing it as an input to the function is clearer.
+Since local state is the sole input, it must store the time. However, this is convoluted. Passing it as an input to the function is clearer.
 
 ## Drivers
 
@@ -100,9 +106,9 @@ Drivers are an interface between software and hardware. They bridge the gap betw
 
 A driver captures data coming in from devices and sends data back to them. Consequently, in most modern languages, a driver is a module with two functions: one for input and one for output.
 
-Ideally, a computer would call an application function every cycle. To simulate this, one can pipe input data from drivers to the application. The return values can then be routed to the appropriate driver output functions.
+In an ideal world, a computer would call an application function every cycle. To simulate this, the computer should run the application when inputs change. One can pipe input data from drivers to the application. Then, they can route return values to the appropriate driver output functions.
 
-Moon's [run](https://github.com/kbrsh/moon/blob/master/packages/moon/src/run.js) function does exactly this. The implementation (without error handling) is succinct.
+Moon's [run](https://github.com/kbrsh/moon/blob/master/packages/moon/src/run.js) function does this. The implementation (without error handling) is succinct.
 
 ```js
 function run(application) {
@@ -138,4 +144,4 @@ const driver = {
 };
 ```
 
-In fact, this is exactly how Moon's [data driver](https://github.com/kbrsh/moon/blob/master/packages/moon/src/data/driver.js) works.
+In fact, this is how Moon's [data driver](https://github.com/kbrsh/moon/blob/master/packages/moon/src/data/driver.js) works.
