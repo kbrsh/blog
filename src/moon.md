@@ -29,9 +29,9 @@ application(sensory input) = output signals
 
 Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity reinforces that functions are a natural way of defining UIs.
 
-Developing UIs is complex. As with other software, a UI transforms and processes data. Moreover, it forms a link between the user and computer. Much of the input data comes from users. The outputs also affect the user in real time.
+Developing UIs is complex. As with other software, a UI transforms and processes data. Moreover, it forms a link between the user and the computer. Much of the input data comes from users. The outputs also affect the user in real-time.
 
-This means that a UI must be responsive and easy to conceptualize. Users interact with the application expecting constant, instant feedback. They want to work with it to solve their problems. The interface is the barrier between the problem and solution. Users shouldn't have to wrestle with it. Thus, they should be capable of forming a clear mental representation of the UI.
+This means that a UI must be responsive and easy to conceptualize. Users interact with the application expecting constant, instant feedback. They want to work with it to solve their problems. The interface is the barrier between the problem and the solution. Users shouldn't have to wrestle with it. Thus, they should be capable of forming a clear mental representation of the UI.
 
 Functional programming, responsiveness, and conceptualization are connected. Pure functions allow both developers and users to visualize input and output states. Being simple to grok means clear implementations, free of scattered imperative code. Clear implementations lead to speed and efficiency.
 
