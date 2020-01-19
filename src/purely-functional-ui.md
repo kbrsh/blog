@@ -22,10 +22,36 @@ A UI can take information from the mouse, keyboard, webcam, or mic. After proces
 With this definition, UI becomes a pure function.
 
 ```
-ui(sensory input from computer) = output for computer to do
+application(sensory input) = output signals
 ```
 
 Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity only reinforces that functions are a natural way of defining UIs.
+
+## Background
+
+UI development is drifting away from the Model-View-Controller (MVC) model and mutating views with JQuery. Now, most libraries try to represent the view as a function of state.
+
+[React](https://reactjs.org) popularized this idea. For example, a counter application in React looks like this:
+
+```js
+import React, { useState } from "react";
+
+function Counter() {
+	// Access state with an magical "hook".
+	const [count, setCount] = useState(0);
+
+	// Return a view.
+	return (
+		<button onClick={() => setCount(count + 1)}>
+			{count}
+		</button>
+	);
+}
+```
+
+The goal is to represent the view as a pure function of state, but React uses "hooks" instead. Rather than passing global state as a parameter, it links local state to components. Hooks like `useState` access this state and store it based on a component's position in a tree.
+
+Local state replacing function parameters means that React apps are not pure. They rely on positions in the tree to store local state, requiring abstractions like keys, context, and state libraries to maintain.
 
 ## Drivers
 
