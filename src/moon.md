@@ -29,9 +29,15 @@ application(sensory input) = output signals
 
 Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity only reinforces that functions are a natural way of defining UIs.
 
+Pure functions replace contrived models. They interact with the world using drivers. Moon revitalizes UI development with determinism, composition, single state trees, straightforward testing, and faster performance.
+
 ## Background
 
 UI development is drifting away from the Model-View-Controller (MVC) model and mutating views with JQuery. Now, most libraries try to represent the view as a function of state.
+
+```
+application(state) = view
+```
 
 [React](https://reactjs.org) popularized this idea. For example, a counter application in React looks like this:
 
