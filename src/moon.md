@@ -1,10 +1,12 @@
 ---
-title: Purely Functional UI
+title: "Moon: Pure UI"
 date: January 12, 2020
 draft: true
 ---
 
-I've lost count of the number of times that I've redesigned [Moon](https://moonjs.org)'s API. Every single iteration felt incomplete. Little inconsistencies here and there would leave the perfectionist in me unsatisfied.
+[Moon](https://moonjs.org) is a web library that runs applications as pure functions.
+
+I've lost count of the number of times that I've redesigned Moon's API. Every single iteration felt incomplete. Little inconsistencies here and there would leave the perfectionist in me unsatisfied.
 
 Other libraries had conditioned me to lean towards similar designs. The mental model that came with React or Vue always found its way into Moon. So, over a week, I erased everything that I knew about user interfaces and tried to create something from scratch.
 

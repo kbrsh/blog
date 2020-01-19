@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="author" content="Kabir Shah">
 
-		<title>Purely Functional UI | Blog of Kabir Shah</title>
+		<title>Moon: Pure UI | Blog of Kabir Shah</title>
 
 		<link rel="shortcut icon" href="/img/logo-fill.png"/>
 		<link rel="alternate" type="application/json" title="Kabir Shah" href="/feed.json"/>
@@ -31,11 +31,11 @@
 		<a href="/" id="back"><svg width="37" height="24" viewBox="0 0 37 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Arrow</title><path id="back-arrow" d="M36.0607 1.06066c.5857-.585786.5857-1.535534 0-2.12132l-9.546-9.54594c-.5858-.5858-1.5355-.5858-2.1213 0-.5858.5858-.5858 1.53553 0 2.12132L32.8787 0l-8.4853 8.48528c-.5858.58579-.5858 1.53552 0 2.12132.5858.5858 1.5355.5858 2.1213 0l9.546-9.54594zM0 1.5h35v-3H0v3z" transform="rotate(180 18.5 6)" fill="#888" /></svg></a>
 		<div class="s-x-26 m-y-5">
 			<div>
-				<h1 class="s-x-26 a-t-c">Purely Functional UI</h1>
+				<h1 class="s-x-26 a-t-c">Moon: Pure UI</h1>
 				<p class="s-x-26 a-t-c">January 12, 2020</p>
 			</div>
 			<div class="s-x-26 m-y-3">
-				<p class="s-x-26">I&#39;ve lost count of the number of times that I&#39;ve redesigned <a href="https://moonjs.org">Moon</a>&#39;s API. Every single iteration felt incomplete. Little inconsistencies here and there would leave the perfectionist in me unsatisfied.</p><p class="s-x-26">Other libraries had conditioned me to lean towards similar designs. The mental model that came with React or Vue always found its way into Moon. So, over a week, I erased everything that I knew about user interfaces and tried to create something from scratch.</p><p class="s-x-26">That week quickly grew philosophical as I questioned modern UI development:</p><ul>
+				<p class="s-x-26"><a href="https://moonjs.org">Moon</a> is a web library that runs applications as pure functions.</p><p class="s-x-26">I&#39;ve lost count of the number of times that I&#39;ve redesigned Moon&#39;s API. Every single iteration felt incomplete. Little inconsistencies here and there would leave the perfectionist in me unsatisfied.</p><p class="s-x-26">Other libraries had conditioned me to lean towards similar designs. The mental model that came with React or Vue always found its way into Moon. So, over a week, I erased everything that I knew about user interfaces and tried to create something from scratch.</p><p class="s-x-26">That week quickly grew philosophical as I questioned modern UI development:</p><ul>
 <li><p class="s-x-26"><em>Why is view a function of state?</em></p></li><li><p class="s-x-26"><em>Why do we need components?</em></p></li><li><p class="s-x-26"><em>Why do components have local state?</em></p></li><li><p class="s-x-26"><em>If the view is a function of state, what about other effects?</em></p></li></ul>
 <p class="s-x-26">Popular UI libraries treat views as functions of state, but UIs aren&#39;t states and views. They&#39;re everything: mapping inputs from the user to outputs on the computer.</p><p class="s-x-26">A UI can take information from the mouse, keyboard, webcam, or mic. After processing this data, it can output to the screen, speakers, network, or hard drive.</p><p class="s-x-26">With this definition, UI becomes a pure function.</p><pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code>application(sensory input) = output signals</code></pre><p class="s-x-26">Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity only reinforces that functions are a natural way of defining UIs.</p><h2 id="background" class="s-x-26">Background</h2><p class="s-x-26">UI development is drifting away from the Model-View-Controller (MVC) model and mutating views with JQuery. Now, most libraries try to represent the view as a function of state.</p><p class="s-x-26"><a href="https://reactjs.org">React</a> popularized this idea. For example, a counter application in React looks like this:</p><pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
 
