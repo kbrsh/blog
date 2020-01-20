@@ -6,7 +6,7 @@ draft: true
 
 [Moon](https://moonjs.org) is a web library that runs applications as pure functions.
 
-User interfaces underpin almost all software. As with other programs, they transform and process data. Moreover, they must harmonize users with the underlying computer. People input an endless stream of data, and the application output affects them in real-time.
+User interfaces underpin almost all software. As with other programs, they transform and process data. However, they must also harmonize users with the underlying computer. People input an endless stream of data, and the application output affects them in real-time.
 
 This means that a UI must be responsive and easy to conceptualize. Users interact with the application expecting constant, instant feedback. They want to work with it to solve their problems. The interface is the barrier between the problem and the solution. Users shouldn't have to wrestle with it. Thus, they should be capable of forming a clear mental representation of the UI.
 
@@ -16,7 +16,7 @@ Moon streamlines UI development with pure functions. I've lost count of the numb
 
 Other libraries had conditioned me to lean towards similar designs. The mental model that came with React or Vue always found its way into Moon. So, over a week, I erased everything that I knew about user interfaces and tried to create something from scratch.
 
-That week grew philosophical as I questioned modern UI development:
+That week grew philosophical as I questioned modern UI development.
 
 * _Why is view a function of state?_
 * _Why do we need components?_
