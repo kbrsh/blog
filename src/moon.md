@@ -43,7 +43,7 @@ Pure functions replace contrived models. They interact with the world using driv
 
 UI development finds its roots in object-oriented, imperative code. As paradigms shift, two ideas have remained constant: state and views.
 
-State is a data structure. This structure can hold any value: a number, string, array, object, etc. It holds information relevant to the application.
+State is a data structure. This structure can hold any value relevant to the application, including numbers, strings, arrays, or objects.
 
 TODO: define current state of managing state (especially difficulties)
 
