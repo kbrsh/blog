@@ -1,7 +1,7 @@
 html {
 	background: url("/img/background.png"), linear-gradient(90deg, hsl(160, 100%, 98%), hsl(200, 100%, 98%));
 	font-family: "Crimson Pro", Georgia, sans-serif;
-	color: hsl(0, 0%, 6%);
+	color: hsl(200, 51%, 6%);
 }
 
 #logo {
@@ -18,7 +18,7 @@ img {
 
 span.caption {
 	display: block;
-	color: hsl(0, 0%, 71%);
+	color: hsl(200, 51%, 71%);
 }
 
 code {
@@ -70,8 +70,8 @@ pre code {
 }
 
 a {
-	color: hsl(0, 0%, 6%);
-	border-bottom: 1px solid hsl(0, 0%, 6%);
+	color: hsl(200, 51%, 6%);
+	border-bottom: 1px solid hsl(200, 51%, 6%);
 }
 
 #back {
@@ -86,7 +86,7 @@ a {
 }
 
 #back svg #back-arrow {
-	fill: hsl(0, 0%, 71%);
+	fill: hsl(200, 51%, 71%);
 	transition: fill .2s ease;
 }
 

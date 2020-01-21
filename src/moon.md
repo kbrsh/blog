@@ -6,9 +6,11 @@ draft: true
 
 [Moon](https://moonjs.org) is a web library that runs applications as pure functions.
 
-User interfaces underpin almost all software. As with other programs, they transform and process data. However, they must also harmonize users with the underlying computer. People input an endless stream of data, and the application output affects them in real-time.
+User interfaces (UIs) underpin almost all software. As with other programs, they transform and process data. However, they must also harmonize users with the underlying computer. People input an endless stream of data, and the application output affects them in real-time.
 
 This means that a UI must be responsive and easy to conceptualize. Users interact with the application expecting constant, instant feedback. They want to work with it to solve their problems. The interface is the barrier between the problem and the solution. Users shouldn't have to wrestle with it. Thus, they should be capable of forming a clear mental representation of the UI.
+
+![Figure 1: Fast and easy UI](/img/moon/Figure1FastEasyUI.png)
 
 Functional programming, responsiveness, and conceptualization are connected. Pure functions allow both developers and users to visualize input and output states. Being simple to grok means clear implementations, free of scattered imperative code. Clear implementations lead to speed and efficiency.
 
@@ -39,13 +41,33 @@ Pure functions replace contrived models. They interact with the world using driv
 
 ## Background
 
-UI development is drifting away from the Model-View-Controller (MVC) model and mutating views with JQuery. Now, most libraries try to represent the view as a function of state.
+UI development finds its roots in object-oriented, imperative code. As paradigms shift, two ideas have remained constant: state and views.
+
+State is a data structure. This structure can hold any value: a number, string, array, object, etc. It holds information relevant to the application.
+
+TODO: define current state of managing state (especially difficulties)
+
+The view displays data from the state. In graphical user interfaces, the view is a screen. Views can exhibit the state on devices such as smart watches, mobile phones, laptops, monitors, or television screens. Operating systems represent the display with a buffer holding colors for each pixel.
+
+Manipulating the display buffer palls when managing complex elements. Developers would have to define every interaction's effect in terms of individual pixels. This means conducting text, images, inputs, and buttons at the same time.
+
+GUI frameworks circumvent this by defining reusable widgets. On the web, browsers abstract the view with the document object model (DOM).
+
+TODO: define DOM and transition into MVC
+
+TODO: define MVC, difficulties with MVC, and transition into react
+
+UI programming paradigms are drifting away from object-oriented components and the Model-View-Controller (MVC) model. The current status quo of UI development defines views as a function of state.
 
 ```
 application(state) = view
 ```
 
-[React](https://reactjs.org) popularized this idea. For example, a counter application in React stores a count in state and renders it to a view.
+With this model, the state, a dynamic value, is immutable. Applications change the state by constructing a new one from scratch and replacing the old one.
+
+[React](https://reactjs.org) popularized this idea. It introduces components, each of which returns a view based on local state. The state is a JavaScript object, and the view is an object representing a virtual DOM. The virtual DOM is a tree describing the DOM.
+
+For example, a counter application in React stores a count in state and renders it to a view.
 
 ```js
 import React, { useState } from "react";
