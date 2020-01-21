@@ -57,7 +57,7 @@ TODO: define DOM and transition into MVC
 
 TODO: define MVC, difficulties with MVC, and transition into react
 
-UI programming paradigms are drifting away from object-oriented components and the Model-View-Controller (MVC) model. The current status quo of UI development defines views as a function of state.
+Developers are drifting away from object-oriented components and the Model-View-Controller (MVC) model. The current status quo of UI development defines views as a function of state.
 
 ```
 application(state) = view
