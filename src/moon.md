@@ -53,9 +53,9 @@ Manipulating the display buffer palls when managing complex elements. Developers
 
 GUI frameworks circumvent this by defining reusable widgets. On the web, browsers abstract the view with the document object model (DOM).
 
-TODO: define DOM and transition into MVC
+TODO: define GUI frameworks and DOM and transition into MVC. introduce concepts like imperative code for constructing the DOM and GUI
 
-TODO: define MVC, difficulties with MVC, and transition into react
+TODO: define MVC, difficulties with MVC, and transition into current state of functional UIs (react)
 
 Developers are drifting away from object-oriented components and the Model-View-Controller (MVC) model. The current status quo of UI development defines views as a function of state.
 
