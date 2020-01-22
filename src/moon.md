@@ -10,7 +10,7 @@ User interfaces (UIs) underpin almost all software. As with other programs, they
 
 This means that a UI must be responsive and easy to conceptualize. Users interact with the application expecting constant, instant feedback. They want to work with it to solve their problems. The interface is the barrier between the problem and the solution. Users shouldn't have to wrestle with it. Thus, they should be capable of forming a clear mental representation of the UI.
 
-![Figure 1: Fast and easy UI](/img/moon/Figure1FastEasyUI.png)
+![Fast and easy UI](/img/moon/Figure1FastEasyUI.png)
 
 Functional programming, responsiveness, and conceptualization are connected. Pure functions allow both developers and users to visualize input and output states. Being simple to grok means clear implementations, free of scattered imperative code. Clear implementations lead to smooth optimization, speed, and efficiency.
 
