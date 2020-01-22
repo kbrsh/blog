@@ -12,7 +12,7 @@ This means that a UI must be responsive and easy to conceptualize. Users interac
 
 ![Figure 1: Fast and easy UI](/img/moon/Figure1FastEasyUI.png)
 
-Functional programming, responsiveness, and conceptualization are connected. Pure functions allow both developers and users to visualize input and output states. Being simple to grok means clear implementations, free of scattered imperative code. Clear implementations lead to speed and efficiency.
+Functional programming, responsiveness, and conceptualization are connected. Pure functions allow both developers and users to visualize input and output states. Being simple to grok means clear implementations, free of scattered imperative code. Clear implementations lead to smooth optimization, speed, and efficiency.
 
 Moon streamlines UI development with pure functions. I've lost count of the number of times that I've redesigned its API. Every single iteration felt incomplete. Little inconsistencies here and there would leave the perfectionist in me unsatisfied.
 
