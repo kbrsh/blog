@@ -37,7 +37,7 @@ application(sensory input) = output signals
 
 Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity reinforces that functions are a natural way of defining UIs.
 
-Pure functions replace contrived models. Moon allows pure applications to interact with the world using drivers. It revitalizes UI development with composition, straightforward testing, time-travel debugging, and faster performance.
+Pure functions replace contrived models. Moon allows applications to interact with the world using drivers. It revitalizes UI development with composition, straightforward testing, time-travel debugging, and faster performance.
 
 ## Background
 
