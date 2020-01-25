@@ -37,7 +37,7 @@ application(sensory input) = output signals
 
 Four years of reiterating on Moon with complex API rewrites led to this idea. In hindsight, it seems obvious; represent UI as a function. But it can be hard to see through the forest of abstractions in the UI development world. If anything, the simplicity reinforces that functions are a natural way of defining UIs.
 
-Pure functions replace contrived models. They interact with the world using drivers. Moon revitalizes UI development with determinism, composition, single state trees, straightforward testing, and faster performance.
+Pure functions replace contrived models. Moon allows pure applications to interact with the world using drivers. It revitalizes UI development with composition, straightforward testing, time-travel debugging, and faster performance.
 
 ## Background
 
@@ -124,7 +124,9 @@ Most applications need inputs other than state and effects other than views. Eve
 
 Since local state is the sole input, it must store the time. However, this is convoluted. Passing it as an input to the function is clearer.
 
-## Drivers
+## Moon
+
+TODO: introduce Moon's mental model of a UI as a function. introduce drivers and run function.
 
 Computers are imperative, based on operations that mutate the internal state. This includes registers, memory, and other hardware. Until computers treat software as a function, providing inputs and handling outputs, we'll use drivers.
 
@@ -171,3 +173,51 @@ const driver = {
 ```
 
 In fact, this is how Moon's [data driver](https://github.com/kbrsh/moon/blob/master/packages/moon/src/data/driver.js) works.
+
+## Data
+
+TODO: define data driver, discuss implementation, introduce single state tree, describe examples of managing single state trees with determinism, purity, reducers, etc.
+
+## Views
+
+TODO: define view driver, discuss implementation details (virtual DOM, node reference check), Moon View Language, components
+
+## Time
+
+TODO: define time driver, discuss implementation
+
+## Storage
+
+TODO: define storage driver, discuss implementation
+
+## HTTP
+
+TODO: define HTTP driver, discuss implementation
+
+## Route
+
+TODO: define route driver, discuss implementation
+
+## Composition
+
+TODO: define composition of functions that each take driver inputs and return driver outputs (similar to cycle)
+
+## Testing
+
+TODO: define testing, introduce testing techniques using input/output assertions, discuss how even randomness, time, or even network requests can be made deterministic because of the nature of drivers
+
+## Debugging
+
+TODO: define debugging, introduce advantages of debugging with pure functions that use immutable state for all drivers (time travel debugging)
+
+## Optimization
+
+TODO: define optimization techniques of functional programming, including tail recursion, memoization, caching, loop unrolling, etc.
+
+## Examples
+
+TODO: counter, clock, todo app, chat app, audio (radio?)/video app
+
+## Conclusion
+
+TODO: summarize old techniques and Moon's new model
