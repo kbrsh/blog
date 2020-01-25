@@ -41,11 +41,13 @@ Pure functions replace contrived models. They interact with the world using driv
 
 ## Background
 
+TODO: define state, what it represents, how it is managed, and what it does for an application. define views, what they represent, how they are represented in pixels, how they are abstracted with GUI widgets and the DOM, and how the DOM is constructed and manipulated. define existing models: vanilla js with event loop and DOM manipulation, vue.js reactive updates, react component view as function of local component state, elm model-view-update. in each model, describe a basic example (counter) and mention how they each allow composition and building of reponsive UIs with easy conceptualization, including ideas such as components, events, state, and communication between components.
+
 UI development finds its roots in object-oriented, imperative code. As paradigms shift, two ideas have remained constant: state and views.
 
 State is a data structure. This structure can hold any value relevant to the application, including numbers, strings, arrays, or objects.
 
-TODO: define current state of managing state (especially difficulties)
+TODO: define current state of managing state (especially difficulties). start with object oriented and imperative state updates and move into functional programming techniques for representing state, which is a fundamentally mutable value. have examples of state management code throughout.
 
 The view displays data from the state. In graphical user interfaces, the view is a screen. Views can exhibit the state on devices such as smart watches, mobile phones, laptops, monitors, or television screens. Operating systems represent the display with a buffer holding colors for each pixel.
 
@@ -53,9 +55,9 @@ Manipulating the display buffer palls when managing complex elements. Developers
 
 GUI frameworks circumvent this by defining reusable widgets. On the web, browsers abstract the view with the document object model (DOM).
 
-TODO: define GUI frameworks and DOM and transition into MVC. introduce concepts like imperative code for constructing the DOM and GUI
+TODO: define GUI frameworks and DOM, saying how they use imperative code for construction and mutation. show the problems with composition and reuse due to mutation. have code samples for DOM construction and mutation. transition into MVC.
 
-TODO: define MVC, difficulties with MVC, and transition into current state of functional UIs (react)
+TODO: define MVC, difficulties with MVC, and some examples with MVC. transition into using functional programming to solve some issues with state management and views by representing the view as a value, and defining it as a function of state.
 
 Developers are drifting away from object-oriented components and the Model-View-Controller (MVC) model. The current status quo of UI development defines views as a function of state.
 
@@ -64,6 +66,8 @@ application(state) = view
 ```
 
 With this model, the state, a dynamic value, is immutable. Applications change the state by constructing a new one from scratch and replacing the old one.
+
+TODO: add more examples and justification for this functional idea then transition into current frameworks for functional UI in the imperative DOM (react, elm, cycle). introduce the mental models that comes with each of these frameworks
 
 [React](https://reactjs.org) popularized this idea. It introduces components, each of which returns a view based on local state. The state is a JavaScript object, and the view is an object representing a virtual DOM. The virtual DOM is a tree describing the DOM.
 
