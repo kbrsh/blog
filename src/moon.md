@@ -209,7 +209,7 @@ TODO: define data driver, discuss implementation, introduce single state tree, d
 
 ## Views
 
-TODO: define view driver, discuss implementation details (virtual DOM, node reference check), Moon View Language, components
+TODO: define view driver, discuss implementation details (virtual DOM, node reference check), Moon View Language, components, layout with CSS (general styles -> unique classes with multiple declarations -> atomic classes)
 
 ## Time
 
