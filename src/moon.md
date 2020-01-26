@@ -49,11 +49,28 @@ Most UIs revolve around state. This means that if an application holds a certain
 
 Null values describe the absence of a value. Applications use them to handle states that can't exist yet. For example, a UI can use state to store a selected item in a list. If the user hasn't selected an item, developers may represent it with `null`.
 
+Boolean values represent two states, true or false. Two states are so convenient that programming languages natively support them. They are effective at denoting loading states, activation states, or authentication status.
+
 Numbers represent quantatative data. They can describe values such as counts, ages, money, likes, or followers. In addition, they can track the index to a list. For example, a number state value can reference the index of a selected item in a list.
 
 Strings represent text. This includes names, usernames, descriptions, and other text content. Similar to numbers, they can serve as a key to an object. For example, a string state value can hold a selected username. This username can map to user information in an object.
 
-Lists represent sets of ordered data. This can be a list of todos, users, transactions, or recipes.
+Lists represent sets of ordered data. This can be a list of todos, users, transactions, or recipes. They are often cons cells or arrays with integer indexes.
+
+Objects resemble lists with indexes, but accept any index type instead of integers. For example, numbers and strings can both map to a value in an object. These are useful for structuring state in general or mapping keys to values. As state compounds, an object is useful for structure.
+
+```js
+{
+	user: {
+		name: "",
+		email: "",
+		age: 0
+	},
+	users: [],
+	selected: null,
+	isLoaded: false
+}
+```
 
 TODO: define state, what it represents, how it is managed, and what it does for an application. define views, what they represent, how they are represented in pixels, how they are abstracted with GUI widgets and the DOM, and how the DOM is constructed and manipulated. define existing models: vanilla js with event loop and DOM manipulation, vue.js reactive updates, react component view as function of local component state, elm model-view-update. in each model, describe a basic example (counter) and mention how they each allow composition and building of reponsive UIs with easy conceptualization, including ideas such as components, events, state, and communication between components.
 
