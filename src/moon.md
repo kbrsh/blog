@@ -51,7 +51,7 @@ Null values describe the absence of a value. Applications use them to handle sta
 
 Boolean values represent two states, true or false. Two states are so convenient that programming languages natively support them. They are effective at denoting loading states, activation states, or authentication status.
 
-Numbers represent quantatative data. They can describe values such as counts, ages, money, likes, or followers. In addition, they can track the index to a list. For example, a number state value can reference the index of a selected item in a list.
+Numbers represent quantitative data. They can describe values such as counts, ages, money, likes, or followers. In addition, they can track the index to a list. For example, a number state value can reference the index of a selected item in a list.
 
 Strings represent text. This includes names, usernames, descriptions, and other text content. Similar to numbers, they can serve as a key to an object. For example, a string state value can hold a selected username. This username can map to user information in an object.
 
