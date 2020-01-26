@@ -72,11 +72,13 @@ Objects resemble lists with indexes, but accept any index type instead of intege
 }
 ```
 
+This is the most common way of holding structured state. The overarching state tree should have a well-defined shape, and it determines the character of the UI.
+
+The view displays data from the state. In graphical user interfaces, the view is a screen. Views can exhibit the state on devices such as smart watches, mobile phones, laptops, monitors, or television screens. Operating systems represent the display with a buffer holding colors for each pixel.
+
 TODO: define state, what it represents, how it is managed, and what it does for an application. define views, what they represent, how they are represented in pixels, how they are abstracted with GUI widgets and the DOM, and how the DOM is constructed and manipulated. define existing models: vanilla js with event loop and DOM manipulation, vue.js reactive updates, react component view as function of local component state, elm model-view-update. in each model, describe a basic example (counter) and mention how they each allow composition and building of reponsive UIs with easy conceptualization, including ideas such as components, events, state, and communication between components.
 
 TODO: define current state of managing state (especially difficulties). start with object oriented and imperative state updates and move into functional programming techniques for representing state, which is a fundamentally mutable value. have examples of state management code throughout.
-
-The view displays data from the state. In graphical user interfaces, the view is a screen. Views can exhibit the state on devices such as smart watches, mobile phones, laptops, monitors, or television screens. Operating systems represent the display with a buffer holding colors for each pixel.
 
 Manipulating the display buffer palls when managing complex elements. Developers would have to define every interaction's effect in terms of individual pixels. This means conducting text, images, inputs, and buttons at the same time.
 
