@@ -9,11 +9,10 @@
 
 		<title>Blog of Kabir Shah</title>
 
-		<link rel="shortcut icon" href="/img/logo-fill.png"/>
+		<link id="favicon" rel="shortcut icon"/>
 		<link rel="alternate" type="application/json" title="Kabir Shah" href="/feed.json"/>
 
-		<link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400,700&display=swap" rel="stylesheet"/>
-		<link rel="stylesheet" type="text/css" href="/css/lib/grain.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/lib/grain.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
 
 		<script>
@@ -27,25 +26,26 @@
 		</script>
 	</head>
 
-	<body class="a-x-c">
-		<div class="s-x-26 m-y-5">
-			<div>
-				<div class="s-x-26 a-x-c a-y-l-c m-x-3">
-					<a href="https://kabir.sh" id="logo"><img src="/img/logo-fill.png" alt="Personal Logo" class="s-x-8 s-y-8 s-b-3"/></a>
-					<h1>Blog</h1>
-				</div>
-				<p class="s-x-26 a-t-c">musings of a maker</p>
+	<body>
+		<div class="s-x-33 p-x-10 p-y-10 g-y-6">
+			<div class="s-x-i">
+				<a class="s-x-i plain" href="https://kabir.sh">
+					<img src="/img/logo.png" alt="Personal Logo" class="s-y-8"/>
+				</a>
+				<h1 class="s-x-i">Blog</h1>
+				<p class="s-x-i">composer of functions</p>
 			</div>
-			<div class="m-y-3">
-				<% posts.forEach(post => { %>
-					<% if (!post.draft) { %>
-						<div class="s-x-26 a-x-sb">
-							<p><a href="/<%= post.file %>"><%= post.title %></a></p>
-							<p><%= post.date %></p>
-						</div>
-					<% } %>
-				<% }); %>
-			</div>
+
+			<% posts.forEach(post => { %>
+				<% if (!post.draft) { %>
+					<div class="s-x-20">
+						<p class="s-x-i"><a href="/<%= post.file %>"><%= post.title %></a></p>
+						<p class="s-x-i"><%= post.date %></p>
+					</div>
+				<% } %>
+			<% }); %>
 		</div>
+
+		<script type="text/javascript" src="/js/index.js"></script>
 	</body>
 </html>

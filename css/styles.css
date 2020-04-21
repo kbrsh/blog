@@ -1,15 +1,20 @@
 html {
-	background: url("/img/background.png"), linear-gradient(90deg, hsl(160, 100%, 98%), hsl(200, 100%, 98%));
-	font-family: "Crimson Pro", Georgia, sans-serif;
-	color: hsl(200, 51%, 6%);
+	background: url("/img/background.png");
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-#logo {
-	border-bottom: none;
+h1, h2, h3, h4, h5, p {
+	-webkit-font-smoothing: antialiased;
 }
 
-h2 {
-	font-size: calc(15px * var(--grain-scale));
+a {
+	color: hsl(272, 100%, 14%);
+	background-color: hsl(272, 100%, 94%);
+}
+
+.plain {
+	color: hsl(0, 0%, 14%);
+	background: none;
 }
 
 img {
@@ -18,7 +23,7 @@ img {
 
 span.caption {
 	display: block;
-	color: hsl(200, 51%, 71%);
+	color: hsl(0, 0%, 71%);
 }
 
 code {
@@ -67,29 +72,4 @@ pre code {
 
 .katex-display {
 	width: calc(351px * var(--grain-scale));
-}
-
-a {
-	color: hsl(200, 51%, 6%);
-	border-bottom: 1px solid hsl(200, 51%, 6%);
-}
-
-#back {
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	border-bottom: none;
-}
-
-#back svg {
-	height: 15px;
-}
-
-#back svg #back-arrow {
-	fill: hsl(200, 51%, 71%);
-	transition: fill .2s ease;
-}
-
-#back:hover svg #back-arrow {
-	fill: hsl(200, 51%, 51%);
 }

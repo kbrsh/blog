@@ -8,12 +8,12 @@
 
 		<title><%= post.title %> | Blog of Kabir Shah</title>
 
-		<link rel="shortcut icon" href="/img/logo-fill.png"/>
+		<link id="favicon" rel="shortcut icon"/>
 		<link rel="alternate" type="application/json" title="Kabir Shah" href="/feed.json"/>
 
-		<link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400,700|Inconsolata&display=swap" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"/>
 		<% if (post.math) { %><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"/><% } %>
-		<link rel="stylesheet" type="text/css" href="/css/lib/grain.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/lib/grain.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
 
 		<script>
@@ -27,17 +27,19 @@
 		</script>
 	</head>
 
-	<body class="a-x-c">
-		<a href="/" id="back"><svg width="37" height="24" viewBox="0 0 37 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Arrow</title><path id="back-arrow" d="M36.0607 1.06066c.5857-.585786.5857-1.535534 0-2.12132l-9.546-9.54594c-.5858-.5858-1.5355-.5858-2.1213 0-.5858.5858-.5858 1.53553 0 2.12132L32.8787 0l-8.4853 8.48528c-.5858.58579-.5858 1.53552 0 2.12132.5858.5858 1.5355.5858 2.1213 0l9.546-9.54594zM0 1.5h35v-3H0v3z" transform="rotate(180 18.5 6)" fill="#888" /></svg></a>
-		<div class="s-x-26 m-y-5">
-			<div>
-				<h1 class="s-x-26 a-t-c"><%= post.title %></h1>
-				<p class="s-x-26 a-t-c"><%= post.date %></p>
+	<body>
+		<div class="s-x-33 p-x-10 p-y-10 g-y-6">
+			<div class="s-x-i">
+				<a class="s-x-i plain" href="/">
+					<img src="/img/logo.png" alt="Personal Logo" class="s-y-8"/>
+				</a>
+				<h1 class="s-x-i"><%= post.title %></h1>
+				<p class="s-x-i"><%= post.date %></p>
 			</div>
-			<div class="s-x-26 m-y-3">
-				<%- post.content %>
-			</div>
-			<div class="s-x-26 a-x-sb">
+
+			<%- post.content %>
+
+			<div class="s-x-i g-x-5">
 				<p><a href="https://kabir.sh">Portfolio</a></p>
 				<p><a href="https://blog.kabir.sh">Blog</a></p>
 				<p><a href="https://twitter.com/kbrshah">Twitter</a></p>

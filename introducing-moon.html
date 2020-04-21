@@ -8,12 +8,12 @@
 
 		<title>Introducing Moon | Blog of Kabir Shah</title>
 
-		<link rel="shortcut icon" href="/img/logo-fill.png"/>
+		<link id="favicon" rel="shortcut icon"/>
 		<link rel="alternate" type="application/json" title="Kabir Shah" href="/feed.json"/>
 
-		<link href="https://fonts.googleapis.com/css?family=Crimson+Pro:400,700|Inconsolata&display=swap" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet"/>
 		
-		<link rel="stylesheet" type="text/css" href="/css/lib/grain.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/lib/grain.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
 
 		<script>
@@ -27,27 +27,29 @@
 		</script>
 	</head>
 
-	<body class="a-x-c">
-		<a href="/" id="back"><svg width="37" height="24" viewBox="0 0 37 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Arrow</title><path id="back-arrow" d="M36.0607 1.06066c.5857-.585786.5857-1.535534 0-2.12132l-9.546-9.54594c-.5858-.5858-1.5355-.5858-2.1213 0-.5858.5858-.5858 1.53553 0 2.12132L32.8787 0l-8.4853 8.48528c-.5858.58579-.5858 1.53552 0 2.12132.5858.5858 1.5355.5858 2.1213 0l9.546-9.54594zM0 1.5h35v-3H0v3z" transform="rotate(180 18.5 6)" fill="#888" /></svg></a>
-		<div class="s-x-26 m-y-5">
-			<div>
-				<h1 class="s-x-26 a-t-c">Introducing Moon</h1>
-				<p class="s-x-26 a-t-c">March 25, 2017</p>
+	<body>
+		<div class="s-x-33 p-x-10 p-y-10 g-y-6">
+			<div class="s-x-i">
+				<a class="s-x-i plain" href="/">
+					<img src="/img/logo.png" alt="Personal Logo" class="s-y-8"/>
+				</a>
+				<h1 class="s-x-i">Introducing Moon</h1>
+				<p class="s-x-i">March 25, 2017</p>
 			</div>
-			<div class="s-x-26 m-y-3">
-				<p class="s-x-26">I used <a href="https://vuejs.org/">Vue</a> for a while, and it solved all of my problems beautifully. After a while, in late 2015, I began to notice some performance issues with my application. So I began to create something new, as a learning project. Hopefully to see how this DOM stuff actually works, and write a solution specifically for me.</p><p class="s-x-26">After researching how Vue works under the hood, I came across <a href="https://facebook.github.io/react/">React</a>. It had the concept of a virtual DOM, and patching this with state updates in order to update the DOM. I also came across the fact that Vue didn’t use this idea at the time (it does now).</p><p class="s-x-26">I began writing a simple library, not meant for anyone else to use. It was a single file, with jumbled up code, attempting to make something. I just didn’t know what it was yet.</p><p class="s-x-26">After getting it to work, no matter what I did, it was <em>ridiculously slow!</em> So I gave up, and kept on using my slow implementation.</p><h2 id="remake" class="s-x-26">Remake</h2><p class="s-x-26">Later, I came across <a href="https://preactjs.com/">Preact</a>. It was game-changing, a React alternative, that was <em>faster</em>, and only in <em>3kb!</em> I read the code, it was beautiful, easy-to-read, and I learned a lot about how a UI library actually works.</p><p class="s-x-26">So I set out to recreate what I called “Moon”. The goal was to be like Preact, but for Vue, as I preferred Vue’s API.</p><h2 id="performance" class="s-x-26">Performance</h2><p class="s-x-26">The performance of these frameworks can be so much better, but no library has it right. They all have their benefits, but still are weak in some areas. For example, library A might be good at adding items to the end of a large list, and library B might be good at adding items to the start of a large list.</p><p class="s-x-26">There’s a <a href="http://webreflection.blogspot.co.uk/2015/04/the-dom-is-not-slow-your-abstraction-is.html">great article</a> explaining why some abstractions are slow. In a nutshell, interfacing with the DOM directly is faster than an abstraction over the DOM.</p><p class="s-x-26">Still, dealing directly with the DOM can get messy, often leading to spaghetti code if not written correctly. All libraries have their abstraction, React and Vue use a virtual DOM, the Ember team created Glimmer, and hyperHTML uses bindings between the DOM and context fragments.</p><p class="s-x-26">These all are specific to the library, each with its’ own performance benefits and weaknesses. The question is, which library should you use?</p><h2 id="moon-to-the-rescue" class="s-x-26">Moon to the Rescue</h2><p class="s-x-26">After a couple months of development, what was originally supposed to be a library for my use, was rewritten into a library ready for anyone to mess around with.</p><ul>
-<li><p class="s-x-26">⚡️ It uses a version of the virtual DOM, but intelligently marks static nodes
-and skips over them, and only updates the parts of the DOM that have changed.</p></li><li><p class="s-x-26">💎 It provides a beautiful API, <em>very similar</em> to Vue. Complete with directives,
-reactive DOM updates, computed properties, etc.</p></li><li><p class="s-x-26">🎉 It is only <em>6kb</em>!</p></li><li><p class="s-x-26">🔨 It has a built in component system, allowing you to compose your UI out of
+
+			<p class="s-x-i">I used <a href="https://vuejs.org/">Vue</a> for a while, and it solved all of my problems beautifully. After a while, in late 2015, I began to notice some performance issues with my application. So I began to create something new, as a learning project. Hopefully to see how this DOM stuff actually works, and write a solution specifically for me.</p><p class="s-x-i">After researching how Vue works under the hood, I came across <a href="https://facebook.github.io/react/">React</a>. It had the concept of a virtual DOM, and patching this with state updates in order to update the DOM. I also came across the fact that Vue didn’t use this idea at the time (it does now).</p><p class="s-x-i">I began writing a simple library, not meant for anyone else to use. It was a single file, with jumbled up code, attempting to make something. I just didn’t know what it was yet.</p><p class="s-x-i">After getting it to work, no matter what I did, it was <em>ridiculously slow!</em> So I gave up, and kept on using my slow implementation.</p><h2 id="remake" class="s-x-i">Remake</h2><p class="s-x-i">Later, I came across <a href="https://preactjs.com/">Preact</a>. It was game-changing, a React alternative, that was <em>faster</em>, and only in <em>3kb!</em> I read the code, it was beautiful, easy-to-read, and I learned a lot about how a UI library actually works.</p><p class="s-x-i">So I set out to recreate what I called “Moon”. The goal was to be like Preact, but for Vue, as I preferred Vue’s API.</p><h2 id="performance" class="s-x-i">Performance</h2><p class="s-x-i">The performance of these frameworks can be so much better, but no library has it right. They all have their benefits, but still are weak in some areas. For example, library A might be good at adding items to the end of a large list, and library B might be good at adding items to the start of a large list.</p><p class="s-x-i">There’s a <a href="http://webreflection.blogspot.co.uk/2015/04/the-dom-is-not-slow-your-abstraction-is.html">great article</a> explaining why some abstractions are slow. In a nutshell, interfacing with the DOM directly is faster than an abstraction over the DOM.</p><p class="s-x-i">Still, dealing directly with the DOM can get messy, often leading to spaghetti code if not written correctly. All libraries have their abstraction, React and Vue use a virtual DOM, the Ember team created Glimmer, and hyperHTML uses bindings between the DOM and context fragments.</p><p class="s-x-i">These all are specific to the library, each with its’ own performance benefits and weaknesses. The question is, which library should you use?</p><h2 id="moon-to-the-rescue" class="s-x-i">Moon to the Rescue</h2><p class="s-x-i">After a couple months of development, what was originally supposed to be a library for my use, was rewritten into a library ready for anyone to mess around with.</p><ul>
+<li><p class="s-x-i">⚡️ It uses a version of the virtual DOM, but intelligently marks static nodes
+and skips over them, and only updates the parts of the DOM that have changed.</p></li><li><p class="s-x-i">💎 It provides a beautiful API, <em>very similar</em> to Vue. Complete with directives,
+reactive DOM updates, computed properties, etc.</p></li><li><p class="s-x-i">🎉 It is only <em>6kb</em>!</p></li><li><p class="s-x-i">🔨 It has a built in component system, allowing you to compose your UI out of
 different components.</p></li></ul>
-<h2 id="benchmarks" class="s-x-26">Benchmarks</h2><p class="s-x-26">Here are the DBMonster results (higher is better):</p><ul>
-<li><p class="s-x-26">Moon — 102 rerenders/second</p></li><li><p class="s-x-26">Preact — 85 rerenders/second</p></li><li><p class="s-x-26">Vue — 50 rerenders/second</p></li><li><p class="s-x-26">React — 50 rerenders/second</p></li></ul>
-<p class="s-x-26">Here are the results benchmarking TodoMVC implementations (lower is better):</p><p class="s-x-26"><img src="../img/introducing-moon/benchmark.png" alt="">
-<span class="caption">Benchmark for adding 100 items, completing 100 items, and deleting 100 items</span></p><h2 id="another-one" class="s-x-26">Another One?</h2><p class="s-x-26">I know, I know, there seems to be a new Javascript framework released every day. Moon is one of them.</p><p class="s-x-26">This doesn’t mean you have to use it, in fact, it doesn’t mean anyone has to. If you are fine with your current solution, great! Keep on grinding.</p><p class="s-x-26">If you are starting a new project, or are looking for some performance benefits, or want a nice API, feel free to try out Moon!</p><h2 id="why-so-long" class="s-x-26">Why so Long?</h2><p class="s-x-26">Moon, an idea that started in late 2015, is now almost production ready in early 2017. Why did it take so long?</p><p class="s-x-26">Remember, Moon started as a learning project. At the time, I was looking
+<h2 id="benchmarks" class="s-x-i">Benchmarks</h2><p class="s-x-i">Here are the DBMonster results (higher is better):</p><ul>
+<li><p class="s-x-i">Moon — 102 rerenders/second</p></li><li><p class="s-x-i">Preact — 85 rerenders/second</p></li><li><p class="s-x-i">Vue — 50 rerenders/second</p></li><li><p class="s-x-i">React — 50 rerenders/second</p></li></ul>
+<p class="s-x-i">Here are the results benchmarking TodoMVC implementations (lower is better):</p><p class="s-x-i"><img src="../img/introducing-moon/benchmark.png" alt="">
+<span class="caption">Benchmark for adding 100 items, completing 100 items, and deleting 100 items</span></p><h2 id="another-one" class="s-x-i">Another One?</h2><p class="s-x-i">I know, I know, there seems to be a new Javascript framework released every day. Moon is one of them.</p><p class="s-x-i">This doesn’t mean you have to use it, in fact, it doesn’t mean anyone has to. If you are fine with your current solution, great! Keep on grinding.</p><p class="s-x-i">If you are starting a new project, or are looking for some performance benefits, or want a nice API, feel free to try out Moon!</p><h2 id="why-so-long" class="s-x-i">Why so Long?</h2><p class="s-x-i">Moon, an idea that started in late 2015, is now almost production ready in early 2017. Why did it take so long?</p><p class="s-x-i">Remember, Moon started as a learning project. At the time, I was looking
 to make something for myself, without all the bloated features of popular
-libraries I <em>didn’t need</em>. I also knew nothing about the DOM.</p><p class="s-x-26">It’s amazing how much I’ve learned since then.</p>
-			</div>
-			<div class="s-x-26 a-x-sb">
+libraries I <em>didn’t need</em>. I also knew nothing about the DOM.</p><p class="s-x-i">It’s amazing how much I’ve learned since then.</p>
+
+			<div class="s-x-i g-x-5">
 				<p><a href="https://kabir.sh">Portfolio</a></p>
 				<p><a href="https://blog.kabir.sh">Blog</a></p>
 				<p><a href="https://twitter.com/kbrshah">Twitter</a></p>

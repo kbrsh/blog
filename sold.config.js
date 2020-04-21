@@ -13,15 +13,15 @@ Prism.languages.insertBefore("inside", "attr-name", { comment: commentRE }, Pris
 Prism.languages.javascript = Prism.languages.extend("markup", Prism.util.clone(Prism.languages.javascript));
 
 renderer.heading = (text, level, raw, slugger) => {
-	return `<h${level} id="${slugger.slug(text)}" class="s-x-26">${text}</h${level}>`;
+	return `<h${level} id="${slugger.slug(text)}" class="s-x-i">${text}</h${level}>`;
 };
 
 renderer.paragraph = text => {
-	return `<p class="s-x-26">${text}</p>`;
+	return `<p class="s-x-i">${text}</p>`;
 };
 
 renderer.listitem = text => {
-	return `<li><p class="s-x-26">${text}</p></li>`;
+	return `<li><p class="s-x-i">${text}</p></li>`;
 };
 
 renderer.code = (code, lang, escaped) => {
@@ -34,9 +34,9 @@ renderer.code = (code, lang, escaped) => {
 			displayMode: true
 		});
 	} else if (lang in Prism.languages) {
-		return `<pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code>${Prism.highlight(code, Prism.languages[lang], lang)}</code></pre>`;
+		return `<pre class="s-x-i s-b-2 p-x-4 p-y-4"><code>${Prism.highlight(code, Prism.languages[lang], lang)}</code></pre>`;
 	} else {
-		return `<pre class="s-x-26 s-b-2 p-x-4 p-y-4"><code>${code}</code></pre>`;
+		return `<pre class="s-x-i s-b-2 p-x-4 p-y-4"><code>${code}</code></pre>`;
 	}
 };
 
