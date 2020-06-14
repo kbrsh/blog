@@ -28,7 +28,7 @@
 	</head>
 
 	<body>
-		<div class="s-x-33 p-x-10 p-y-10 g-y-6">
+		<div class="s-x-33 p-x-10 p-y-10 m-y-6">
 			<div class="s-x-i">
 				<a class="s-x-i plain" href="/">
 					<img src="/img/logo.png" alt="Personal Logo" class="s-y-8"/>
@@ -270,7 +270,7 @@
   <span class="token keyword">return</span> staticNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// Cached root element</span>
 <span class="token punctuation">}</span></code></pre><p class="s-x-i">After analyzing this template, Moon detected the static root element and hoisted it out of the render function. Whenever the app is rendered, the same outer <code class="s-b-2 p-x-2 p-y-2">div</code> will be returned every time from <code class="s-b-2 p-x-2 p-y-2">staticNodes[0]</code>.</p><h2 id="conclusion" class="s-x-i">Conclusion</h2><p class="s-x-i">In the end, Vue only optimizes in a few test cases, in which there were static elements inside of a static parent element. However, Moon detected many of the static elements and hoisted them out of the render function so that the static virtual nodes could be reused. This also allows for the virtual DOM engine to skip over static elements because they have the same reference on every render.</p>
 
-			<div class="s-x-i g-x-5">
+			<div class="s-x-i m-x-5">
 				<p><a href="https://kabir.sh">Portfolio</a></p>
 				<p><a href="https://blog.kabir.sh">Blog</a></p>
 				<p><a href="https://twitter.com/kbrshah">Twitter</a></p>
